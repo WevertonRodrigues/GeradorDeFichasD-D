@@ -1,0 +1,52 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <!-- Usuário -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label">
+        <label for="user">Usuário</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="perfilAux.User" name="user" id="userID"
+         #user="ngModel" placeholder="Digite seu usuário" required #spy>
+        <div [hidden]="user.valid || user.pristine" class="alert alert-danger ml-1 mb-0">
+          Digite seu nome de usuário
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Senha -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label">
+        <label for="password">Senha</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" [(ngModel)]="perfilAux.Password" name="password" 
+         #password="ngModel" id="passwordID" minlength="8" placeholder="Digite sua senha" required #spy>
+        <div [hidden]="password.valid || password.pristine" class="alert alert-danger ml-1 mb-0">
+          Digite a sua senha
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Checkbox -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+        <div class="group-check">
+          <input class="form-input mr-1" type="checkbox" name="manterConectado" value="1" id="manterConectado">
+          <label class="form-label mt-0" for="manterConectado"> Manter conectado</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <!-- Botão confirma -->
+  <div class="row">
+    <div class="col-sm-2 col-form-label"></div>
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-danger" [disabled]="!loginForm.form.valid">Ver fichas</button>
+    </div>
+  </div>
+</form>

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Gerador';
+  title = 'gerador-de-fichas';
+  entrada = 'Entrada dos dados!'
 }

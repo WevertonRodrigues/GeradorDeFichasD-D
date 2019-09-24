@@ -1,0 +1,39 @@
+<div class="card mt-0 d-block">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-7 mt-0 ml-1">
+                <h2 class="styleFont">Dados das Fichas Cadastratadas</h2>
+            </div>
+            <div class="col mt-0 mr-xl-n5">
+                <label id="labelBuscar" class="styleFont" for="buscaID">Procure por suas fichas</label>
+                <input class="styleFont" type="text" id="buscaID" placeholder="Procurar">
+            </div>
+        </div>
+        <br /><br /><br />
+        <div class="container ml-0">
+            <div class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome do Personagem</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let ficha of fichas">
+                    <tr>
+                        <th scope="row"><label class="mt-2">{{ficha.Id}}</label></th>
+                        <td>
+                            <label class="mt-2">{{ficha.NomePersonagem}}</label>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" (click) = "editarFicha(ficha.Id)">Editar</button>
+                            <button class="btn btn-secondary ml-1" (click) = "removerFicha(ficha.Id)">Remover</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+        <button class="btn btn-danger" (click) = "criarFicha()">Criar nova ficha</button>
+        <button class="btn btn-secondary ml-1" (click) = "listar()">Carregar fichas</button>                
+    </div>
+</div>

@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+a#conta{
+    text-decoration: none;
+}
+body{
+    background-color: #545454;
+    background-image: url("./assets/Imagens/background.jpg");
+    background-size: cover;
+}
+.textoCabecalho{
+    font-family: 'Agency Fb', arial;
+    font-weight: bold;
+    font-size: 3rem;
+    color: rgba(11, 7, 65, 0.836); 
+}
+#containerCarouselIndex{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+#pIndex{
+    font-family: 'Agency Fb', arial;
+    font-size: 1.6rem;
+    text-indent: 4rem;
+}
+.container{
+    text-align: justify;
+    text-justify: inter-word;
+}

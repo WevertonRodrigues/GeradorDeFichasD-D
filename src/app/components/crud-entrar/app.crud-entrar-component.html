@@ -1,0 +1,28 @@
+<br/>
+<div class="container mt-n5">
+  <div class="card mx-auto mb-2q">
+    <div class="card-header px-1 py-1">
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#list-home" role="tab" aria-controls="login" data-toggle="list">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#list-profile" role="tab" aria-controls="signin" data-toggle="list">Cadastro</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <br/>
+      <div class="container">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <app-form-entrar></app-form-entrar>
+          </div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <app-form-cadastro></app-form-cadastro>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

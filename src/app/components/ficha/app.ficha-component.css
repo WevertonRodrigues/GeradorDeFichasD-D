@@ -1,0 +1,74 @@
+.card
+{
+    max-height: 400%;
+    max-width: 100%;
+    margin-bottom: 7%;
+}
+form .card .card-header{
+    text-align: left;
+    color: #fffffff6;
+    background-color: rgb(236, 36, 29);
+    font-family: 'Agency fb', arial;
+    font-size: 40px;
+    font-weight: lighter;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+.container{
+    max-width: 100%;
+}
+textarea{
+    resize: none;
+}
+.textoAtr{
+    text-align: center;
+}
+select, input[type=number], input[type=text], input[type=textarea], label{
+    font-family: 'Agency fb', arial;
+    font-weight: lighter;
+    font-size: 145%;
+}
+
+.as input[type=checkbox]{
+    display:none;
+}
+
+.as label{
+    display: block;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding-left: 35px; 
+    font-size: 20px;
+    position: relative;
+    
+}
+.as label::before{
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: solid 1px #a2a2a2;
+    display: inline-block;
+    box-sizing: border-box;
+    right: 0;
+    top: -1.5px;
+    border-radius: 2rem 2rem 2rem 2rem;
+    background-color: #a2a2a2
+}
+
+.as label::after{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #a2a2a2;
+    display: inline-block;
+    box-sizing: border-box;
+    right: 3px;
+    top: 1.5px;
+    border-radius: 2rem 2rem 2rem 2rem;
+}
+
+.as input:checked + label::after{
+    background-color: black;
+}

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row mt-6">
+        <!-- Menu lateral -->
+        <div class="card col-md-3 mt-5 ml-3">
+            <div class="row">
+                <img class="ml-4" src="../../../assets/Imagens/default_avatar.jpg" width="80px" height="60px">
+                <label class="mt-4 ml-1 texts" id="textUser">{{perfil.User}}</label>
+            </div>
+            <br /><br />
+            <!-- Itens do Menu -->
+            <div class="row">
+                <div class="container">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-action linkPer texts" id="list-alterar-dados-list"
+                            data-toggle="list" href="#list-alterar-dados" role="tab"
+                            aria-controls="alterar-dados">Alterar
+                            Dados</a>
+                        <a class="list-group-item list-group-action linkPer texts active" id="list-ver-fichas-list"
+                            data-toggle="list" href="#list-ver-fichas" role="tab" aria-controls="ver-fichas">Ver
+                            Fichas</a>
+                        <a class="list-group-item list-group-action linkPer texts" id="list-ver-fichas-list"
+                            data-toggle="list" routerLink="/index" role="tab" aria-controls="ver-fichas">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Separador -->
+        <div class="col">
+            <hr class="" />
+        </div>
+
+        <!-- Conteúdo de itens da lista -->
+        <div class="col-8 mt-5">
+            <div class="tab-content" id="nav-tabContent">
+                <a class="tab-pane fade show" id="list-alterar-dados" role="tabpanel"
+                    aria-labelledby="list-alterar-dados-list">
+                    <app-alterar-dados></app-alterar-dados>
+                </a>
+                <a class="tab-pane fade show active" id="list-ver-fichas" role="tabpanel"
+                    aria-labelledby="list-ver-fichas-list">
+                    <app-listagem-fichas></app-listagem-fichas>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

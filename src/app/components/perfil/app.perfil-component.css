@@ -1,0 +1,43 @@
+.container-fluid{
+    background-color: rgba(255, 255, 255, 0.5);
+    display: block;
+}
+.container-fluid .card{
+   display: block;
+   min-height: 100%;
+}
+.container{
+    width: 50rem;
+    margin-left: -1rem;
+    margin-right: -1rem; 
+}
+.texts{
+    font-family: 'Agency Fb', arial;
+    color: rgba(0, 0, 0, 0.596);
+}
+.list-group a{
+    border-radius: 0px 0px 0px 0px;
+}
+a.linkPer{
+    text-decoration: none;
+    border-color: none;
+    color: rgba(0, 0, 0, 0.596);
+    font-size: x-large;
+    font-weight: bold;
+}
+.list-group a.active{
+    background-color: rgba(236, 36, 29, 0.61);
+    border-color: rgba(214, 63, 58, 0.432);
+}
+a.linkPer:hover{
+    background-color: rgba(0, 0, 0, 0.596);
+}
+hr{
+    border: 0.5px solid rgba(17, 17, 17, 0.603);/*rgba(11, 7, 65, 0.836);*/
+    width: 0.2%;
+    min-height: 38rem;
+    /*max-height: */
+}
+#textUser{
+    font-size: 180%;
+}

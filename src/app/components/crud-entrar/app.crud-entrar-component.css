@@ -1,0 +1,42 @@
+@import url("../../../styles.css");
+    a{
+        color: rgba(11, 7, 65, 0.836);
+        font-weight: bold;
+    }
+    .card .card-header a.active{
+        background-color: white;
+        color: rgba(11, 7, 65, 0.836);
+      
+    }
+    .btn-danger{
+        font-family: 'Agency fb', arial;
+        background-color: rgb(236, 36, 29);
+        border-color: rgba(214, 63, 58, 0.863);
+        margin-top: 1rem;
+    }
+    .card{
+        min-height: 32rem;
+        max-width: 47rem;
+    }
+    .card .card-header{
+        vertical-align: center;
+        background-color: rgb(236, 36, 29);
+        text-align: center;   
+        /*border-radius: 25px 25px 0px 0px;*/
+        font-family: 'Agency fb', arial;
+        font-size: 30px;
+    }
+    form .group-form{
+        margin-bottom: 1rem;
+        /*margin-top: 0rem;*/
+    }
+    input[type=text], input[type=password], input[type=file]{
+        font-family: 'Agency fb', arial;
+        font-size: 125%;
+    }
+    label{
+        font-family: 'Agency fb', arial;
+        font-size: 125%;
+        vertical-align: center;
+    }
+    

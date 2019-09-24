@@ -1,0 +1,72 @@
+<form #cadForm="ngForm" (ngSubmit)="cadastrar()">
+  <!-- Novo usuário -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label">
+        <label for="userCadID">Novo Usuário</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="userCad" id="userCadID" placeholder="Escolha um nome de usuário"
+          [(ngModel)]="perfil.User" #userCad="ngModel" required #spy>
+        <div [hidden]="userCad.valid || userCad.pristine" class="alert alert-danger ml-1 mb-0">
+          É necessário escolher um nome de usuário!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nova senha -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label">
+        <label for="passwordCadID">Nova Senha</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="password"
+         class="form-control" name="passwordCad" id="passwordCadID" minlength="8" maxlength="20"
+          [(ngModel)]="perfil.Password" #passwordCad="ngModel" placeholder="Digite sua nova senha" required #spy>
+        <div [hidden]="passwordCad.valid || passwordCad.pristine" class="alert alert-danger ml-1 mb-0">
+          É necessário digitar uma senha
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Repetir senha -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+        <input type="password"
+          class="form-control" name="repPassword" [(ngModel)]="perfil.RepPassword" #repPassword="ngModel"
+          id="repPasswordCadID" minlength="8" maxlength="20" placeholder="Repita a nova senha" required #spy>
+        <div [hidden]="repPassword.valid || repPassword.pristine" class="alert alert-danger ml-1 mb-0">
+          É necessário repetir a senha (mínimo 8 caracteres)
+        </div>
+        <div *ngIf="perfil.Password != perfil.RepPassword" class="alert alert-danger ml-1 mb-0">
+          Senhas diferentes
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foto usuário -->
+  <div class="group-form">
+    <div class="row">
+      <div class="col-sm-2 col-form-label">
+        <label for="imagemDePerfilID" style="margin-top: -0.8rem">Escolha a foto de perfil</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="file" class="form-control-file" accept="image/*" id="imagemDePerfilID">
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão confirmar -->
+  <div class="row">
+    <div class="col-sm-2 col-form-label"></div>
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-danger" [disabled]="!cadForm.form.valid">Criar ficha</button>
+    </div>
+  </div>
+</form>
