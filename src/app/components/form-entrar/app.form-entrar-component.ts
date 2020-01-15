@@ -17,18 +17,19 @@ export class FormEntrarComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private perfilService: PerfilService) { }
 
     ngOnInit() {
-        this.getPerfis();
+        //this.getPerfis();
     }
 
     onSubmit() {
-        this.getPerfis();
-        if(this.autenticar() == true)
-            this.router.navigate(['/perfil', this.perfil.Id], {relativeTo:this.route});
+        //this.getPerfis();
+        //if(this.autenticar() == true)
+            //this.router.navigate(['/perfil', this.perfilAux.Id], {relativeTo:this.route});
+            this.router.navigate(['/perfil'])
     }
 
     autenticar(): boolean {            
-        console.log("User aux: " + this.perfilAux.User);
-        console.log("Password aux: " + this.perfilAux.Password);  
+        /*console.log("User aux: " + this.perfilAux.User);
+        console.log("Password aux: " + this.perfilAux.Password);*/  
         for (let i = 0; i < this.perfis.length; i++) {          
             console.log("User vet: " + this.perfis[i].User);
             console.log("Password vet: " + this.perfis[i].Password);
@@ -62,39 +63,6 @@ export class FormEntrarComponent implements OnInit {
             .subscribe(response => {
                 if (response.Status == 0) {
                     this.perfil = response.Perfis
-                }
-                else {
-                    alert(response.Detalhes)
-                }
-            });
-    }
-
-    inserir(): void {
-        this.perfilService.addPerfil(this.perfil)
-            .subscribe(response => {
-                if (response.Status == 0) {                    
-                }
-                else {
-                    alert(response.Detalhes)
-                }
-            });
-    }
-
-    atualizar(): void {
-        this.perfilService.updatePerfil(this.perfil)
-            .subscribe(response => {
-                if (response.Status == 0) {
-                }
-                else {
-                    console.log(response.Detalhes)
-                }
-            });
-    }
-
-    remover(id): void {
-        this.perfilService.deletePerfil(id)
-            .subscribe(response => {
-                if (response.Status == 0) {
                 }
                 else {
                     alert(response.Detalhes)

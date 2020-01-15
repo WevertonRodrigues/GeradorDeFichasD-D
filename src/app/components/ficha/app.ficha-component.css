@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
 .card
 {
     max-height: 400%;
@@ -8,7 +10,7 @@ form .card .card-header{
     text-align: left;
     color: #fffffff6;
     background-color: rgb(236, 36, 29);
-    font-family: 'Agency fb', arial;
+    font-family: 'Quicksand', sans-serif;
     font-size: 40px;
     font-weight: lighter;
     padding-top: 0rem;
@@ -24,7 +26,7 @@ textarea{
     text-align: center;
 }
 select, input[type=number], input[type=text], input[type=textarea], label{
-    font-family: 'Agency fb', arial;
+    font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaService } from 'src/app/service/app.ficha-service';
@@ -10,7 +10,7 @@ import { FichaService } from 'src/app/service/app.ficha-service';
 })
 
 
-export class FichaComponent implements OnInit {
+export class FichaComponent /*implements OnInit*/ {
     ficha: Ficha = new Ficha();
 
     fichas: Ficha[] = [];
@@ -18,8 +18,10 @@ export class FichaComponent implements OnInit {
     perfilAtual : number;
     fichaAtual: number;
 
-
     constructor(private route: ActivatedRoute,
+        private router: Router,) {}
+      
+    /*constructor(private route: ActivatedRoute,
         private router: Router,
         private fichaService: FichaService) { }
 
@@ -30,7 +32,7 @@ export class FichaComponent implements OnInit {
             this.perfilAtual = +objeto['idPerfil'];
         })
         this.getFichas();
-    }
+    }*/
 
     mudarProf(lvlAtual: number): void {
         //let profi = Math.trunc((lvlAtual / 5) + 2);
@@ -520,7 +522,7 @@ export class FichaComponent implements OnInit {
         this.ficha.classeAtual = c;
     }
 
-    getFicha(id : number): void {
+/*    getFicha(id : number): void {
         this.fichaService.getFicha(id)
             .subscribe(response => {
                 if (response.Status == 0) {
@@ -594,7 +596,7 @@ export class FichaComponent implements OnInit {
             this.atualizar();
         }
         this.voltar();
-    }
+    }*/
 
     voltar() : void {
         this.router.navigate(['/perfil', this.perfilAtual], 

@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
 a#conta{
     text-decoration: none;
 }
@@ -8,7 +10,7 @@ body{
     background-size: cover;
 }
 .textoCabecalho{
-    font-family: 'Agency Fb', arial;
+    font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     font-size: 3rem;
     color: rgba(11, 7, 65, 0.836); 
@@ -19,7 +21,7 @@ body{
     width: 1000px;
 }
 #pIndex{
-    font-family: 'Agency Fb', arial;
+    font-family: 'Quicksand', sans-serif;
     font-size: 1.6rem;
     text-indent: 4rem;
 }

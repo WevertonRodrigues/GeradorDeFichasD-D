@@ -17,7 +17,7 @@ export class FormCadastroComponent{
 
     cadastrar(){
         console.log("Id antes: " + this.perfil.Id);
-        this.inserir();
+        //this.inserir();
         console.log("Id depois: " + this.perfil.Id);
         this.router.navigate(['/perfil', this.perfil.Id], {relativeTo:this.route});
     }   

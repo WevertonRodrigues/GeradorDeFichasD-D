@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CrudEntrarComponent } from './components/crud-entrar/app.crud-entrar-component';
-import { IndexComponent} from './components/index/app.index-component';
+import { IndexComponent } from './components/index/app.index-component';
 import { PerfilComponent } from './components/perfil/app.perfil-component';
 import { ListagemFichasComponent } from './components/listagem-fichas/app.listagem-fichas-component';
 import { AlterarDadosComponent } from './components/alterar-dados/app.alterar-dados-component';
@@ -16,23 +16,25 @@ import { FormEntrarComponent } from './components/form-entrar/app.form-entrar-co
 import { FormCadastroComponent } from './components/form-cadastro/app.form-cadastro-component';
 
 const appRoutes: Routes = [
-  { path: '', component: IndexComponent},
-  { path: 'index', component: IndexComponent},
-  { path: 'login', component: CrudEntrarComponent},
+  { path: '', component: IndexComponent },
+  { path: 'index', component: IndexComponent },
+  { path: 'login', component: CrudEntrarComponent },
   { path: 'perfil/:idPerfil', component: PerfilComponent},
-  { path: 'ficha/:idPerfil/:idFicha', component: FichaComponent}
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'ficha/:idPerfil/:idFicha', component: FichaComponent },
+  { path: 'ficha/', component: FichaComponent },
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent,  AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent
+    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent, AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
     ),
-    BrowserModule,    
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Perfil } from '../../models/perfil.modelo';
+import { Component } from '@angular/core';
+//import { Perfil } from '../../models/perfil.modelo';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PerfilService } from 'src/app/service/app.perfil-service';
+//import { PerfilService } from 'src/app/service/app.perfil-service';
 
 @Component({
     selector: 'app-perfil',
@@ -9,12 +9,16 @@ import { PerfilService } from 'src/app/service/app.perfil-service';
     styleUrls: ['./app.perfil-component.css']
 })
 
-export class PerfilComponent implements OnInit {
-    perfil: Perfil = new Perfil();
+export class PerfilComponent /*implements OnInit*/ {
+    /*perfil: Perfil = new Perfil();
     perfis : Perfil[] = [];
-    perfilAtual : number;
+    perfilAtual : number;*/
+
 
     constructor(private route: ActivatedRoute,
+        private router: Router) { }
+
+    /*constructor(private route: ActivatedRoute,
         private router: Router,
         private perfilService: PerfilService) { }
 
@@ -23,13 +27,13 @@ export class PerfilComponent implements OnInit {
             this.perfilAtual = +objeto['idPerfil'];            
         })
         this.perfis = [];
-        this.getPerfis();     
-        this.filtrarPerfil(this.perfilAtual);
+        //this.getPerfis();     
+        //this.filtrarPerfil(this.perfilAtual);
         //console.log("Id perfil: " + this.perfil.Id);
         //console.log("Id perfil: " + this.perfilAtual);
-    }
+    }*/
 
-    filtrarPerfil(id : number) : void {
+    /*filtrarPerfil(id : number) : void {
         for(let i = 0; i < this.perfis.length; i++)
             if(id == this.perfis[i].Id){
                 this.perfil.Id = this.perfis[i].Id;
@@ -93,5 +97,5 @@ export class PerfilComponent implements OnInit {
                     alert(response.Detalhes)
                 }
             });
-    }
+    }*/
 }

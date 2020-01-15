@@ -1,8 +1,8 @@
-<button class="btn btn-danger ml-3" (click) = "carregarDados()">Carregar dados</button><br /><br /><br />
-<form #loginForm="ngForm" (ngSubmit)="salvarAlteracoes()" >
+<button class="btn btn-danger ml-3" (click)="carregarDados()">Carregar dados</button><br /><br /><br />
+<form #loginForm="ngForm" (ngSubmit)="salvarAlteracoes()">
     <div class="container">
         <div class="row">
-            <!-- Dados Básicos do Personagem -->            
+            <!-- Dados Básicos do Personagem -->
             <div class="col ml-xl-12">
                 <div class="card">
                     <h3 class="card-header">Dados Básicos do Personagem</h3>
@@ -10,13 +10,15 @@
 
                         <div class="form-group">
                             <label for="nomePersonagemID">Nome do Personagem</label>
-                            <input type="text" class="form-control" id="nomePersonagemID" name="nomePersonagem" [(ngModel)]="ficha.NomePersonagem" #nomPersonagem="ngModel"
+                            <input type="text" class="form-control" id="nomePersonagemID" name="nomePersonagem"
+                                [(ngModel)]="ficha.NomePersonagem" #nomPersonagem="ngModel"
                                 placeholder="Digite o nome do seu personagem">
                         </div>
                         <br />
                         <div class="form-group">
                             <label for="classeID">Escolha sua classe </label>
-                            <select class="form-control" id="classeID" (change)="clickClasse(classe.value)" name="classe" [(ngModel)]="ficha.Classe" #classe="ngModel">
+                            <select class="form-control" id="classeID" (change)="clickClasse(classe.value)"
+                                name="classe" [(ngModel)]="ficha.Classe" #classe="ngModel">
                                 <option value="0"></option>
                                 <option value="1" data-toggle="tooltip" data-placement="top"
                                     title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
@@ -60,26 +62,29 @@
                         <br />
                         <div class="form-group">
                             <label for="selLvl">Selecione o nível do seu personagem</label>
-                            <input type="number" class="form-control" min="1" max="20" name="nivel" [(ngModel)]="ficha.Nivel" #nivel="ngModel"
-                                (change)="mudarProf(nivel.value)" 
+                            <input type="number" class="form-control" min="1" max="20" name="nivel"
+                                [(ngModel)]="ficha.Nivel" #nivel="ngModel" (change)="mudarProf(nivel.value)"
                                 id="selLvlID" />
                         </div>
                         <br />
                         <div class="form-group">
                             <label for="np">Antecedente</label>
-                            <input type="text" class="form-control" id="antecedenteID" name="antecedente" [(ngModel)]="ficha.Antecedente" #antecedente="ngModel"
+                            <input type="text" class="form-control" id="antecedenteID" name="antecedente"
+                                [(ngModel)]="ficha.Antecedente" #antecedente="ngModel"
                                 placeholder="Digite o antecedente do seu personagem">
                         </div>
                         <br />
                         <div class="form-group">
                             <label for="np">Nome do Jogador</label>
-                            <input type="text" class="form-control" id="nomeJogadorID" placeholder="Digite o nome do jogador" name="nomeJogador" [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel">
+                            <input type="text" class="form-control" id="nomeJogadorID"
+                                placeholder="Digite o nome do jogador" name="nomeJogador"
+                                [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel">
                         </div>
                         <br />
                         <div class="form-group">
                             <label for="racaID">Escolha a raça do seu personagem</label>
-                            <select class="form-control" id="racaID" name="raca" [(ngModel)]="ficha.Raca" #raca="ngModel"
-                             (change) = "mudarAtributosRaca(raca.value);">
+                            <select class="form-control" id="racaID" name="raca" [(ngModel)]="ficha.Raca"
+                                #raca="ngModel" (change)="mudarAtributosRaca(raca.value);">
                                 <option value="0"></option>
                                 <option value="1">Anão</option>
                                 <option value="2">Draconato</option>
@@ -93,43 +98,48 @@
                             </select>
                         </div>
 
-                        <div class="form-group mt-n3">
+                        <div class="form-group mt-n2">
                             <label for="subRacaRadID">Escolha a sub-raça</label>
-                            <div [ngSwitch] = "raca.value">
-                                <select *ngSwitchCase = "1" class="form-control mt-2" id="subRacaID" name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                (change) = "mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">                
-                                        <option value="0"></option>
-                                        <option value="1">Anão da Colina</option>
-                                        <option value="2">Anão da Montanha</option>                                       
+                            <div [ngSwitch]="raca.value">
+                                <select *ngSwitchCase="1" class="form-control mt-2" id="subRacaID" name="subRaca"
+                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
+                                    #subRaca="ngModel">
+                                    <option value="0"></option>
+                                    <option value="1">Anão da Colina</option>
+                                    <option value="2">Anão da Montanha</option>
                                 </select>
-                                <select *ngSwitchCase = "3" class="form-control mt-2" id="subRacaID" name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                (change) = "mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">                                             
-                                        <option value="0"></option>
-                                        <option value="1">Alto Elfo</option>
-                                        <option value="2">Elfo da Floresta</option>
-                                        <option value="3">Elfo Negro(Drow)</option>
+                                <select *ngSwitchCase="3" class="form-control mt-2" id="subRacaID" name="subRaca"
+                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
+                                    #subRaca="ngModel">
+                                    <option value="0"></option>
+                                    <option value="1">Alto Elfo</option>
+                                    <option value="2">Elfo da Floresta</option>
+                                    <option value="3">Elfo Negro(Drow)</option>
                                 </select>
-                                <select *ngSwitchCase = "4" class="form-control mt-2" id="subRacaID" name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                (change) = "mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">                
+                                <select *ngSwitchCase="4" class="form-control mt-2" id="subRacaID" name="subRaca"
+                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
+                                    #subRaca="ngModel">
                                     <option value="0"></option>
                                     <option value="1">Halfling Pés Leves</option>
-                                    <option value="2">Halfling Robusto</option>                                       
+                                    <option value="2">Halfling Robusto</option>
                                 </select>
-                                <select *ngSwitchCase = "6" class="form-control mt-2" id="subRacaID" name="subRaca" [(ngModel)]="ficha.SubRaca" 
-                                (change) = "mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">                
+                                <select *ngSwitchCase="6" class="form-control mt-2" id="subRacaID" name="subRaca"
+                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
+                                    #subRaca="ngModel">
                                     <option value="0"></option>
                                     <option value="1">Gnomo da Floresta</option>
-                                    <option value="2">Gnomo das Rochas</option>                                       
+                                    <option value="2">Gnomo das Rochas</option>
                                 </select>
-                                <select *ngSwitchDefault class="form-control mt-2" id="subRacaID" disabled="true" name="subRaca"
-                                [(ngModel)]="ficha.SubRaca" #subRaca="ngModel"></select>                                
+                                <select *ngSwitchDefault class="form-control mt-2" id="subRacaID" disabled="true"
+                                    name="subRaca" [(ngModel)]="ficha.SubRaca" #subRaca="ngModel"></select>
                             </div>
                         </div>
 
                         <br />
                         <div class="form-group">
                             <label for="tendenciaID">Escolha a tendência do seu personagem</label>
-                            <select class="form-control" id="tendenciaID" name="tendencia" [(ngModel)]="ficha.Tendencia" #tendencia="ngModel">
+                            <select class="form-control" id="tendenciaID" name="tendencia" [(ngModel)]="ficha.Tendencia"
+                                #tendencia="ngModel">
                                 <option value="0"></option>
                                 <option value="1">Bom</option>
                                 <option value="2">Neutro</option>
@@ -139,7 +149,8 @@
                         <br />
                         <div class="form-group">
                             <label for="alinhamentoID">Escolha o alinhamento do seu personagem </label>
-                            <select class="form-control" id="alinhamentoID" name="alinhamento" [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
+                            <select class="form-control" id="alinhamentoID" name="alinhamento"
+                                [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
                                 <option value="0"></option>
                                 <option value="1">Leal</option>
                                 <option value="2">Neutro</option>
@@ -150,7 +161,8 @@
                         <div class="form-group">
                             <label for="experienciaID">Experiência: </label>
                             <input type="number" class="form-control" id="experienciaID"
-                                placeholder="Digite a experiencia de seu personagem" name="experiencia" [(ngModel)]="ficha.Experiencia" #experiencia="ngModel">
+                                placeholder="Digite a experiencia de seu personagem" name="experiencia"
+                                [(ngModel)]="ficha.Experiencia" #experiencia="ngModel">
                         </div>
                     </div>
                 </div>
@@ -159,195 +171,430 @@
                 <div class="container">
                     <!-- <div class="w-100"></div> -->
                     <!-- Atributos -->
-                    <div class="row ml-2">
+                    <div class="row d-block">
                         <div class="card">
                             <h3 class="card-header">Atributos do Personagem</h3>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="forID" class="ml-3">FOR</label>
-                                            <input type="number" class="form-control" id="forID" placeholder="Hab"
-                                                (click)="mudarMod(0)"
-                                                name="for" [(ngModel)]="ficha.For" #for="ngModel">
+                                        <div class="form-group">
+                                            <label for="forID" class="">FOR</label>
+                                            <input type="number" class="form-control mb-1" id="forID" placeholder="Hab"
+                                                (click)="mudarMod(0)" name="for" [(ngModel)]="ficha.For" #for="ngModel">
                                             <input type="number" class="form-control" id="forModID" placeholder="Mod"
-                                                readonly="true" name="forMod" [(ngModel)]="ficha.ForMod" #forMod="ngModel">
+                                                readonly="true" name="forMod" [(ngModel)]="ficha.ForMod"
+                                                #forMod="ngModel">
                                         </div>
                                     </div>
 
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="desID" class="ml-3">DES</label>
-                                            <input type="number" class="form-control" id="desID" placeholder="Hab"
+                                        <div class="form-group">
+                                            <label for="desID" class="">DES</label>
+                                            <input type="number" class="form-control mb-1" id="desID" placeholder="Hab"
                                                 (click)="mudarMod(1)" name="des" [(ngModel)]="ficha.Des" #des="ngModel">
                                             <input type="text" class="form-control" id="desModID" placeholder="Mod"
-                                                readonly="true" name="desMod" [(ngModel)]="ficha.DesMod" #desMod="ngModel">
+                                                readonly="true" name="desMod" [(ngModel)]="ficha.DesMod"
+                                                #desMod="ngModel">
                                         </div>
                                     </div>
 
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="conID" class="ml-3">CON</label>
-                                            <input type="number" class="form-control" id="conID" placeholder="Hab"
+                                        <div class="form-group">
+                                            <label for="conID" class="">CON</label>
+                                            <input type="number" class="form-control mb-1" id="conID" placeholder="Hab"
                                                 (click)="mudarMod(2)" name="con" [(ngModel)]="ficha.Con" #con="ngModel">
                                             <input type="text" class="form-control" id="conModID" placeholder="Mod"
-                                                readonly="true" name="conMod" [(ngModel)]="ficha.ConMod" #conMod="ngModel">
+                                                readonly="true" name="conMod" [(ngModel)]="ficha.ConMod"
+                                                #conMod="ngModel">
                                         </div>
                                     </div>
 
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="intID" class="ml-3">INT</label>
-                                            <input type="number" class="form-control" id="intID" placeholder="Hab"
-                                            (click)="mudarMod(3)" name="int" [(ngModel)]="ficha.Int" #int="ngModel">
+                                        <div class="form-group">
+                                            <label for="intID" class="">INT</label>
+                                            <input type="number" class="form-control mb-1" id="intID" placeholder="Hab"
+                                                (click)="mudarMod(3)" name="int" [(ngModel)]="ficha.Int" #int="ngModel">
                                             <input type="text" class="form-control" id="intModID" placeholder="Mod"
-                                                readonly="true" name="intMod" [(ngModel)]="ficha.IntMod" #intMod="ngModel">
+                                                readonly="true" name="intMod" [(ngModel)]="ficha.IntMod"
+                                                #intMod="ngModel">
                                         </div>
                                     </div>
 
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="sabID" class="ml-3">SAB</label>
-                                            <input type="number" class="form-control" id="sabID" placeholder="Hab"
+                                        <div class="form-group">
+                                            <label for="sabID" class="">SAB</label>
+                                            <input type="number" class="form-control mb-1" id="sabID" placeholder="Hab"
                                                 (click)="mudarMod(4)" name="sab" [(ngModel)]="ficha.Sab" #sab="ngModel">
                                             <input type="text" class="form-control" id="sabModID" placeholder="Mod"
-                                                readonly="true" name="sabMod" [(ngModel)]="ficha.SabMod" #sabMod="ngModel">
+                                                readonly="true" name="sabMod" [(ngModel)]="ficha.SabMod"
+                                                #sabMod="ngModel">
                                         </div>
                                     </div>
 
                                     <div class="col-2 mr-n3">
-                                        <div class="form-group px-1">
-                                            <label for="carID" class="ml-3">CAR</label>
-                                            <input type="number" class="form-control" id="carID" placeholder="Hab"
+                                        <div class="form-group">
+                                            <label for="carID" class="">CAR</label>
+                                            <input type="number" class="form-control mb-1" id="carID" placeholder="Hab"
                                                 (click)="mudarMod(5)" name="car" [(ngModel)]="ficha.Car" #car="ngModel">
                                             <input type="text" class="form-control" id="carModID" placeholder="Mod"
-                                                readonly="true"
-                                                name="carMod" [(ngModel)]="ficha.CarMod" #carMod="ngModel">
+                                                readonly="true" name="carMod" [(ngModel)]="ficha.CarMod"
+                                                #carMod="ngModel">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-3 mr-n10">
-                                        <div class="form-group px-1">
-                                            <label for="inspiracaoID" class="ml-2">Inspiração</label>
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label for="inspiracaoID" class="">Inspiração</label>
                                             <input type="number" min="0" class="form-control" id="inspiracaoID"
-                                                placeholder="Insp" name="inspiracao" [(ngModel)]="ficha.Inspiracao" #inspiracao="ngModel">
+                                                placeholder="Insp" name="inspiracao" [(ngModel)]="ficha.Inspiracao"
+                                                #inspiracao="ngModel">
                                         </div>
                                     </div>
 
-                                    <div class="col-5 mr-n10">
-                                        <div class="form-group px-1">
-                                            <label for="proficiencia" class="ml-2">Bônus de Proficiência</label>
-                                            <input type="text" class="form-control" id="proficienciaID" name="proficiencia" #proficiencia="ngModel" [(ngModel)]="ficha.Proficiencia"
-                                                placeholder="Proficiência" readonly="true">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="proficiencia" class="">Bônus de Proficiência</label>
+                                            <input type="text" class="form-control" id="proficienciaID"
+                                                name="proficiencia" #proficiencia="ngModel"
+                                                [(ngModel)]="ficha.Proficiencia" placeholder="Proficiência"
+                                                readonly="true">
                                         </div>
                                     </div>
+
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <label for="sabedoriaPassiva">Sabedoria Passiva (Percepção)</label>
+                                            <input type="number" class="form-control" id="sabedoriaPassivaID"
+                                                name="sabedoriaPassiva" #sabedoriaPassiva="ngModel"
+                                                [(ngModel)]="ficha.sabedoriaPassiva" placeholder="Sab Passiva" />
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <!-- Testes de Resistências -->
-                    <div class="row ml-2 d-block">
+                    <div class="row d-block">
                         <div class="card">
                             <div class="card-header">Testes de Resistências</div>
                             <div class="card-body">
                                 <!-- Teste de Força -->
-                                <div class="row ml-5">
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="forTesteRad" 
-                                            id="forTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="forTesteRadID" class="ml-4">FOR</label>
-                                                <input type="number" class="form-control" id="forTesteID"
-                                                    (click) = "mudarTeste(0)"
-                                                    placeholder="VALOR" name="forTeste" [(ngModel)]="ficha.ForTeste" #forTeste="ngModel">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Teste de Destreza -->
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="desTesteRad"
-                                            id="desTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="desTesteRadID" class="ml-4">DES</label>
-                                                <input type="number" min="0" class="form-control" id="desTesteID"
-                                                    placeholder="VALOR" name="desTeste" [(ngModel)]="ficha.DesTeste" #desTeste="ngModel">
-                                            </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="forTesteRad"
+                                        id="forTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="forTesteRadID" class="ml-4">FOR</label>
+                                            <input type="number" class="form-control" id="forTesteID"
+                                                (click)="mudarTeste(0)" placeholder="VALOR" name="forTeste"
+                                                [(ngModel)]="ficha.ForTeste" #forTeste="ngModel">
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Teste de Destreza -->
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="desTesteRad"
+                                        id="desTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="desTesteRadID" class="ml-4">DES</label>
+                                            <input type="number" min="0" class="form-control" id="desTesteID"
+                                                placeholder="VALOR" name="desTeste" [(ngModel)]="ficha.DesTeste"
+                                                #desTeste="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <!-- Teste de Constituição -->
-                                <div class="row ml-5">
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="conTesteRad"
-                                            id="conTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="conTesteRadID" class="ml-4">CON</label>
-                                                <input type="number" min="0" class="form-control" id="conTesteID"
-                                                    placeholder="VALOR" name="conTeste" [(ngModel)]="ficha.ConTeste" #conTeste="ngModel">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Teste de Inteligência -->
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="intTesteRad"
-                                            id="intTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="intTesteRadID" class="ml-4">INT</label>
-                                                <input type="number" min="0" class="form-control" id="intTesteID"
-                                                    placeholder="VALOR" name="intTeste" [(ngModel)]="ficha.IntTeste" #intTeste="ngModel">
-                                            </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="conTesteRad"
+                                        id="conTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="conTesteRadID" class="ml-4">CON</label>
+                                            <input type="number" min="0" class="form-control" id="conTesteID"
+                                                placeholder="VALOR" name="conTeste" [(ngModel)]="ficha.ConTeste"
+                                                #conTeste="ngModel">
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Teste de Inteligência -->
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="intTesteRad"
+                                        id="intTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="intTesteRadID" class="ml-4">INT</label>
+                                            <input type="number" min="0" class="form-control" id="intTesteID"
+                                                placeholder="VALOR" name="intTeste" [(ngModel)]="ficha.IntTeste"
+                                                #intTeste="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <!-- Teste de Sabedoria -->
-                                <div class="row ml-5">
-                                    <div class="form-check-inline ">
-                                        <input class="form-check-input" type="checkbox" name="sabTesteRad"
-                                            id="sabTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="sabTesteRadID" class="ml-4">SAB</label>
-                                                <input type="number" min="0" class="form-control" id="sabTesteID"
-                                                    placeholder="VALOR" name="sabTeste" [(ngModel)]="ficha.SabTeste" #sabTeste="ngModel">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Teste de Carisma -->
-                                    <div class="form-check-inline ">
-                                        <input class="form-check-input" type="checkbox" name="carTesteRad"
-                                            id="carTesteRadID" disabled="true">
-                                        <div class="col-6 mr-n6">
-                                            <div class="form-group px-1">
-                                                <label for="carTesteRadID" class="ml-4">CAR</label>
-                                                <input type="number" min="0" class="form-control" id="carTesteID"
-                                                    placeholder="VALOR" name="carTeste" [(ngModel)]="ficha.CarTeste" #carTeste="ngModel">
-                                            </div>
+                                <div class="form-check-inline ">
+                                    <input class="form-check-input" type="checkbox" name="sabTesteRad"
+                                        id="sabTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="sabTesteRadID" class="ml-4">SAB</label>
+                                            <input type="number" min="0" class="form-control" id="sabTesteID"
+                                                placeholder="VALOR" name="sabTeste" [(ngModel)]="ficha.SabTeste"
+                                                #sabTeste="ngModel">
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Teste de Carisma -->
+                                <div class="form-check-inline ">
+                                    <input class="form-check-input" type="checkbox" name="carTesteRad"
+                                        id="carTesteRadID" disabled="true">
+                                    <div class="col-6 mr-n5">
+                                        <div class="form-group px-1">
+                                            <label for="carTesteRadID" class="ml-4">CAR</label>
+                                            <input type="number" min="0" class="form-control" id="carTesteID"
+                                                placeholder="VALOR" name="carTeste" [(ngModel)]="ficha.CarTeste"
+                                                #carTeste="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
+                    <!-- Perícias -->
+                    <div class="row d-block">
+                        <div class="card">
+                            <div class="card-header">Perícias</div>
+                            <div class="card-body">
+
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="acroRad" id="acroRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="acroRadID" class="">Acrobacia</label>
+                                            <input type="number" class="form-control" id="acroID" placeholder="VALOR"
+                                                name="acro" [(ngModel)]="ficha.Acro" #acro="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="arcaRad" id="arcaRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="arcaRadID" class="">Arcanismo</label>
+                                            <input type="number" class="form-control" id="arcaID" placeholder="VALOR"
+                                                name="arca" [(ngModel)]="ficha.Arca" #arca="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="atleRad" id="atleRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="atleRadID" class="">Atletismo</label>
+                                            <input type="number" class="form-control" id="atleID" placeholder="VALOR"
+                                                name="atle" [(ngModel)]="ficha.Atle" #atle="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="atuaRad" id="atuaRadID">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="atuaRadID" class="">Atuação</label>
+                                            <input type="number" class="form-control" id="atuaID" placeholder="VALOR"
+                                                name="atua" [(ngModel)]="ficha.Atua" #atua="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="engaRad" id="engaRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="engaRadID" class="">Enganação</label>
+                                            <input type="number" class="form-control" id="engaID" placeholder="VALOR"
+                                                name="enga" [(ngModel)]="ficha.Enga" #enga="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="furtRad" id="furtRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="furtRadID" class="">Furtividade</label>
+                                            <input type="number" class="form-control" id="furtID" placeholder="VALOR"
+                                                name="furt" [(ngModel)]="ficha.Furt" #furt="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="histRad" id="histRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="histRadID" class="">História</label>
+                                            <input type="number" class="form-control" id="histID" placeholder="VALOR"
+                                                name="hist" [(ngModel)]="ficha.Hist" #hist="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="intimRad" id="intimRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="intimRadID" class="">Intimidação</label>
+                                            <input type="number" class="form-control" id="intiID" placeholder="VALOR"
+                                                name="intim" [(ngModel)]="ficha.Intim" #intim="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="intuiRad" id="intuiRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="intuiRadID" class="">Intuição</label>
+                                            <input type="number" class="form-control" id="intuiID" placeholder="VALOR"
+                                                name="intui" [(ngModel)]="ficha.Intui" #intui="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="inveRad" id="inveRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="inveRadID" class="">Investigação</label>
+                                            <input type="number" class="form-control" id="inveID" placeholder="VALOR"
+                                                name="inve" [(ngModel)]="ficha.Inve" #inve="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="lcaRad" id="lcaRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="lcaRadID" class="">Lidar c/ Animais</label>
+                                            <input type="number" class="form-control" id="lcaID" placeholder="VALOR"
+                                                name="lca" [(ngModel)]="ficha.Lca" #lca="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="medRad" id="medRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="medRadID" class="">Medicina</label>
+                                            <input type="number" class="form-control" id="medID" placeholder="VALOR"
+                                                name="med" [(ngModel)]="ficha.Med" #med="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="natuRad" id="natuRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="natuRadID" class="">Natureza</label>
+                                            <input type="number" class="form-control" id="natuID" placeholder="VALOR"
+                                                name="natu" [(ngModel)]="ficha.Natu" #natu="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="percRad" id="percRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="percRadID" class="">Percepção</label>
+                                            <input type="number" class="form-control" id="percID" placeholder="VALOR"
+                                                name="perc" [(ngModel)]="ficha.Perc" #perc="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="persuRad" id="persuRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="persuRadID" class="">Persuasão</label>
+                                            <input type="number" class="form-control" id="persuID" placeholder="VALOR"
+                                                name="persu" [(ngModel)]="ficha.Persu" #persu="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="prestRad" id="prestRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="prestRadID" class="">Prestidigitação</label>
+                                            <input type="number" class="form-control" id="prestID" placeholder="VALOR"
+                                                name="prest" [(ngModel)]="ficha.Prest" #prest="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="reliRad" id="reliRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="reliRadID" class="">Religião</label>
+                                            <input type="number" class="form-control" id="reliID" placeholder="VALOR"
+                                                name="reli" [(ngModel)]="ficha.Reli" #reli="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="sobreRad" id="sobreRadID">
+                                    <div class="col-6">
+                                        <div class="form-group ">
+                                            <label for="sobreRadID" class="">Sobrevivência</label>
+                                            <input type="number" class="form-control" id="sobreID" placeholder="VALOR"
+                                                name="sobre" [(ngModel)]="ficha.Sobre" #sobre="ngModel">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Idiomas e outras características -->
-                    <div class="row ml-2">
-                        <div class="card ">
+                    <div class="row d-block">
+                        <div class="card">
                             <h3 class="card-header">Idiomas e Outras Características</h3>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="idiomasID">Idiomas e outras características</label>
-                                    <textarea class="form-control" id="idiomasID" cols="100" rows="6" name="campoIdiomas" [(ngModel)]="ficha.CampoIdiomas" #campoIdiomas="ngModel"></textarea>
+                                    <textarea class="form-control" id="idiomasID" cols="100" rows="6"
+                                        name="campoIdiomas" [(ngModel)]="ficha.CampoIdiomas"
+                                        #campoIdiomas="ngModel"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -356,9 +603,9 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <button type="button" class="btn btn-danger" (click) = "voltar()">VOLTAR</button>
-        <button type="reset" class="btn btn-warning" (click)="ngOnInit()">LIMPAR FICHA</button>
-        <button type="submit" class="btn btn-danger" >SALVAR ALTERAÇÕES</button>
+    <div class="container-sm ml-1 mb-3">
+        <button type="button" class="btn btn-danger ml-2" (click)="voltar()">VOLTAR</button>
+        <button type="reset" class="btn btn-warning ml-2" (click)="ngOnInit()">LIMPAR FICHA</button>
+        <button type="submit" class="btn btn-danger ml-2">SALVAR ALTERAÇÕES</button>
     </div>
 </form>

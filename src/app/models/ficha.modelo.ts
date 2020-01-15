@@ -29,6 +29,7 @@ export class Ficha {
     public CarMod: number;
     public Inspiracao: number;
     public Proficiencia: string;
+    public SabedoriaPassiva: number;
 
     //Testes de Resistências
     public ForTeste: number;
@@ -117,7 +118,7 @@ export class Ficha {
         this.CampoIdiomas = _CampoIdiomas;
     }*/
 
-    //Settes and Getters
+    //Setters and Getters
 
     //Dados Básicos
     public get id(): number {
@@ -287,18 +288,26 @@ export class Ficha {
         this.CarMod = c;
     }
 
+    //Outros
     public get inspiracao(): number {
         return this.Inspiracao;
     }
     public set inspiracao(i: number) {
         this.Inspiracao = i;
     }
-    //Outros
+    
     public get proficiencia(): string {
         return this.Proficiencia;
     }
     public set proficiencia(p: string) {
         this.Proficiencia = p;
+    }
+
+    public get sabPassiva(): number {
+        return this.SabedoriaPassiva;
+    }
+    public set sabPassiva(p: number) {
+        this.SabedoriaPassiva = p;
     }
 
     //Testes de Resistências

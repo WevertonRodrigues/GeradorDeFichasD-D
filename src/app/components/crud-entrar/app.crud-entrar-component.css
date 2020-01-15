@@ -23,7 +23,7 @@
         background-color: rgb(236, 36, 29);
         text-align: center;   
         /*border-radius: 25px 25px 0px 0px;*/
-        font-family: 'Agency fb', arial;
+        font-family: 'Quicksand', sans-serif;
         font-size: 30px;
     }
     form .group-form{
@@ -31,11 +31,11 @@
         /*margin-top: 0rem;*/
     }
     input[type=text], input[type=password], input[type=file]{
-        font-family: 'Agency fb', arial;
+        font-family: 'Quicksand', sans-serif;
         font-size: 125%;
     }
     label{
-        font-family: 'Agency fb', arial;
+        font-family: 'Quicksand', sans-serif;
         font-size: 125%;
         vertical-align: center;
     }
