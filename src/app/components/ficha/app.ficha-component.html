@@ -2,167 +2,253 @@
 <form #loginForm="ngForm" (ngSubmit)="salvarAlteracoes()">
     <div class="container">
         <div class="row">
-            <!-- Dados Básicos do Personagem -->
             <div class="col ml-xl-12">
-                <div class="card">
-                    <h3 class="card-header">Dados Básicos do Personagem</h3>
-                    <div class="card-body">
+                <div class="container">
+                    <!-- Dados Básicos do Personagem -->
+                    <div class="row d-block">
+                        <div class="card">
+                            <h3 class="card-header">Dados Básicos do Personagem</h3>
+                            <div class="card-body">
 
-                        <div class="form-group">
-                            <label for="nomePersonagemID">Nome do Personagem</label>
-                            <input type="text" class="form-control" id="nomePersonagemID" name="nomePersonagem"
-                                [(ngModel)]="ficha.NomePersonagem" #nomPersonagem="ngModel"
-                                placeholder="Digite o nome do seu personagem">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="classeID">Escolha sua classe </label>
-                            <select class="form-control" id="classeID" (change)="clickClasse(classe.value)"
-                                name="classe" [(ngModel)]="ficha.Classe" #classe="ngModel">
-                                <option value="0"></option>
-                                <option value="1" data-toggle="tooltip" data-placement="top"
-                                    title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
-                                    Bárbaro
-                                </option>
-                                <option value="2" data-toggle="tooltip" data-placement="top"
-                                    title="Um místico inspirador que possui poderes que ecoam a música da criação">Bardo
-                                </option>
-                                <option value="3" data-toggle="tooltip" data-placement="top"
-                                    title="Um portador de magia derivada de barganha com uma entidade planar">Bruxo
-                                </option>
-                                <option value="4" data-toggle="tooltip" data-placement="top"
-                                    title="Um campeão sacerdotal que empunha magia divina a serviço de um poder maior">
-                                    Clérigo</option>
-                                <option value="5" data-toggle="tooltip" data-placement="top"
-                                    title="Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais">
-                                    Druida</option>
-                                <option value="6" data-toggle="tooltip" data-placement="top"
-                                    title="Um conjurador que possui magia latente advinda de um dom ou linhagem">
-                                    Feiticeiro</option>
-                                <option value="7" data-toggle="tooltip" data-placement="top"
-                                    title="Um mestre do combate, perito em uma vasta gama de armas e armaduras">
-                                    Guerreiro</option>
-                                <option value="8" data-toggle="tooltip" data-placement="top"
-                                    title="Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos">
-                                    Ladino
-                                </option>
-                                <option value="9" data-toggle="tooltip" data-placement="top"
-                                    title="Um usuário de magia escolado, capaz de manipular as estruturas da realidade">
-                                    Mago</option>
-                                <option value="10" data-toggle="tooltip" data-placement="top"
-                                    title="Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual">
-                                    Monge</option>
-                                <option value="11" data-toggle="tooltip" data-placement="top"
-                                    title="Um guerreiro divino vinculado a um juramento sagrado">Paladino</option>
-                                <option value="12" data-toggle="tooltip" data-placement="top"
-                                    title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
-                                    Patrulheiro</option>
-                            </select>
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="selLvl">Selecione o nível do seu personagem</label>
-                            <input type="number" class="form-control" min="1" max="20" name="nivel"
-                                [(ngModel)]="ficha.Nivel" #nivel="ngModel" (change)="mudarProf(nivel.value)"
-                                id="selLvlID" />
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="np">Antecedente</label>
-                            <input type="text" class="form-control" id="antecedenteID" name="antecedente"
-                                [(ngModel)]="ficha.Antecedente" #antecedente="ngModel"
-                                placeholder="Digite o antecedente do seu personagem">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="np">Nome do Jogador</label>
-                            <input type="text" class="form-control" id="nomeJogadorID"
-                                placeholder="Digite o nome do jogador" name="nomeJogador"
-                                [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="racaID">Escolha a raça do seu personagem</label>
-                            <select class="form-control" id="racaID" name="raca" [(ngModel)]="ficha.Raca"
-                                #raca="ngModel" (change)="mudarAtributosRaca(raca.value);">
-                                <option value="0"></option>
-                                <option value="1">Anão</option>
-                                <option value="2">Draconato</option>
-                                <option value="3">Elfo</option>
-                                <option value="4">Halfling</option>
-                                <option value="5">Humano</option>
-                                <option value="6">Gnomo</option>
-                                <option value="7">Meio-elfo</option>
-                                <option value="8">Meio-orc</option>
-                                <option value="9">Tiefling</option>
-                            </select>
-                        </div>
+                                <div class="form-group">
+                                    <label for="nomePersonagemID">Nome do Personagem</label>
+                                    <input type="text" class="form-control" id="nomePersonagemID" name="nomePersonagem"
+                                        [(ngModel)]="ficha.NomePersonagem" #nomPersonagem="ngModel"
+                                        placeholder="Digite o nome do seu personagem">
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="classeID">Escolha sua classe </label>
+                                    <select class="form-control" id="classeID" (change)="clickClasse(classe.value)"
+                                        name="classe" [(ngModel)]="ficha.Classe" #classe="ngModel">
+                                        <option value="0"></option>
+                                        <option value="1" data-toggle="tooltip" data-placement="top"
+                                            title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
+                                            Bárbaro
+                                        </option>
+                                        <option value="2" data-toggle="tooltip" data-placement="top"
+                                            title="Um místico inspirador que possui poderes que ecoam a música da criação">
+                                            Bardo
+                                        </option>
+                                        <option value="3" data-toggle="tooltip" data-placement="top"
+                                            title="Um portador de magia derivada de barganha com uma entidade planar">
+                                            Bruxo
+                                        </option>
+                                        <option value="4" data-toggle="tooltip" data-placement="top"
+                                            title="Um campeão sacerdotal que empunha magia divina a serviço de um poder maior">
+                                            Clérigo</option>
+                                        <option value="5" data-toggle="tooltip" data-placement="top"
+                                            title="Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais">
+                                            Druida</option>
+                                        <option value="6" data-toggle="tooltip" data-placement="top"
+                                            title="Um conjurador que possui magia latente advinda de um dom ou linhagem">
+                                            Feiticeiro</option>
+                                        <option value="7" data-toggle="tooltip" data-placement="top"
+                                            title="Um mestre do combate, perito em uma vasta gama de armas e armaduras">
+                                            Guerreiro</option>
+                                        <option value="8" data-toggle="tooltip" data-placement="top"
+                                            title="Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos">
+                                            Ladino
+                                        </option>
+                                        <option value="9" data-toggle="tooltip" data-placement="top"
+                                            title="Um usuário de magia escolado, capaz de manipular as estruturas da realidade">
+                                            Mago</option>
+                                        <option value="10" data-toggle="tooltip" data-placement="top"
+                                            title="Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual">
+                                            Monge</option>
+                                        <option value="11" data-toggle="tooltip" data-placement="top"
+                                            title="Um guerreiro divino vinculado a um juramento sagrado">Paladino
+                                        </option>
+                                        <option value="12" data-toggle="tooltip" data-placement="top"
+                                            title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
+                                            Patrulheiro</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="selLvl">Selecione o nível do seu personagem</label>
+                                    <input type="number" class="form-control" min="1" max="20" name="nivel"
+                                        [(ngModel)]="ficha.Nivel" #nivel="ngModel" (change)="mudarProf(nivel.value)"
+                                        id="selLvlID" />
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="np">Antecedente</label>
+                                    <input type="text" class="form-control" id="antecedenteID" name="antecedente"
+                                        [(ngModel)]="ficha.Antecedente" #antecedente="ngModel"
+                                        placeholder="Digite o antecedente do seu personagem">
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="np">Nome do Jogador</label>
+                                    <input type="text" class="form-control" id="nomeJogadorID"
+                                        placeholder="Digite o nome do jogador" name="nomeJogador"
+                                        [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel">
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="racaID">Escolha a raça do seu personagem</label>
+                                    <select class="form-control" id="racaID" name="raca" [(ngModel)]="ficha.Raca"
+                                        #raca="ngModel" (change)="mudarAtributosRaca(raca.value);">
+                                        <option value="0"></option>
+                                        <option value="1">Anão</option>
+                                        <option value="2">Draconato</option>
+                                        <option value="3">Elfo</option>
+                                        <option value="4">Halfling</option>
+                                        <option value="5">Humano</option>
+                                        <option value="6">Gnomo</option>
+                                        <option value="7">Meio-elfo</option>
+                                        <option value="8">Meio-orc</option>
+                                        <option value="9">Tiefling</option>
+                                    </select>
+                                </div>
 
-                        <div class="form-group mt-n2">
-                            <label for="subRacaRadID">Escolha a sub-raça</label>
-                            <div [ngSwitch]="raca.value">
-                                <select *ngSwitchCase="1" class="form-control mt-2" id="subRacaID" name="subRaca"
-                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
-                                    #subRaca="ngModel">
-                                    <option value="0"></option>
-                                    <option value="1">Anão da Colina</option>
-                                    <option value="2">Anão da Montanha</option>
-                                </select>
-                                <select *ngSwitchCase="3" class="form-control mt-2" id="subRacaID" name="subRaca"
-                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
-                                    #subRaca="ngModel">
-                                    <option value="0"></option>
-                                    <option value="1">Alto Elfo</option>
-                                    <option value="2">Elfo da Floresta</option>
-                                    <option value="3">Elfo Negro(Drow)</option>
-                                </select>
-                                <select *ngSwitchCase="4" class="form-control mt-2" id="subRacaID" name="subRaca"
-                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
-                                    #subRaca="ngModel">
-                                    <option value="0"></option>
-                                    <option value="1">Halfling Pés Leves</option>
-                                    <option value="2">Halfling Robusto</option>
-                                </select>
-                                <select *ngSwitchCase="6" class="form-control mt-2" id="subRacaID" name="subRaca"
-                                    [(ngModel)]="ficha.SubRaca" (change)="mudarAtributosSubRaca(subRaca.value)"
-                                    #subRaca="ngModel">
-                                    <option value="0"></option>
-                                    <option value="1">Gnomo da Floresta</option>
-                                    <option value="2">Gnomo das Rochas</option>
-                                </select>
-                                <select *ngSwitchDefault class="form-control mt-2" id="subRacaID" disabled="true"
-                                    name="subRaca" [(ngModel)]="ficha.SubRaca" #subRaca="ngModel"></select>
+                                <div class="form-group mt-n2">
+                                    <label for="subRacaRadID">Escolha a sub-raça</label>
+                                    <div [ngSwitch]="raca.value">
+                                        <select *ngSwitchCase="1" class="form-control mt-2" id="subRacaID"
+                                            name="subRaca" [(ngModel)]="ficha.SubRaca"
+                                            (change)="mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">
+                                            <option value="0"></option>
+                                            <option value="1">Anão da Colina</option>
+                                            <option value="2">Anão da Montanha</option>
+                                        </select>
+                                        <select *ngSwitchCase="3" class="form-control mt-2" id="subRacaID"
+                                            name="subRaca" [(ngModel)]="ficha.SubRaca"
+                                            (change)="mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">
+                                            <option value="0"></option>
+                                            <option value="1">Alto Elfo</option>
+                                            <option value="2">Elfo da Floresta</option>
+                                            <option value="3">Elfo Negro(Drow)</option>
+                                        </select>
+                                        <select *ngSwitchCase="4" class="form-control mt-2" id="subRacaID"
+                                            name="subRaca" [(ngModel)]="ficha.SubRaca"
+                                            (change)="mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">
+                                            <option value="0"></option>
+                                            <option value="1">Halfling Pés Leves</option>
+                                            <option value="2">Halfling Robusto</option>
+                                        </select>
+                                        <select *ngSwitchCase="6" class="form-control mt-2" id="subRacaID"
+                                            name="subRaca" [(ngModel)]="ficha.SubRaca"
+                                            (change)="mudarAtributosSubRaca(subRaca.value)" #subRaca="ngModel">
+                                            <option value="0"></option>
+                                            <option value="1">Gnomo da Floresta</option>
+                                            <option value="2">Gnomo das Rochas</option>
+                                        </select>
+                                        <select *ngSwitchDefault class="form-control mt-2" id="subRacaID"
+                                            disabled="true" name="subRaca" [(ngModel)]="ficha.SubRaca"
+                                            #subRaca="ngModel"></select>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="form-group">
+                                    <label for="tendenciaID">Escolha a tendência do seu personagem</label>
+                                    <select class="form-control" id="tendenciaID" name="tendencia"
+                                        [(ngModel)]="ficha.Tendencia" #tendencia="ngModel">
+                                        <option value="0"></option>
+                                        <option value="1">Bom</option>
+                                        <option value="2">Neutro</option>
+                                        <option value="3">Mal</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="alinhamentoID">Escolha o alinhamento do seu personagem </label>
+                                    <select class="form-control" id="alinhamentoID" name="alinhamento"
+                                        [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
+                                        <option value="0"></option>
+                                        <option value="1">Leal</option>
+                                        <option value="2">Neutro</option>
+                                        <option value="3">Cáotico</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="experienciaID">Experiência: </label>
+                                    <input type="number" class="form-control" id="experienciaID"
+                                        placeholder="Digite a experiencia de seu personagem" name="experiencia"
+                                        [(ngModel)]="ficha.Experiencia" #experiencia="ngModel">
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- Pontos de Vida, Classe de Armadura e Outros -->
+                    <div class="row d-block">
+                        <div class="card">
+                            <div class="card-header">Pontos de Vida, Classe de Armadura e Outros</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4"><label for="caID">Classe de Armadura</label></div>
+                                    <div class="col-3"><label for="iniciID">Iniciativa</label></div>
+                                    <div class="col-4"><label for="">Deslocamentos</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="number" class="form-control" id="caID" placeholder="CA" name="ca"
+                                            [(ngModel)]="ficha.Ca" #ca="ngModel" />
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div class="col-2">
+                                        <input type="number" disabled class="form-control" id="iniciID"
+                                            placeholder="Iniciativa" name="inici" [(ngModel)]="ficha.Inici"
+                                            #inici="ngModel" />
+                                    </div>
+                                    <div class="col-1"></div>
+                                    <div class="col-5">
+                                        <div class="d-inline-flex">
+                                            <input type="number" class="form-control form-input-inline" id="desloID"
+                                                placeholder="Terrestre" name="deslo" [(ngModel)]="ficha.Deslo"
+                                                #deslo="ngModel" />
+                                            <label class="align-self-end ml-3 mr-3">e</label>
+                                            <input type="number" class="form-control" id="desloVID" placeholder="Voo"
+                                                name="desloVoo" [(ngModel)]="ficha.DesloV" #desloV="ngModel" />
+                                            <label class="ml-3 align-self-end">metros</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-4 d-flex">
+                                        <label class="align-self-center" for="pvMaxID">Pontos de Vida Máximos</label>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="number"
+                                            placeholder="Digite os Pontos de Vida Máximos" id="pvMaxID" name="pvMax">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" type="number" id="pvAtuID" name="pvAtu">
+                                    </div>
 
-                        <br />
-                        <div class="form-group">
-                            <label for="tendenciaID">Escolha a tendência do seu personagem</label>
-                            <select class="form-control" id="tendenciaID" name="tendencia" [(ngModel)]="ficha.Tendencia"
-                                #tendencia="ngModel">
-                                <option value="0"></option>
-                                <option value="1">Bom</option>
-                                <option value="2">Neutro</option>
-                                <option value="3">Mal</option>
-                            </select>
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="alinhamentoID">Escolha o alinhamento do seu personagem </label>
-                            <select class="form-control" id="alinhamentoID" name="alinhamento"
-                                [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
-                                <option value="0"></option>
-                                <option value="1">Leal</option>
-                                <option value="2">Neutro</option>
-                                <option value="3">Cáotico</option>
-                            </select>
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <label for="experienciaID">Experiência: </label>
-                            <input type="number" class="form-control" id="experienciaID"
-                                placeholder="Digite a experiencia de seu personagem" name="experiencia"
-                                [(ngModel)]="ficha.Experiencia" #experiencia="ngModel">
+                                    <div class="col">
+                                        <input class="form-control" type="number" id="pvTempID" name="pvTemp">
+                                    </div>
+                                </div>
+                                <div class="row textCenter">
+                                    <div class="col">
+                                        <label for="pvAtuID">Pontos de Vida Atuais</label>
+                                    </div>
+                                    <div class="col ">
+                                        <label for="pvTempID">Pontos de Vida Temporários</label>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-3">
+                                        <select class="form-control" id="dadosV">
+                                            <option class="form-control"></option>
+                                            <option class="form-control">d6</option>
+                                            <option class="form-control">d8</option>
+                                            <option class="form-control">d10</option>
+                                            <option class="form-control">d12</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -288,8 +374,8 @@
                                     <input class="form-check-input" type="checkbox" name="forTesteRad"
                                         id="forTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="forTesteRadID" class="ml-4">FOR</label>
+                                        <div class="form-group textCenter">
+                                            <label for="forTesteRadID" class="">FOR</label>
                                             <input type="number" class="form-control" id="forTesteID"
                                                 (click)="mudarTeste(0)" placeholder="VALOR" name="forTeste"
                                                 [(ngModel)]="ficha.ForTeste" #forTeste="ngModel">
@@ -302,8 +388,8 @@
                                     <input class="form-check-input" type="checkbox" name="desTesteRad"
                                         id="desTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="desTesteRadID" class="ml-4">DES</label>
+                                        <div class="form-group textCenter">
+                                            <label for="desTesteRadID" class="">DES</label>
                                             <input type="number" min="0" class="form-control" id="desTesteID"
                                                 placeholder="VALOR" name="desTeste" [(ngModel)]="ficha.DesTeste"
                                                 #desTeste="ngModel">
@@ -318,8 +404,8 @@
                                     <input class="form-check-input" type="checkbox" name="conTesteRad"
                                         id="conTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="conTesteRadID" class="ml-4">CON</label>
+                                        <div class="form-group textCenter">
+                                            <label for="conTesteRadID" class="">CON</label>
                                             <input type="number" min="0" class="form-control" id="conTesteID"
                                                 placeholder="VALOR" name="conTeste" [(ngModel)]="ficha.ConTeste"
                                                 #conTeste="ngModel">
@@ -332,8 +418,8 @@
                                     <input class="form-check-input" type="checkbox" name="intTesteRad"
                                         id="intTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="intTesteRadID" class="ml-4">INT</label>
+                                        <div class="form-group textCenter">
+                                            <label for="intTesteRadID" class="">INT</label>
                                             <input type="number" min="0" class="form-control" id="intTesteID"
                                                 placeholder="VALOR" name="intTeste" [(ngModel)]="ficha.IntTeste"
                                                 #intTeste="ngModel">
@@ -348,8 +434,8 @@
                                     <input class="form-check-input" type="checkbox" name="sabTesteRad"
                                         id="sabTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="sabTesteRadID" class="ml-4">SAB</label>
+                                        <div class="form-group textCenter">
+                                            <label for="sabTesteRadID" class="">SAB</label>
                                             <input type="number" min="0" class="form-control" id="sabTesteID"
                                                 placeholder="VALOR" name="sabTeste" [(ngModel)]="ficha.SabTeste"
                                                 #sabTeste="ngModel">
@@ -362,8 +448,8 @@
                                     <input class="form-check-input" type="checkbox" name="carTesteRad"
                                         id="carTesteRadID" disabled="true">
                                     <div class="col-6 mr-n5">
-                                        <div class="form-group px-1">
-                                            <label for="carTesteRadID" class="ml-4">CAR</label>
+                                        <div class="form-group textCenter">
+                                            <label for="carTesteRadID" class="">CAR</label>
                                             <input type="number" min="0" class="form-control" id="carTesteID"
                                                 placeholder="VALOR" name="carTeste" [(ngModel)]="ficha.CarTeste"
                                                 #carTeste="ngModel">
@@ -591,7 +677,7 @@
                             <h3 class="card-header">Idiomas e Outras Características</h3>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="idiomasID">Idiomas e outras características</label>
+                                    <label for="idiomasID">Idiomas e outras características:</label>
                                     <textarea class="form-control" id="idiomasID" cols="100" rows="6"
                                         name="campoIdiomas" [(ngModel)]="ficha.CampoIdiomas"
                                         #campoIdiomas="ngModel"></textarea>

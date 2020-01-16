@@ -4,7 +4,7 @@
 {
     max-height: 400%;
     max-width: 100%;
-    margin-bottom: 7%;
+    margin-bottom: 2%;
 }
 form .card .card-header{
     text-align: left;
@@ -22,10 +22,11 @@ form .card .card-header{
 textarea{
     resize: none;
 }
-.textoAtr{
+.textCenter{
     text-align: center;
 }
-select, input[type=number], input[type=text], input[type=textarea], label{
+
+select, input[type=number], input[type=text], input[type=textarea], label, txt{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;
