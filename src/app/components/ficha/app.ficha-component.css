@@ -26,7 +26,7 @@ textarea{
     text-align: center;
 }
 
-select, input[type=number], input[type=text], input[type=textarea], label, txt{
+select, input[type=number], input[type=text], input[type=textarea], label{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;

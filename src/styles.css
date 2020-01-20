@@ -5,8 +5,8 @@ a#conta{
     text-decoration: none;
 }
 body{
-    background-color: #545454;
-    background-image: url("./assets/Imagens/background.jpg");
+    background-color: rgba(161, 161, 161, 0.685);
+    /*background-image: url("./assets/Imagens/background.jpg");*/
     background-size: cover;
 }
 .textoCabecalho{

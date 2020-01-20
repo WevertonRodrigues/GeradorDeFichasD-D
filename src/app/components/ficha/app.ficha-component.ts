@@ -15,12 +15,12 @@ export class FichaComponent /*implements OnInit*/ {
 
     fichas: Ficha[] = [];
 
-    perfilAtual : number;
+    perfilAtual: number;
     fichaAtual: number;
 
     constructor(private route: ActivatedRoute,
-        private router: Router,) {}
-      
+        private router: Router, ) { }
+
     /*constructor(private route: ActivatedRoute,
         private router: Router,
         private fichaService: FichaService) { }
@@ -354,6 +354,8 @@ export class FichaComponent /*implements OnInit*/ {
         let checkSab: HTMLInputElement = document.getElementById('sabTesteRadID') as HTMLInputElement;
         let checkCar: HTMLInputElement = document.getElementById('carTesteRadID') as HTMLInputElement;
 
+
+
         switch (p) {
             case 0:
                 return checkFor;
@@ -522,84 +524,93 @@ export class FichaComponent /*implements OnInit*/ {
         this.ficha.classeAtual = c;
     }
 
-/*    getFicha(id : number): void {
-        this.fichaService.getFicha(id)
-            .subscribe(response => {
+    adicionarDado(dado: string) {
+        if (dado !== '')
+            this.ficha.DadosDeVida[this.ficha.DadosDeVida.length] = dado;
+    }
+
+    removerDado(i: number) {
+        this.ficha.DadosDeVida.splice(i, 1)
+    }
+
+    /*    getFicha(id : number): void {
+            this.fichaService.getFicha(id)
+                .subscribe(response => {
+                    if (response.Status == 0) {
+                        this.ficha = response.Fichas;
+                    }
+                    else {
+                        alert(response.Detalhes);
+                    }
+                });
+        }
+    
+        carregarDados() : void {
+            this.getFichas();
+            this.filtrarFicha(this.fichaAtual);
+        }
+    
+        filtrarFicha(id : number) : void {
+            for(let i = 0; i < this.fichas.length; i++)
+                if(id == this.fichas[i].Id)
+                    this.ficha = this.fichas[i];
+        }
+    
+        getFichas(): void {
+            this.fichaService.getFichas()
+              .subscribe(response => {
                 if (response.Status == 0) {
-                    this.ficha = response.Fichas;
+                  this.fichas = response.Fichas;
                 }
                 else {
-                    alert(response.Detalhes);
+                  alert(response.Detalhes)
                 }
-            });
-    }
-
-    carregarDados() : void {
-        this.getFichas();
-        this.filtrarFicha(this.fichaAtual);
-    }
-
-    filtrarFicha(id : number) : void {
-        for(let i = 0; i < this.fichas.length; i++)
-            if(id == this.fichas[i].Id)
-                this.ficha = this.fichas[i];
-    }
-
-    getFichas(): void {
-        this.fichaService.getFichas()
-          .subscribe(response => {
-            if (response.Status == 0) {
-              this.fichas = response.Fichas;
+          });
+         }
+    
+        inserir(): void {
+            //console.log("Perfil atual: " + this.perfilAtual)
+            this.fichaService.addFicha(this.ficha, this.perfilAtual)
+                .subscribe(response => {
+                    if (response.Status == 0) {
+                        //alert("Inserção deu certo!");
+                    }
+                    else {
+                        alert(response.Detalhes)
+                    }
+                });
+        }
+    
+        atualizar(): void {
+            this.fichaService.updateFicha(this.ficha)
+                .subscribe(response => {
+                    if (response.Status == 0) {
+                        //alert("Att ok!");
+                    }
+                    else {
+                        alert(response.Detalhes)
+                    }
+                });
+        }    
+    
+        zerar() : void {
+            this.getFicha(0);
+            this.ficha = new Ficha();
+            this.ficha.Id = 0;
+        }
+    
+        salvarAlteracoes(): void {
+            if (this.ficha.Id == 0 || this.ficha.Id == undefined) {
+                this.inserir();
             }
             else {
-              alert(response.Detalhes)
+                this.atualizar();
             }
-      });
-     }
+            this.voltar();
+        }*/
 
-    inserir(): void {
-        //console.log("Perfil atual: " + this.perfilAtual)
-        this.fichaService.addFicha(this.ficha, this.perfilAtual)
-            .subscribe(response => {
-                if (response.Status == 0) {
-                    //alert("Inserção deu certo!");
-                }
-                else {
-                    alert(response.Detalhes)
-                }
-            });
+    voltar(): void {
+        this.router.navigate(['/perfil', this.perfilAtual],
+            { relativeTo: this.route });
     }
-
-    atualizar(): void {
-        this.fichaService.updateFicha(this.ficha)
-            .subscribe(response => {
-                if (response.Status == 0) {
-                    //alert("Att ok!");
-                }
-                else {
-                    alert(response.Detalhes)
-                }
-            });
-    }    
-
-    zerar() : void {
-        this.getFicha(0);
-        this.ficha = new Ficha();
-        this.ficha.Id = 0;
-    }
-
-    salvarAlteracoes(): void {
-        if (this.ficha.Id == 0 || this.ficha.Id == undefined) {
-            this.inserir();
-        }
-        else {
-            this.atualizar();
-        }
-        this.voltar();
-    }*/
-
-    voltar() : void {
-        this.router.navigate(['/perfil', this.perfilAtual], 
-          {relativeTo:this.route});  
-      }
 }

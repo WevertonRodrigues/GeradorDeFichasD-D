@@ -14,6 +14,10 @@ export class Ficha {
     public Alinhamento: string;
     public Experiencia: number;
 
+    //Pontos de Vida, CA e Outros
+
+    public DadosDeVida : string[] = [];
+
     //Atributos
     public For: number;
     public Des: number;
