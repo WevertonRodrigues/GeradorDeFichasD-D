@@ -6,7 +6,8 @@
     max-width: 100%;
     margin-bottom: 2%;
 }
-form .card .card-header{
+
+.princi{
     text-align: left;
     color: #fffffff6;
     background-color: rgb(236, 36, 29);
@@ -16,9 +17,11 @@ form .card .card-header{
     padding-top: 0rem;
     padding-bottom: 0rem;
 }
+
 .container{
     max-width: 100%;
 }
+
 textarea{
     resize: none;
 }
@@ -26,7 +29,7 @@ textarea{
     text-align: center;
 }
 
-select, input[type=number], input[type=text], input[type=textarea], label{
+select, input[type=number], input[type=text], input[type=textarea], label, .parag{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;

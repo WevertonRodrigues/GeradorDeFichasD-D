@@ -35,25 +35,7 @@ export class FichaComponent /*implements OnInit*/ {
     }*/
 
     mudarProf(lvlAtual: number): void {
-        //let profi = Math.trunc((lvlAtual / 5) + 2);
-        //console.log(profi);
-        if (lvlAtual >= 1 && lvlAtual <= 4)
-            this.ficha.proficiencia = '+2';
-        else {
-            if (lvlAtual >= 5 && lvlAtual <= 8)
-                this.ficha.proficiencia = '+3';
-            else {
-                if (lvlAtual >= 9 && lvlAtual <= 12)
-                    this.ficha.proficiencia = '+4';
-                else {
-                    if (lvlAtual >= 13 && lvlAtual <= 16)
-                        this.ficha.proficiencia = '+5';
-                    else
-                        if (lvlAtual >= 16 && lvlAtual <= 20)
-                            this.ficha.proficiencia = '+6';
-                }
-            }
-        }
+        this.ficha.proficiencia = "+" + (Math.ceil(lvlAtual / 4) + 1)
     }
 
     mudarMod(n: number): void {
