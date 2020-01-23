@@ -43,6 +43,12 @@ export class Ficha {
     public SabTeste: number;
     public CarTeste: number;
 
+    //Ataques & Conjurações
+    public Ataques = []
+    public NomesAtaques : string[] = [];
+    public BonusAtaques : number[] = [];
+    public DanosTiposAtaques : string[] = [];
+
     //Idiomas e Outras Características
     public CampoIdiomas: string;
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaService } from 'src/app/service/app.ficha-service';
@@ -513,6 +513,16 @@ export class FichaComponent /*implements OnInit*/ {
 
     removerDado(i: number) {
         this.ficha.DadosDeVida.splice(i, 1)
+    }
+
+    adicionarAtaque(nome : string, ba : any, dt : string){
+        console.log(isNaN(parseInt(ba, 10)))
+        console.log()   
+        if(nome != '' && (isNaN(parseInt(ba, 10)) != true) && dt != '')
+            this.ficha.Ataques[this.ficha.Ataques.length] = {NomeAtaque : nome, BonusAtaque : ba, DanoTipoAtaque : dt}
+    }
+    removerAtaque(i : number){
+        this.ficha.Ataques.splice(i, 1)
     }
 
     /*    getFicha(id : number): void {
