@@ -66,13 +66,13 @@
                                     </div>
 
                                     <div class="form-group col-lg-6">
-                                        <label class="" for="selLvl">Nível do Personagem</label>
+                                        <label class="" for="selLvl">Nível</label>
                                         <input type="number" class="form-control" min="1" max="20" name="nivel"
                                             [(ngModel)]="ficha.Nivel" #nivel="ngModel" (change)="mudarProf(nivel.value)"
                                             id="selLvlID" placeholder="Seu Nível" />
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label for="np">Seu antecedente</label>
+                                        <label for="np">Antecedente</label>
                                         <input type="text" class="form-control" id="antecedenteID" name="antecedente"
                                             [(ngModel)]="ficha.Antecedente" #antecedente="ngModel"
                                             placeholder="Seu Antecedente">
@@ -87,7 +87,7 @@
                                             placeholder="Seu nome">
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label for="racaID">Raça do personagem</label>
+                                        <label for="racaID">Raça</label>
                                         <select class="custom-select" id="racaID" name="raca" [(ngModel)]="ficha.Raca"
                                             #raca="ngModel" (change)="mudarAtributosRaca(raca.value);">
                                             <option value="0"></option>
@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label for="tendenciaID">Tendência do personagem</label>
+                                        <label for="tendenciaID">Tendência</label>
                                         <select class="custom-select" id="tendenciaID" name="tendencia"
                                             [(ngModel)]="ficha.Tendencia" #tendencia="ngModel">
                                             <option value="0"></option>
@@ -152,7 +152,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6">
-                                        <label class="" for="alinhamentoID">Alinhamento do personagem </label>
+                                        <label class="" for="alinhamentoID">Alinhamento</label>
                                         <select class="custom-select" id="alinhamentoID" name="alinhamento"
                                             [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
                                             <option value="0"></option>
@@ -209,7 +209,7 @@
                                         <div class="card-body bg-secondary">
                                             <!-- Atletismo -->
                                             <div class="d-inline">
-                                                <div class="form-check-inline  mr-lg-n5 pr-lg-n5">
+                                                <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                     <input class="form-check-input" type="checkbox" name="atleRad"
                                                         id="atleRadID">
                                                     <div class="col-lg-6">
@@ -324,7 +324,8 @@
                                         data-parent="#acoAtributos">
                                         <div class="card-body bg-secondary">
                                             <!-- Mensagem -->
-                                            <p class="parag text-white text-center align-self-center">Não existem perícias para este
+                                            <p class="parag text-white text-center align-self-center">Não existem
+                                                perícias para este
                                                 atributo!</p>
                                         </div>
                                     </div>
@@ -433,14 +434,14 @@
                                                 name="sabTesteRad" id="sabTesteRadID" disabled="true">
                                             <label class="align-self-end" for="sabID">SAB</label>
                                             <input type="number" class="form-control ml-2" id="sabID" placeholder="Hab"
-                                                (click)="mudarMod(3)" (change)="mudarMod(3)" name="sab"
+                                                (click)="mudarMod(4)" (change)="mudarMod(4)" name="sab"
                                                 [(ngModel)]="ficha.Sab" #des="ngModel">
                                             <input type="number" class="form-control ml-2" id="sabModID"
                                                 placeholder="Mod" readonly="true" name="sabMod"
                                                 [(ngModel)]="ficha.SabMod" #sabMod="ngModel">
                                             <input type="number" class="form-control ml-2" id="sabTesteID"
-                                                (click)="mudarTeste(2)" placeholder="Res" name="sabTeste"
-                                                [(ngModel)]="ficha.SabTeste" #sabTeste="ngModel">
+                                                (click)="mudarTeste(4)" (change)="mudarTeste(4)" placeholder="Res"
+                                                name="sabTeste" [(ngModel)]="ficha.SabTeste" #sabTeste="ngModel">
                                             <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
                                                 data-target="#collapse-sab" aria-expanded="true"
                                                 aria-controls="collapse-sab">
@@ -532,14 +533,14 @@
                                                 name="carTesteRad" id="carTesteRadID" disabled="true">
                                             <label class="align-self-end" for="carID">CAR</label>
                                             <input type="number" class="form-control ml-2" id="carID" placeholder="Hab"
-                                                (click)="mudarMod(3)" (change)="mudarMod(3)" name="car"
+                                                (click)="mudarMod(5)" (change)="mudarMod(5)" name="car"
                                                 [(ngModel)]="ficha.Car" #des="ngModel">
                                             <input type="number" class="form-control ml-2" id="carModID"
                                                 placeholder="Mod" readonly="true" name="carMod"
                                                 [(ngModel)]="ficha.CarMod" #carMod="ngModel">
                                             <input type="number" class="form-control ml-2" id="carTesteID"
-                                                (click)="mudarTeste(2)" placeholder="Res" name="carTeste"
-                                                [(ngModel)]="ficha.CarTeste" #carTeste="ngModel">
+                                                (click)="mudarTeste(5)" (change)="mudarTeste(5)" placeholder="Res"
+                                                name="carTeste" [(ngModel)]="ficha.CarTeste" #carTeste="ngModel">
                                             <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
                                                 data-target="#collapse-car" aria-expanded="true"
                                                 aria-controls="collapse-car">
@@ -611,7 +612,7 @@
                                     <!-- Fim Collapse Carisma -->
                                 </div>
                                 <!-- Fim Accordion-->
-                                <br/>                                
+                                <br />
                                 <div class="row row-lg-cols-3">
                                     <div class="form-group col-lg">
                                         <label for="inspiracaoID" class="">Inspiração</label>
@@ -620,7 +621,8 @@
                                             #inspiracao="ngModel">
                                     </div>
                                     <div class="form-group col-lg">
-                                        <label for="proficiencia" class="text-break text-nowrap">Bônus de Proficiência</label>
+                                        <label for="proficiencia" class="text-break text-nowrap">Bônus de
+                                            Proficiência</label>
                                         <input type="text" class="form-control" id="proficienciaID" name="proficiencia"
                                             #proficiencia="ngModel" [(ngModel)]="ficha.Proficiencia"
                                             placeholder="Proficiência" readonly="true">
@@ -648,7 +650,7 @@
                             <div class="card-header princi">Pontos de Vida, Classe de Armadura e Outros</div>
                             <div class="card-body">
 
-                                <div class="row row-lg-cols-3">
+                                <div class="row row-lg-cols-2">
                                     <div class="form-group col-lg">
                                         <label class="align-self-center text-nowrap" for="caID">Classe de
                                             Armadura</label>
@@ -656,30 +658,44 @@
                                             name="ca" [(ngModel)]="ficha.Ca" #ca="ngModel" />
                                     </div>
                                     <div class="form-group col-lg">
-                                        <label class="align-self-center" for="iniciID">Iniciativa</label>
+                                        <label class="align-self-center text-trucate" for="iniciID">Iniciativa</label>
                                         <input type="number" disabled class="form-control" id="iniciID"
                                             placeholder="Iniciativa" name="inici" [(ngModel)]="ficha.Inici"
                                             #inici="ngModel" />
                                     </div>
+                                </div>
+
+                                <label class="align-self-center">Deslocamentos</label>
+                                <div class="row row-lg-cols-2">
                                     <div class="form-group col-lg">
-                                        <label class="align-self-center">Deslocamentos</label>
-                                        <div class="d-inline-flex">
+                                        <label class="align-self-center" for="desloID">Terrestre</label>
+                                        <div class="input-group">
                                             <input type="number" min="0" class="form-control" id="desloID"
                                                 placeholder="Terrestre" name="deslo" [(ngModel)]="ficha.Deslo"
                                                 #deslo="ngModel" />
-                                            <div class="align-self-end parag ml-2">metros</div>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-danger" type="button" disabled>
+                                                    m
+                                                </button>
+                                            </div>
                                         </div>
-
-                                        <div class="d-inline-flex mt-1">
+                                    </div>
+                                    <div class="form-group col-lg">
+                                        <label class="align-self-center" for="desloVID">Voo</label>
+                                        <div class="input-group">
                                             <input type="number" min="0" class="form-control" id="desloVID"
                                                 placeholder="Voo" name="desloVoo" [(ngModel)]="ficha.DesloV"
                                                 #desloV="ngModel" />
-                                            <div class="align-self-end parag ml-2">metros</div>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-danger" type="button" disabled>
+                                                    m
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br />
 
+                                <br />
                                 <label class="align-self-center" for="pvMaxID">Pontos de Vida</label>
                                 <div class="row row-lg-cols-3">
                                     <div class="form-group col-lg">
@@ -703,17 +719,15 @@
                                 <br />
 
                                 <label class="align-self-top" for="dadosDeVida">Dados de Vida</label>
-                                <div class="d-xs-flex">
-                                    <div class="form-group">
-                                        <div *ngFor="let DadoDeVida of ficha.DadosDeVida; index as i">
-                                            <button class="btn btn-danger mr-2" (click)="removerDado(i)"
-                                                type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                            <label class="align-self-end">{{DadoDeVida}}</label>
-                                        </div>
+                                <div class="d-flex flex-column">
+                                    <div *ngFor="let DadoDeVida of ficha.DadosDeVida; index as i" class="mb-1">
+                                        <button class="btn btn-danger mr-3" (click)="removerDado(i)" type="button"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <label class="align-self-end">{{DadoDeVida}}</label>
                                     </div>
-                                    <div class="input-group">
-                                        <button class="btn btn-danger mr-2" (click)="adicionarDado(dadosDeVida.value)"
-                                            type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>                                       
+                                    <div class="d-inline-flex">
+                                        <button class="btn btn-danger mr-3" (click)="adicionarDado(dadosDeVida.value)"
+                                            type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                         <select class="custom-select" id="dadosDeVida" dadosDeVida.value=''
                                             #dadosDeVida>
                                             <option></option>
@@ -721,7 +735,7 @@
                                             <option value="d8">d8</option>
                                             <option value="d10">d10</option>
                                             <option value="d12">d12</option>
-                                        </select>                                  
+                                        </select>
                                     </div>
                                 </div>
 
@@ -734,44 +748,46 @@
                             <div class="card-header princi">
                                 Ataques & Conjuração
                             </div>
-                            <div class="card-body">                               
+                            <div class="card-body">
                                 <div class="row row-cols-2">
                                     <div class="form-group col">
                                         <label for="nomeDoAtaque">Nome</label>
                                         <input id="nomeDoAtaque" class="form-control" type="text" name="nomeDoAtaque"
-                                            #nomeAtaque nomeAtaque.value=''>
+                                            #nomeAtaque nomeAtaque.value='' placeholder="Nome do Ataque">
                                     </div>
                                     <div class="form-group col">
                                         <label class="text-nowrap" for="bonusAtaque">Bônus Ataque</label>
                                         <input id="bonusAtaque" class="form-control" type="number" name="bonusAtaque"
-                                            #bonusAtaque bonusAtaque.value=''>
+                                            #bonusAtaque bonusAtaque.value='' placeholder="Bônus do Ataque">
                                     </div>
                                     <div class="form-group col">
                                         <label for="danoTipoAtaque">Dano/Tipo</label>
                                         <div class="d-lg-inline-flex">
                                             <input id="danoTipoAtaque" class="form-control mr-lg-2" type="text"
-                                                name="danoTipoAtaque" #danoTipoAtaque danoTipoAtaque.value=''> <br />
+                                                name="danoTipoAtaque" #danoTipoAtaque danoTipoAtaque.value=''
+                                                placeholder="Dano e Tipo do Ataque"> <br />
                                             <div class="d-lg-flex align-items-lg-stretch">
-                                            <button class="btn btn-danger btn-block"
-                                                (click)="adicionarAtaque(nomeAtaque.value, bonusAtaque.value, danoTipoAtaque.value)"
-                                                type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <button class="btn btn-danger btn-block"
+                                                    (click)="adicionarAtaque(nomeAtaque.value, bonusAtaque.value, danoTipoAtaque.value)"
+                                                    type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div *ngIf="ficha.Ataques.length > 0" class="table-responsive">
-                                    <table class="table table-hover table-sm table-light">
+                                    <table class="table table-bordered table-hover table-md table-light">
+                                        <caption class="parag text-center">Ataques</caption>
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th></th>
-                                                <th class="parag" scope="col">
+                                                <th class="parag align-middle" scope="col">
                                                     Nome
                                                 </th>
-                                                <th class="parag" scope="col">
+                                                <th class="parag align-middle" scope="col">
                                                     Bônus Ataque
                                                 </th>
-                                                <th class="parag" scope="col">
+                                                <th class="parag align-middle" scope="col">
                                                     Tipo/Dano
                                                 </th>
                                             </tr>
@@ -786,7 +802,7 @@
                                                 <td class="parag align-middle">
                                                     {{ataque.NomeAtaque}}
                                                 </td>
-                                                <td class="parag text-lg-left">
+                                                <td class="parag text-center text-lg-left align-middle">
                                                     {{ataque.BonusAtaque}}
                                                 </td>
                                                 <td class="parag align-middle">
@@ -802,6 +818,97 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Equipamento -->
+                    <div class="row d-block">
+                        <div class="card">
+                            <div class="card-header princi">
+                                Equipamento
+                            </div>
+                            <div class="card-body">
+                                <!-- Dinheiro -->
+                                <div class="row row-lg-cols-5">
+                                    <div class="form-group col-lg col-4">
+                                        <label for="pcID">PC</label>
+                                        <input id="pcID" class="form-control" type="number" min="0" name="pc"
+                                            [(ngModel)]="ficha.Pc" #pc="ngModel" placeholder="PC" />
+                                    </div>
+                                    <div class="form-group col-lg col-4">
+                                        <label for="ppID">PP</label>
+                                        <input id="ppID" class="form-control" type="number" min="0" name="pp"
+                                            [(ngModel)]="ficha.Pp" #pp="ngModel" placeholder="PP" />
+                                    </div>
+                                    <div class="form-group col-lg col-4">
+                                        <label for="peID">PE</label>
+                                        <input id="peID" class="form-control" type="number" min="0" name="pe"
+                                            [(ngModel)]="ficha.Pe" #pe="ngModel" placeholder="PE" />
+                                    </div>
+                                    <div class="form-group col-lg col-6">
+                                        <label for="poID">PO</label>
+                                        <input id="poID" class="form-control" type="number" min="0" name="po"
+                                            [(ngModel)]="ficha.Po" #po="ngModel" placeholder="PO" />
+                                    </div>
+                                    <div class="form-group col-lg col-6">
+                                        <label for="plID">PL</label>
+                                        <input id="plID" class="form-control" type="number" min="0" name="pl"
+                                            [(ngModel)]="ficha.Pl" #pl="ngModel" placeholder="PL" />
+                                    </div>
+                                </div>
+                                <br />
+                                <!-- Equipamento -->
+                                <label>Equipamentos</label>
+                                <div class="row row-cols-2">
+                                    <div class="form-group col-lg-6 col-12">
+                                        <label for="nomeEquipamentoID">Nome</label>
+                                        <input class="form-control" type="text" id="nomeItemID" name="nomeItem"
+                                            placeholder="Nome do Item" #nomeItem #nomeItem.value=''>
+                                    </div>
+                                    <div class="form-group col-lg-6 col-12">
+                                        <label for="statusID">Status</label>
+                                        <div class="d-lg-inline-flex">
+                                            <input class="form-control" type="text" id="statusItemID" name="statusItem"
+                                                placeholder="Status do Item" #statusItem #statusItem.value=''> <br />
+                                            <div class="d-lg-flex align-items-lg-stretch">
+                                                <button class="btn btn-danger ml-lg-2 btn-block" type="button"
+                                                    (click)="adicionarItem(nomeItem.value, statusItem.value)"><i
+                                                        class="fa fa-plus" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="ficha.Equips.length > 0" class="table-responsive">
+                                    <table class="table table-bordered table-hover table-md table-light">
+                                        <caption class="parag text-center">Itens</caption>
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th></th>
+                                                <th class="parag align-middle" scope="col">
+                                                    Nome do Item
+                                                </th>
+                                                <th class="parag align-middle" scope="col">
+                                                    Status do Item
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr scope="row" *ngFor="let Equip of ficha.Equips; index as i">
+                                                <td class="align-middle"> <button class="btn btn-danger"
+                                                        (click)="removerItem(i)" type="button">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                </td>
+                                                <td class="parag align-middle">
+                                                    {{Equip.NomeItem}}
+                                                </td>
+                                                <td class="parag align-middle">
+                                                    {{Equip.StatusItem}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Fim Equipamento-->
+                            </div>
+                        </div>
+                    </div>
                     <!-- Idiomas e outras características -->
                     <div class="row d-block">
                         <div class="card">
@@ -809,9 +916,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="idiomasID">Idiomas e outras características:</label>
-                                    <textarea class="form-control" id="idiomasID" rows="6"
-                                        name="campoIdiomas" [(ngModel)]="ficha.CampoIdiomas"
-                                        #campoIdiomas="ngModel"></textarea>
+                                    <textarea class="form-control" id="idiomasID" rows="6" name="campoIdiomas"
+                                        [(ngModel)]="ficha.CampoIdiomas" #campoIdiomas="ngModel"></textarea>
                                 </div>
                             </div>
                         </div>

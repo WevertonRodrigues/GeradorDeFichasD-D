@@ -17,11 +17,12 @@
     padding-top: 0rem;
     padding-bottom: 0rem;
 }
-
+caption{
+    caption-side: top;
+}
 .container{
     max-width: 100%;
 }
-
 textarea{
     resize: none;
 }

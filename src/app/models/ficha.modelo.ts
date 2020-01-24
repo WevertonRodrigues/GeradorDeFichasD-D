@@ -43,11 +43,19 @@ export class Ficha {
     public SabTeste: number;
     public CarTeste: number;
 
+    //Pontos de Vida, Classe de Armadura e Outros
+    public Inici : number; 
+
     //Ataques & Conjurações
     public Ataques = []
-    public NomesAtaques : string[] = [];
-    public BonusAtaques : number[] = [];
-    public DanosTiposAtaques : string[] = [];
+
+    //Equipamentos
+    public Pc : number;
+    public Pp : number;
+    public Pe : number;
+    public Po : number;
+    public Pl : number;
+    public Equips = [];
 
     //Idiomas e Outras Características
     public CampoIdiomas: string;
@@ -59,6 +67,7 @@ export class Ficha {
     
     //Perfil
     public IdPerfil : number;
+
 
     /*constructor(
         private _ID: number,

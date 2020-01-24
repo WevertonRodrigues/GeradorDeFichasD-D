@@ -336,8 +336,6 @@ export class FichaComponent /*implements OnInit*/ {
         let checkSab: HTMLInputElement = document.getElementById('sabTesteRadID') as HTMLInputElement;
         let checkCar: HTMLInputElement = document.getElementById('carTesteRadID') as HTMLInputElement;
 
-
-
         switch (p) {
             case 0:
                 return checkFor;
@@ -508,21 +506,30 @@ export class FichaComponent /*implements OnInit*/ {
 
     adicionarDado(dado: string) {
         if (dado !== '')
-            this.ficha.DadosDeVida[this.ficha.DadosDeVida.length] = dado;
+            this.ficha.DadosDeVida.push(dado);
     }
 
     removerDado(i: number) {
         this.ficha.DadosDeVida.splice(i, 1)
     }
 
-    adicionarAtaque(nome : string, ba : any, dt : string){
-        console.log(isNaN(parseInt(ba, 10)))
-        console.log()   
+    adicionarAtaque(nome : string, ba : any, dt : string){    
         if(nome != '' && (isNaN(parseInt(ba, 10)) != true) && dt != '')
-            this.ficha.Ataques[this.ficha.Ataques.length] = {NomeAtaque : nome, BonusAtaque : ba, DanoTipoAtaque : dt}
+            this.ficha.Ataques.push({NomeAtaque : nome, BonusAtaque : ba, DanoTipoAtaque : dt})
     }
     removerAtaque(i : number){
         this.ficha.Ataques.splice(i, 1)
+    }
+
+    adicionarItem(item: string, status : string) {        
+        if (item !== '' && status !== ''){
+            this.ficha.Equips.push({NomeItem : item, StatusItem : status});        
+        }
+        console.log(this.ficha.Equips)
+    }
+
+    removerItem(i: number) {
+        this.ficha.Equips.splice(i, 1)
     }
 
     /*    getFicha(id : number): void {
