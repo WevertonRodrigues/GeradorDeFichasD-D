@@ -179,28 +179,77 @@
                             </div>
                             <div class="card-body">
                                 <div class="accordion" id="acoAtributos">
+                                    <div class="container d-none">
+                                        <div class="row row-lg-cols-4">
+                                            <div class="col-lg-2">
+                                            </div>
+                                            <div class="col-lg ">
+                                                <label class="text-break">
+                                                    Atributo
+                                                </label>
+                                            </div>
+                                            <div class="col-lg">
+                                                <label class="text-break">
+                                                    Modificador
+                                                </label>
+                                            </div>
+                                            <div class="col-lg">
+                                                <label class="text-break">
+                                                    Resistência
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- Força -->
                                     <!-- Card Força -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-for">
-
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="forTesteRad" id="forTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="forID">FOR</label>
-                                            <input type="number" class="form-control ml-2" id="forID" placeholder="Hab"
-                                                (click)="mudarMod(0)" (change)="mudarMod(0)" name="for"
-                                                [(ngModel)]="ficha.For" #for="ngModel">
-                                            <input type="number" class="form-control ml-2" id="forModID"
-                                                placeholder="Mod" readonly="true" name="forMod"
-                                                [(ngModel)]="ficha.ForMod" #forMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="forTesteID"
-                                                (click)="mudarTeste(0)" placeholder="Res" name="forTeste"
-                                                [(ngModel)]="ficha.ForTeste" #forTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-for" aria-expanded="true"
-                                                aria-controls="collapse-for">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header d-lg-flex" id="header-for" data-toggle="collapse"
+                                            data-target="#collapse-for" aria-expanded="true"
+                                            aria-controls="collapse-for">
+                                            <div class="row row-cols-4">
+                                                <!--  -->
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mr-2 align-self-center" type="checkbox"
+                                                        name="forTesteRad" id="forTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="forID">FOR</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group px-lg-0 mr-lg-1 col-6 col-lg">
+                                                    <label class="d-lg-none">
+                                                        Atributo
+                                                    </label>
+                                                    <input type="number" class="form-control align-self-center"
+                                                        id="forID" placeholder="Hab" (click)="mudarMod(0)"
+                                                        (change)="mudarMod(0)" name="for" [(ngModel)]="ficha.For"
+                                                        #for="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group px-lg-0 mr-lg-1 col-6 col-lg">
+                                                    <label class="text-wrap d-lg-none">
+                                                        Modificador
+                                                    </label>
+                                                    <input type="number" class="form-control align-self-center"
+                                                        id="forModID" placeholder="Mod" readonly="true" name="forMod"
+                                                        [(ngModel)]="ficha.ForMod" #forMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group px-lg-0 mr-lg-1 col col-lg d-lg-flex">
+                                                    <label class="d-lg-none">
+                                                        Resistência
+                                                    </label>
+                                                    <input type="number" class="form-control mr-lg-1" id="forTesteID"
+                                                        (click)="mudarTeste(0)" placeholder="Res" name="forTeste"
+                                                        [(ngModel)]="ficha.ForTeste" #forTeste="ngModel"><br />
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-for"
+                                                            aria-expanded="true" aria-controls="collapse-for">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Força -->
@@ -227,24 +276,50 @@
                                     <!-- Destreza -->
                                     <!-- Card Destreza -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-des">
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="desTesteRad" id="desTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="desID">DES</label>
-                                            <input type="number" class="form-control ml-3" id="desID" placeholder="Hab"
-                                                (click)="mudarMod(1)" (change)="mudarMod(1)" name="des"
-                                                [(ngModel)]="ficha.Des" #des="ngModel">
-                                            <input type="number" class="form-control ml-2" id="desModID"
-                                                placeholder="Mod" readonly="true" name="desMod"
-                                                [(ngModel)]="ficha.DesMod" #desMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="desTesteID"
-                                                (click)="mudarTeste(1)" placeholder="Res" name="desTeste"
-                                                [(ngModel)]="ficha.DesTeste" #desTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-des" aria-expanded="true"
-                                                aria-controls="collapse-des">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header d-lg-flex" id="header-des">
+                                            <div class="row row-cols-4">
+                                                <!-- -->
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mr-2 align-self-center" type="checkbox"
+                                                        name="desTesteRad" id="desTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="desID">DES</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <label class="d-lg-none">
+                                                        Atributo
+                                                    </label>
+                                                    <input type="number" class="form-control" id="desID"
+                                                        placeholder="Hab" (click)="mudarMod(1)" (change)="mudarMod(1)"
+                                                        name="des" [(ngModel)]="ficha.Des" #des="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <label class="text-wrap d-lg-none">
+                                                        Modificador
+                                                    </label>
+                                                    <input type="number" class="form-control" id="desModID"
+                                                        placeholder="Mod" readonly="true" name="desMod"
+                                                        [(ngModel)]="ficha.DesMod" #desMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
+                                                    <label class="d-lg-none">
+                                                        Resistência
+                                                    </label>
+                                                    <input type="number" class="form-control mr-lg-1" id="desTesteID"
+                                                        (click)="mudarTeste(1)" placeholder="Res" name="desTeste"
+                                                        [(ngModel)]="ficha.DesTeste" #desTeste="ngModel"><br />
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-des"
+                                                            aria-expanded="true" aria-controls="collapse-des">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Destreza -->
@@ -299,24 +374,41 @@
                                     <!-- Constituição -->
                                     <!-- Card Constituição -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-con">
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="conTesteRad" id="conTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="conID">CON</label>
-                                            <input type="number" class="form-control ml-2" id="conID" placeholder="Hab"
-                                                (click)="mudarMod(2)" (change)="mudarMod(2)" name="con"
-                                                [(ngModel)]="ficha.Con" #des="ngModel">
-                                            <input type="number" class="form-control ml-2" id="conModID"
-                                                placeholder="Mod" readonly="true" name="conMod"
-                                                [(ngModel)]="ficha.ConMod" #conMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="conTesteID"
-                                                (click)="mudarTeste(2)" placeholder="Res" name="conTeste"
-                                                [(ngModel)]="ficha.ConTeste" #conTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-con" aria-expanded="true"
-                                                aria-controls="collapse-con">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header d-lg-flex" id="header-con">
+                                            <div class="row row-cols-4">
+                                                <!-- -->
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mt-n1 mr-2 align-self-center" type="checkbox"
+                                                        name="conTesteRad" id="conTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="conID">CON</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="conID"
+                                                        placeholder="Hab" (click)="mudarMod(2)" (change)="mudarMod(2)"
+                                                        name="con" [(ngModel)]="ficha.Con" #des="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="conModID"
+                                                        placeholder="Mod" readonly="true" name="conMod"
+                                                        [(ngModel)]="ficha.ConMod" #conMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control mr-lg-1" id="conTesteID"
+                                                        (click)="mudarTeste(2)" placeholder="Res" name="conTeste"
+                                                        [(ngModel)]="ficha.ConTeste" #conTeste="ngModel"><br />
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-con"
+                                                            aria-expanded="true" aria-controls="collapse-con">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Constituição -->
@@ -332,24 +424,40 @@
                                     <!-- Inteligência -->
                                     <!-- Card Inteligência -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-int">
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="intTesteRad" id="intTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="intID">INT</label>
-                                            <input type="number" class="form-control ml-3" id="intID" placeholder="Hab"
-                                                (click)="mudarMod(3)" (change)="mudarMod(3)" name="int"
-                                                [(ngModel)]="ficha.int" #des="ngModel">
-                                            <input type="number" class="form-control ml-2" id="intModID"
-                                                placeholder="Mod" readonly="true" name="intMod"
-                                                [(ngModel)]="ficha.IntMod" #intMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="intTesteID"
-                                                (click)="mudarTeste(2)" placeholder="Res" name="intTeste"
-                                                [(ngModel)]="ficha.IntTeste" #intTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-int" aria-expanded="true"
-                                                aria-controls="collapse-int">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header d-lg-flex" id="header-int">
+                                            <div class="row row-cols-4">
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mr-2 align-self-center" type="checkbox"
+                                                        name="intTesteRad" id="intTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="intID">INT</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="intID"
+                                                        placeholder="Hab" (click)="mudarMod(3)" (change)="mudarMod(3)"
+                                                        name="int" [(ngModel)]="ficha.int" #des="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="intModID"
+                                                        placeholder="Mod" readonly="true" name="intMod"
+                                                        [(ngModel)]="ficha.IntMod" #intMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control mr-lg-1" id="intTesteID"
+                                                        (click)="mudarTeste(2)" placeholder="Res" name="intTeste"
+                                                        [(ngModel)]="ficha.IntTeste" #intTeste="ngModel"><br />
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-int"
+                                                            aria-expanded="true" aria-controls="collapse-int">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Inteligência -->
@@ -429,24 +537,41 @@
                                     <!-- Sabedoria -->
                                     <!-- Card Sabedoria -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-sab">
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="sabTesteRad" id="sabTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="sabID">SAB</label>
-                                            <input type="number" class="form-control ml-2" id="sabID" placeholder="Hab"
-                                                (click)="mudarMod(4)" (change)="mudarMod(4)" name="sab"
-                                                [(ngModel)]="ficha.Sab" #des="ngModel">
-                                            <input type="number" class="form-control ml-2" id="sabModID"
-                                                placeholder="Mod" readonly="true" name="sabMod"
-                                                [(ngModel)]="ficha.SabMod" #sabMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="sabTesteID"
-                                                (click)="mudarTeste(4)" (change)="mudarTeste(4)" placeholder="Res"
-                                                name="sabTeste" [(ngModel)]="ficha.SabTeste" #sabTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-sab" aria-expanded="true"
-                                                aria-controls="collapse-sab">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header" id="header-sab">
+                                            <div class="row row-cols-4">
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mr-2 align-self-center" type="checkbox"
+                                                        name="sabTesteRad" id="sabTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="sabID">SAB</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="sabID"
+                                                        placeholder="Hab" (click)="mudarMod(4)" (change)="mudarMod(4)"
+                                                        name="sab" [(ngModel)]="ficha.Sab" #des="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="sabModID"
+                                                        placeholder="Mod" readonly="true" name="sabMod"
+                                                        [(ngModel)]="ficha.SabMod" #sabMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control mr-lg-1" id="sabTesteID"
+                                                        (click)="mudarTeste(4)" (change)="mudarTeste(4)"
+                                                        placeholder="Res" name="sabTeste" [(ngModel)]="ficha.SabTeste"
+                                                        #sabTeste="ngModel"><br />
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-sab"
+                                                            aria-expanded="true" aria-controls="collapse-sab">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Sabedoria -->
@@ -528,24 +653,42 @@
                                     <!-- Carisma -->
                                     <!-- Card Carisma -->
                                     <div class="card mb-0">
-                                        <div class="card-header d-flex" id="header-car">
-                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                name="carTesteRad" id="carTesteRadID" disabled="true">
-                                            <label class="align-self-end" for="carID">CAR</label>
-                                            <input type="number" class="form-control ml-2" id="carID" placeholder="Hab"
-                                                (click)="mudarMod(5)" (change)="mudarMod(5)" name="car"
-                                                [(ngModel)]="ficha.Car" #des="ngModel">
-                                            <input type="number" class="form-control ml-2" id="carModID"
-                                                placeholder="Mod" readonly="true" name="carMod"
-                                                [(ngModel)]="ficha.CarMod" #carMod="ngModel">
-                                            <input type="number" class="form-control ml-2" id="carTesteID"
-                                                (click)="mudarTeste(5)" (change)="mudarTeste(5)" placeholder="Res"
-                                                name="carTeste" [(ngModel)]="ficha.CarTeste" #carTeste="ngModel">
-                                            <button class="btn btn-danger ml-2" type="button" data-toggle="collapse"
-                                                data-target="#collapse-car" aria-expanded="true"
-                                                aria-controls="collapse-car">
-                                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                            </button>
+                                        <div class="card-header" id="header-car">
+                                            <div class="row row-cols-4">
+                                                <div
+                                                    class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
+                                                    <input class="mr-2 align-self-center" type="checkbox"
+                                                        name="carTesteRad" id="carTesteRadID" disabled="true">
+                                                    <label class="align-self-center" for="carID">CAR</label>
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="carID"
+                                                        placeholder="Hab" (click)="mudarMod(5)" (change)="mudarMod(5)"
+                                                        name="car" [(ngModel)]="ficha.Car" #des="ngModel">
+                                                    <!-- -->
+                                                </div>
+                                                <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control" id="carModID"
+                                                        placeholder="Mod" readonly="true" name="carMod"
+                                                        [(ngModel)]="ficha.CarMod" #carMod="ngModel">
+                                                </div>
+                                                <!-- -->
+                                                <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
+                                                    <input type="number" class="form-control mr-lg-1" id="carTesteID"
+                                                        (click)="mudarTeste(5)" (change)="mudarTeste(5)"
+                                                        placeholder="Res" name="carTeste" [(ngModel)]="ficha.CarTeste"
+                                                        #carTeste="ngModel"><br/>
+                                                    <!-- -->
+                                                    <div>
+                                                        <button class="btn btn-danger h-100 btn-block" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-car"
+                                                            aria-expanded="true" aria-controls="collapse-car">
+                                                            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Collapse Carisma -->
@@ -738,7 +881,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -762,12 +904,12 @@
                                     </div>
                                     <div class="form-group col">
                                         <label for="danoTipoAtaque">Dano/Tipo</label>
-                                        <div class="d-lg-inline-flex">
+                                        <div class="d-lg-flex">
                                             <input id="danoTipoAtaque" class="form-control mr-lg-2" type="text"
                                                 name="danoTipoAtaque" #danoTipoAtaque danoTipoAtaque.value=''
                                                 placeholder="Dano e Tipo do Ataque"> <br />
-                                            <div class="d-lg-flex align-items-lg-stretch">
-                                                <button class="btn btn-danger btn-block"
+                                            <div>
+                                                <button class="btn btn-danger h-100 btn-block"
                                                     (click)="adicionarAtaque(nomeAtaque.value, bonusAtaque.value, danoTipoAtaque.value)"
                                                     type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </div>
@@ -854,26 +996,27 @@
                                     </div>
                                 </div>
                                 <br />
-                                <!-- Equipamento -->
+                                <!-- Itens -->
                                 <label>Equipamentos</label>
-                                <div class="row row-cols-2">
-                                    <div class="form-group col-lg-6 col-12">
+                                <div class="row row-lg-cols-3">
+                                    <div class="form-group col-lg">
                                         <label for="nomeEquipamentoID">Nome</label>
                                         <input class="form-control" type="text" id="nomeItemID" name="nomeItem"
                                             placeholder="Nome do Item" #nomeItem #nomeItem.value=''>
                                     </div>
-                                    <div class="form-group col-lg-6 col-12">
+                                    <div class="form-group col-lg">
                                         <label for="statusID">Status</label>
-                                        <div class="d-lg-inline-flex">
+                                        <div class="d-lg-flex">
                                             <input class="form-control" type="text" id="statusItemID" name="statusItem"
-                                                placeholder="Status do Item" #statusItem #statusItem.value=''> <br />
-                                            <div class="d-lg-flex align-items-lg-stretch">
-                                                <button class="btn btn-danger ml-lg-2 btn-block" type="button"
+                                                placeholder="Status do Item" #statusItem #statusItem.value=''><br />
+                                            <div>
+                                                <button class="btn btn-danger h-100 ml-lg-2 btn-block" type="button"
                                                     (click)="adicionarItem(nomeItem.value, statusItem.value)"><i
                                                         class="fa fa-plus" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div *ngIf="ficha.Equips.length > 0" class="table-responsive">
                                     <table class="table table-bordered table-hover table-md table-light">
@@ -905,7 +1048,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- Fim Equipamento-->
+                                <!-- Fim Itens-->
                             </div>
                         </div>
                     </div>
