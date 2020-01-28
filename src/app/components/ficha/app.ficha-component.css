@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('../../../styles.css');
 
 .card
 {
@@ -6,16 +7,13 @@
     max-width: 100%;
     margin-bottom: 2%;
 }
-
-.princi{
-    text-align: left;
-    color: #fffffff6;
-    background-color: rgb(236, 36, 29);
+.main-collapse-header{
     font-family: 'Quicksand', sans-serif;
-    font-size: 40px;
+    font-size: 45px;
+    background-color: rgba(236, 36, 29, 0.568); 
+    color: #fffffff6;
     font-weight: lighter;
-    padding-top: 0rem;
-    padding-bottom: 0rem;
+    
 }
 caption{
     caption-side: top;
@@ -23,59 +21,27 @@ caption{
 .container{
     max-width: 100%;
 }
+footer{
+    position: fixed;
+}
+.princi{
+    text-align: left;
+    color: #fffffff6;
+    background-color: rgba(236, 36, 29, 0.89);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 40px;
+    font-weight: lighter;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
 textarea{
     resize: none;
 }
 .textCenter{
     text-align: center;
 }
-
 select, input[type=number], input[type=text], input[type=textarea], label, .parag{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;
-}
-
-.as input[type=checkbox]{
-    display:none;
-}
-
-.as label{
-    display: block;
-    cursor: pointer;
-    margin-bottom: 10px;
-    padding-left: 35px; 
-    font-size: 20px;
-    position: relative;
-    
-}
-.as label::before{
-    content: "";
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    border: solid 1px #a2a2a2;
-    display: inline-block;
-    box-sizing: border-box;
-    right: 0;
-    top: -1.5px;
-    border-radius: 2rem 2rem 2rem 2rem;
-    background-color: #a2a2a2
-}
-
-.as label::after{
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: solid 1px #a2a2a2;
-    display: inline-block;
-    box-sizing: border-box;
-    right: 3px;
-    top: 1.5px;
-    border-radius: 2rem 2rem 2rem 2rem;
-}
-
-.as input:checked + label::after{
-    background-color: black;
 }

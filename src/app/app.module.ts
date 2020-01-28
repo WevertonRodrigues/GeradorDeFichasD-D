@@ -14,6 +14,7 @@ import { AlterarDadosComponent } from './components/alterar-dados/app.alterar-da
 import { FichaComponent } from './components/ficha/app.ficha-component';
 import { FormEntrarComponent } from './components/form-entrar/app.form-entrar-component';
 import { FormCadastroComponent } from './components/form-cadastro/app.form-cadastro-component';
+import { VoltarAoTopoComponent } from './components/voltar-ao-topo/voltar-ao-topo.component';
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent },
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent, AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent
+    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent, AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent, VoltarAoTopoComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [VoltarAoTopoComponent]
 })
 export class AppModule { }

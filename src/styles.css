@@ -9,6 +9,9 @@ body{
     /*background-image: url("./assets/Imagens/background.jpg");*/
     background-size: cover;
 }
+.btn-danger{
+    background-color: rgba(236, 36, 29, 0.89);;
+}
 .textoCabecalho{
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
