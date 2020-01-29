@@ -1,19 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 @import url('../../../styles.css');
 
+a:link, a:visited, a:hover, a:active{
+    color: black;
+    font-weight: bolder;
+}
 .card
 {
     max-height: 400%;
     max-width: 100%;
     margin-bottom: 2%;
-}
-.main-collapse-header{
-    font-family: 'Quicksand', sans-serif;
-    font-size: 45px;
-    background-color: rgba(236, 36, 29, 0.568); 
-    color: #fffffff6;
-    font-weight: lighter;
-    
 }
 caption{
     caption-side: top;
@@ -24,12 +20,20 @@ caption{
 footer{
     position: fixed;
 }
+.main-collapse-header{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 35px;
+    background-color: rgba(236, 36, 29, 0.568); 
+    color: #fffffff6;
+    font-weight: lighter;
+    
+}
 .princi{
     text-align: left;
     color: #fffffff6;
     background-color: rgba(236, 36, 29, 0.89);
     font-family: 'Quicksand', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: lighter;
     padding-top: 0rem;
     padding-bottom: 0rem;
@@ -40,7 +44,7 @@ textarea{
 .textCenter{
     text-align: center;
 }
-select, input[type=number], input[type=text], input[type=textarea], label, .parag{
+select, input[type=number], input[type=text], input[type=textarea], label, .parag, a{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;
