@@ -18,6 +18,8 @@ export class FichaComponent /*implements OnInit*/ {
     perfilAtual: number;
     fichaAtual: number;
 
+    checked: boolean = false;
+
     constructor(private route: ActivatedRoute,
         private router: Router, ) { }
 
@@ -500,8 +502,30 @@ export class FichaComponent /*implements OnInit*/ {
         /*for(let i = 0; i < 6; i++)
             if(this.retCheck(i).checked == true)
                 this.clickTeste(i, this.retCheck(i).checked);*/
-
         this.ficha.classeAtual = c;
+    }
+
+    ativarMulticlasse(c) {
+        //console.log(check.checked);
+        this.checked = c.checked
+        if (c.checked === false)
+            if (this.ficha.Multiclasse.length !== 0) {
+                if (confirm('Aviso! \n Todas as multiclasses serão apagadas. \n Continuar?') === true)
+                    this.ficha.Multiclasse = [];
+                else {
+                    this.checked = true
+                    c.checked = true
+                }
+            }
+    }
+    adicionarMulticlasse(classe: string) {
+        console.log(classe)
+        if (classe !== '')
+            this.ficha.Multiclasse.push(classe)
+    }
+
+    removerMulticlasse(i: number, id: number) {
+        this.ficha.Multiclasse.splice(i, 1)
     }
 
     adicionarDado(dado: string) {
@@ -513,17 +537,17 @@ export class FichaComponent /*implements OnInit*/ {
         this.ficha.DadosDeVida.splice(i, 1)
     }
 
-    adicionarAtaque(nome : string, ba : any, dt : string){    
-        if(nome != '' && (isNaN(parseInt(ba, 10)) != true) && dt != '')
-            this.ficha.Ataques.push({NomeAtaque : nome, BonusAtaque : ba, DanoTipoAtaque : dt})
+    adicionarAtaque(nome: string, ba: any, dt: string) {
+        if (nome != '' && (isNaN(parseInt(ba, 10)) != true) && dt != '')
+            this.ficha.Ataques.push({ NomeAtaque: nome, BonusAtaque: ba, DanoTipoAtaque: dt })
     }
-    removerAtaque(i : number){
+    removerAtaque(i: number) {
         this.ficha.Ataques.splice(i, 1)
     }
 
-    adicionarItem(item: string, status : string) {        
-        if (item !== '' && status !== ''){
-            this.ficha.Equips.push({NomeItem : item, StatusItem : status});        
+    adicionarItem(item: string, status: string) {
+        if (item !== '' && status !== '') {
+            this.ficha.Equips.push({ NomeItem: item, StatusItem: status });
         }
         console.log(this.ficha.Equips)
     }

@@ -1,1257 +1,26 @@
 <button class="btn btn-danger ml-3 d-none" (click)="carregarDados()">Carregar dados</button>
 <form #loginForm="ngForm" (ngSubmit)="salvarAlteracoes()">
-    <!-- Accordion Principal -->
-    <div class="container mb-2 d-none">
-        <div class="accordion" id="accordionPrincipal">
-            <!-- Header Dados Principais -->
-            <div class="main-collapse-header text-center rounded d-block border" id="header-dados-principais"
-                data-toggle="collapse" data-target="#collapse-dados-principais" aria-expanded="true"
-                aria-controls="collapse-dados-principais">
-                Dados Principais
-            </div>
-            <!-- Fim Header Dados Principais -->
-            <!-- Collapse Dados Principais -->
-            <div id="collapse-dados-principais" class="collapse mt-1" aria-labelledby="header-dados-principais"
-                data-parent="#accordionPrincipal">
-                <!-- Dados Principais -->
-                <div class="row">
-                    <div class="col ml-lg-6">
-                        <div class="container">
-                            <!-- Dados Básicos do Personagem -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">Dados Básicos do Personagem</div>
-                                    <div class="card-body">
-                                        <div class="row row-cols-2 ">
-                                            <div class="form-group col-lg-6">
-                                                <label class="" for="nomePersonagemID">Nome do Personagem</label>
-                                                <input type="text" class="form-control" id="nomePersonagemID"
-                                                    name="nomePersonagem" [(ngModel)]="ficha.NomePersonagem"
-                                                    #nomPersonagem="ngModel" placeholder="Seu Nome">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label class="" for="classeID">Escolha sua classe </label>
-                                                <select class="custom-select" id="classeID"
-                                                    (change)="clickClasse(classe.value)" name="classe"
-                                                    [(ngModel)]="ficha.Classe" #classe="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1" data-toggle="tooltip" data-placement="top"
-                                                        title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
-                                                        Bárbaro
-                                                    </option>
-                                                    <option value="2" data-toggle="tooltip" data-placement="top"
-                                                        title="Um místico inspirador que possui poderes que ecoam a música da criação">
-                                                        Bardo
-                                                    </option>
-                                                    <option value="3" data-toggle="tooltip" data-placement="top"
-                                                        title="Um portador de magia derivada de barganha com uma entidade planar">
-                                                        Bruxo
-                                                    </option>
-                                                    <option value="4" data-toggle="tooltip" data-placement="top"
-                                                        title="Um campeão sacerdotal que empunha magia divina a serviço de um poder maior">
-                                                        Clérigo</option>
-                                                    <option value="5" data-toggle="tooltip" data-placement="top"
-                                                        title="Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais">
-                                                        Druida</option>
-                                                    <option value="6" data-toggle="tooltip" data-placement="top"
-                                                        title="Um conjurador que possui magia latente advinda de um dom ou linhagem">
-                                                        Feiticeiro</option>
-                                                    <option value="7" data-toggle="tooltip" data-placement="top"
-                                                        title="Um mestre do combate, perito em uma vasta gama de armas e armaduras">
-                                                        Guerreiro</option>
-                                                    <option value="8" data-toggle="tooltip" data-placement="top"
-                                                        title="Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos">
-                                                        Ladino
-                                                    </option>
-                                                    <option value="9" data-toggle="tooltip" data-placement="top"
-                                                        title="Um usuário de magia escolado, capaz de manipular as estruturas da realidade">
-                                                        Mago</option>
-                                                    <option value="10" data-toggle="tooltip" data-placement="top"
-                                                        title="Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual">
-                                                        Monge</option>
-                                                    <option value="11" data-toggle="tooltip" data-placement="top"
-                                                        title="Um guerreiro divino vinculado a um juramento sagrado">
-                                                        Paladino
-                                                    </option>
-                                                    <option value="12" data-toggle="tooltip" data-placement="top"
-                                                        title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
-                                                        Patrulheiro</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-lg-6">
-                                                <label class="" for="selLvl">Nível</label>
-                                                <input type="number" class="form-control" min="1" max="20" name="nivel"
-                                                    [(ngModel)]="ficha.Nivel" #nivel="ngModel"
-                                                    (change)="mudarProf(nivel.value)" id="selLvlID"
-                                                    placeholder="Seu Nível" />
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label for="np">Antecedente</label>
-                                                <input type="text" class="form-control" id="antecedenteID"
-                                                    name="antecedente" [(ngModel)]="ficha.Antecedente"
-                                                    #antecedente="ngModel" placeholder="Seu Antecedente">
-                                            </div>
-
-
-                                            <div class="form-group col-lg-6">
-                                                <label for="np">Nome do Jogador</label>
-                                                <input type="text" class="form-control" id="nomeJogadorID"
-                                                    placeholder="Digite o nome do jogador" name="nomeJogador"
-                                                    [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel"
-                                                    placeholder="Seu nome">
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label for="racaID">Raça</label>
-                                                <select class="custom-select" id="racaID" name="raca"
-                                                    [(ngModel)]="ficha.Raca" #raca="ngModel"
-                                                    (change)="mudarAtributosRaca(raca.value);">
-                                                    <option value="0"></option>
-                                                    <option value="1">Anão</option>
-                                                    <option value="2">Draconato</option>
-                                                    <option value="3">Elfo</option>
-                                                    <option value="4">Halfling</option>
-                                                    <option value="5">Humano</option>
-                                                    <option value="6">Gnomo</option>
-                                                    <option value="7">Meio-elfo</option>
-                                                    <option value="8">Meio-orc</option>
-                                                    <option value="9">Tiefling</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-lg-6">
-                                                <label for="subRacaRadID">Sub-raça</label>
-                                                <div [ngSwitch]="raca.value">
-                                                    <select *ngSwitchCase="1" class="custom-select" id="subRacaID"
-                                                        name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        (change)="mudarAtributosSubRaca(subRaca.value)"
-                                                        #subRaca="ngModel">
-                                                        <option value="0"></option>
-                                                        <option value="1">Anão da Colina</option>
-                                                        <option value="2">Anão da Montanha</option>
-                                                    </select>
-                                                    <select *ngSwitchCase="3" class="custom-select" id="subRacaID"
-                                                        name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        (change)="mudarAtributosSubRaca(subRaca.value)"
-                                                        #subRaca="ngModel">
-                                                        <option value="0"></option>
-                                                        <option value="1">Alto Elfo</option>
-                                                        <option value="2">Elfo da Floresta</option>
-                                                        <option value="3">Elfo Negro(Drow)</option>
-                                                    </select>
-                                                    <select *ngSwitchCase="4" class="custom-select" id="subRacaID"
-                                                        name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        (change)="mudarAtributosSubRaca(subRaca.value)"
-                                                        #subRaca="ngModel">
-                                                        <option value="0"></option>
-                                                        <option value="1">Halfling Pés Leves</option>
-                                                        <option value="2">Halfling Robusto</option>
-                                                    </select>
-                                                    <select *ngSwitchCase="6" class="custom-select" id="subRacaID"
-                                                        name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        (change)="mudarAtributosSubRaca(subRaca.value)"
-                                                        #subRaca="ngModel">
-                                                        <option value="0"></option>
-                                                        <option value="1">Gnomo da Floresta</option>
-                                                        <option value="2">Gnomo das Rochas</option>
-                                                    </select>
-                                                    <select *ngSwitchDefault class="custom-select" id="subRacaID"
-                                                        disabled="true" name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        #subRaca="ngModel"></select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label for="tendenciaID">Tendência</label>
-                                                <select class="custom-select" id="tendenciaID" name="tendencia"
-                                                    [(ngModel)]="ficha.Tendencia" #tendencia="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1">Bom</option>
-                                                    <option value="2">Neutro</option>
-                                                    <option value="3">Mal</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-lg-6">
-                                                <label class="" for="alinhamentoID">Alinhamento</label>
-                                                <select class="custom-select" id="alinhamentoID" name="alinhamento"
-                                                    [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1">Leal</option>
-                                                    <option value="2">Neutro</option>
-                                                    <option value="3">Cáotico</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-lg-6">
-                                                <label for="experienciaID">Experiência</label>
-                                                <input type="number" class="form-control" id="experienciaID"
-                                                    placeholder="Digite a experiencia de seu personagem"
-                                                    name="experiencia" [(ngModel)]="ficha.Experiencia"
-                                                    #experiencia="ngModel" placeholder="EXP">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Atributos, Perícias e Outros -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">
-                                        Atributos, Perícias e Outros
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="accordion" id="acoAtributos">
-                                            <div class="container d-none">
-                                                <div class="row row-lg-cols-4">
-                                                    <div class="col-lg-2">
-                                                    </div>
-                                                    <div class="col-lg ">
-                                                        <label class="text-break">
-                                                            Atributo
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-lg">
-                                                        <label class="text-break">
-                                                            Modificador
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-lg">
-                                                        <label class="text-break">
-                                                            Resistência
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Força -->
-                                            <!-- Card Força -->
-                                            <div class="card mb-0">
-                                                <div class="card-header d-lg-flex" id="header-for"
-                                                    data-toggle="collapse" data-target="#collapse-for"
-                                                    aria-expanded="true" aria-controls="collapse-for">
-                                                    <div class="row row-cols-4">
-                                                        <!--  -->
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-                                                            <input class="mr-2 align-self-center" type="checkbox"
-                                                                name="forTesteRad" id="forTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="forID">FOR</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group px-lg-0 mr-lg-1 col-6 col-lg">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control align-self-center"
-                                                                id="forID" placeholder="Hab" (click)="mudarMod(0)"
-                                                                (change)="mudarMod(0)" name="for"
-                                                                [(ngModel)]="ficha.For" #for="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group px-lg-0 mr-lg-1 col-6 col-lg">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control align-self-center"
-                                                                id="forModID" placeholder="Mod" readonly="true"
-                                                                name="forMod" [(ngModel)]="ficha.ForMod"
-                                                                #forMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group px-lg-0 mr-lg-1 col col-lg d-lg-flex">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="forTesteID" (click)="mudarTeste(0)"
-                                                                placeholder="Res" name="forTeste"
-                                                                [(ngModel)]="ficha.ForTeste" #forTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-for" aria-expanded="true"
-                                                                    aria-controls="collapse-for">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Força -->
-                                            <div id="collapse-for" class="collapse" aria-labelledby="header-for"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <!-- Atletismo -->
-                                                    <div class="d-inline">
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="atleRad" id="atleRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="atleRadID"
-                                                                        class="text-white">Atletismo</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="atleID" placeholder="Valor" name="atle"
-                                                                        [(ngModel)]="ficha.Atle" #atle="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Destreza -->
-                                            <!-- Card Destreza -->
-                                            <div class="card mb-0">
-                                                <div class="card-header d-lg-flex" id="header-des">
-                                                    <div class="row row-cols-4">
-                                                        <!-- -->
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-                                                            <input class="mr-2 align-self-center" type="checkbox"
-                                                                name="desTesteRad" id="desTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="desID">DES</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control" id="desID"
-                                                                placeholder="Hab" (click)="mudarMod(1)"
-                                                                (change)="mudarMod(1)" name="des"
-                                                                [(ngModel)]="ficha.Des" #des="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control" id="desModID"
-                                                                placeholder="Mod" readonly="true" name="desMod"
-                                                                [(ngModel)]="ficha.DesMod" #desMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="desTesteID" (click)="mudarTeste(1)"
-                                                                placeholder="Res" name="desTeste"
-                                                                [(ngModel)]="ficha.DesTeste" #desTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-des" aria-expanded="true"
-                                                                    aria-controls="collapse-des">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Destreza -->
-                                            <div id="collapse-des" class="collapse" aria-labelledby="header-des"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <!-- Acrobacia -->
-                                                    <div class="d-inline">
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="acroRad" id="acroRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="acroRadID"
-                                                                        class="text-white">Acrobacia</label>
-                                                                    <input type="number" class="form-control d-block"
-                                                                        id="acroID" placeholder="Valor" name="acro"
-                                                                        [(ngModel)]="ficha.Acro" #acro="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Furtividade -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="furtRad" id="furtRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="furtRadID"
-                                                                        class="text-white">Furtividade</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="furtID" placeholder="Valor" name="furt"
-                                                                        [(ngModel)]="ficha.Furt" #furt="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Prestidigitação -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="prestRad" id="prestRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="prestRadID"
-                                                                        class="text-white">Prestidigitação</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="prestID" placeholder="Valor" name="prest"
-                                                                        [(ngModel)]="ficha.Prest" #prest="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Constituição -->
-                                            <!-- Card Constituição -->
-                                            <div class="card mb-0">
-                                                <div class="card-header d-lg-flex" id="header-con">
-                                                    <div class="row row-cols-4">
-                                                        <!-- -->
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-                                                            <input class="mt-n1 mr-2 align-self-center" type="checkbox"
-                                                                name="conTesteRad" id="conTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="conID">CON</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control" id="conID"
-                                                                placeholder="Hab" (click)="mudarMod(2)"
-                                                                (change)="mudarMod(2)" name="con"
-                                                                [(ngModel)]="ficha.Con" #des="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control" id="conModID"
-                                                                placeholder="Mod" readonly="true" name="conMod"
-                                                                [(ngModel)]="ficha.ConMod" #conMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="conTesteID" (click)="mudarTeste(2)"
-                                                                placeholder="Res" name="conTeste"
-                                                                [(ngModel)]="ficha.ConTeste" #conTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-con" aria-expanded="true"
-                                                                    aria-controls="collapse-con">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Constituição -->
-                                            <div id="collapse-con" class="collapse" aria-labelledby="header-con"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <!-- Mensagem -->
-                                                    <p class="parag text-white text-center align-self-center">Não
-                                                        existem
-                                                        perícias para este
-                                                        atributo!</p>
-                                                </div>
-                                            </div>
-                                            <!-- Inteligência -->
-                                            <!-- Card Inteligência -->
-                                            <div class="card mb-0">
-                                                <div class="card-header d-lg-flex" id="header-int">
-                                                    <div class="row row-cols-4">
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-
-                                                            <input class="mr-2 align-self-center" type="checkbox"
-                                                                name="intTesteRad" id="intTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="intID">INT</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control" id="intID"
-                                                                placeholder="Hab" (click)="mudarMod(3)"
-                                                                (change)="mudarMod(3)" name="int"
-                                                                [(ngModel)]="ficha.int" #des="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control" id="intModID"
-                                                                placeholder="Mod" readonly="true" name="intMod"
-                                                                [(ngModel)]="ficha.IntMod" #intMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="intTesteID" (click)="mudarTeste(2)"
-                                                                placeholder="Res" name="intTeste"
-                                                                [(ngModel)]="ficha.IntTeste" #intTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-int" aria-expanded="true"
-                                                                    aria-controls="collapse-int">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Inteligência -->
-                                            <div id="collapse-int" class="collapse" aria-labelledby="header-int"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <div class="d-inline">
-                                                        <!-- Arcanismo -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input " type="checkbox"
-                                                                name="arcaRad" id="arcaRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="arcaRadID"
-                                                                        class="text-white">Arcanismo</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="arcaID" placeholder="Valor" name="arca"
-                                                                        [(ngModel)]="ficha.Arca" #arca="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- História -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="histRad" id="histRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="histRadID"
-                                                                        class="text-white">História</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="histID" placeholder="Valor" name="hist"
-                                                                        [(ngModel)]="ficha.Hist" #hist="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Ivestigação -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="inveRad" id="inveRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="inveRadID"
-                                                                        class="text-white">Investigação</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="inveID" placeholder="Valor" name="inve"
-                                                                        [(ngModel)]="ficha.Inve" #inve="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Natureza -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="natuRad" id="natuRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="natuRadID"
-                                                                        class="text-white">Natureza</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="natuID" placeholder="Valor" name="natu"
-                                                                        [(ngModel)]="ficha.Natu" #natu="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Religião -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="reliRad" id="reliRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="reliRadID"
-                                                                        class="text-white">Religião</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="reliID" placeholder="Valor" name="reli"
-                                                                        [(ngModel)]="ficha.Reli" #reli="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Sabedoria -->
-                                            <!-- Card Sabedoria -->
-                                            <div class="card mb-0">
-                                                <div class="card-header" id="header-sab">
-                                                    <div class="row row-cols-4">
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-
-                                                            <input class="mr-2 align-self-center" type="checkbox"
-                                                                name="sabTesteRad" id="sabTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="sabID">SAB</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control" id="sabID"
-                                                                placeholder="Hab" (click)="mudarMod(4)"
-                                                                (change)="mudarMod(4)" name="sab"
-                                                                [(ngModel)]="ficha.Sab" #des="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control" id="sabModID"
-                                                                placeholder="Mod" readonly="true" name="sabMod"
-                                                                [(ngModel)]="ficha.SabMod" #sabMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="sabTesteID" (click)="mudarTeste(4)"
-                                                                (change)="mudarTeste(4)" placeholder="Res"
-                                                                name="sabTeste" [(ngModel)]="ficha.SabTeste"
-                                                                #sabTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-sab" aria-expanded="true"
-                                                                    aria-controls="collapse-sab">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Sabedoria -->
-                                            <div id="collapse-sab" class="collapse" aria-labelledby="header-sab"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <div class="d-inline">
-                                                        <!-- Intuição -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="intuiRad" id="intuiRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="intuiRadID"
-                                                                        class="text-white">Intuição</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="intuiID" placeholder="Valor" name="intui"
-                                                                        [(ngModel)]="ficha.Intui" #intui="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Medicina -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="medRad" id="medRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="medRadID"
-                                                                        class="text-white">Medicina</label>
-                                                                    <input type="number" class="form-control" id="medID"
-                                                                        placeholder="Valor" name="med"
-                                                                        [(ngModel)]="ficha.Med" #med="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Percepção -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="percRad" id="percRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="percRadID"
-                                                                        class="text-white">Percepção</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="percID" placeholder="Valor" name="perc"
-                                                                        [(ngModel)]="ficha.Perc" #perc="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Lidar Com Animais -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="lcaRad" id="lcaRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="lcaRadID"
-                                                                        class="text-white text-nowrap">Lidar
-                                                                        com
-                                                                        Animais</label>
-                                                                    <input type="number" class="form-control" id="lcaID"
-                                                                        placeholder="Valor" name="lca"
-                                                                        [(ngModel)]="ficha.Lca" #lca="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Sobrevivência -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="sobreRad" id="sobreRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="sobreRadID"
-                                                                        class="text-white">Sobrevivência</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="sobreID" placeholder="Valor" name="sobre"
-                                                                        [(ngModel)]="ficha.Sobre" #sobre="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Carisma -->
-                                            <!-- Card Carisma -->
-                                            <div class="card mb-0">
-                                                <div class="card-header" id="header-car">
-                                                    <div class="row row-cols-4">
-                                                        <div
-                                                            class="col-lg-2 px-lg-0 mr-lg-1 d-lg-flex justify-content-lg-center">
-                                                            <input class="mr-2 align-self-center" type="checkbox"
-                                                                name="carTesteRad" id="carTesteRadID" disabled="true">
-                                                            <label class="align-self-center" for="carID">CAR</label>
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Atributo
-                                                            </label>
-                                                            <input type="number" class="form-control" id="carID"
-                                                                placeholder="Hab" (click)="mudarMod(5)"
-                                                                (change)="mudarMod(5)" name="car"
-                                                                [(ngModel)]="ficha.Car" #des="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col-6 col-lg px-lg-0 mr-lg-1">
-                                                            <label class="text-wrap d-lg-none">
-                                                                Modificador
-                                                            </label>
-                                                            <input type="number" class="form-control" id="carModID"
-                                                                placeholder="Mod" readonly="true" name="carMod"
-                                                                [(ngModel)]="ficha.CarMod" #carMod="ngModel">
-                                                        </div>
-                                                        <!-- -->
-                                                        <div class="form-group col col-lg d-lg-flex px-lg-0 mr-lg-1">
-                                                            <label class="d-lg-none">
-                                                                Resistência
-                                                            </label>
-                                                            <input type="number" class="form-control mr-lg-1"
-                                                                id="carTesteID" (click)="mudarTeste(5)"
-                                                                (change)="mudarTeste(5)" placeholder="Res"
-                                                                name="carTeste" [(ngModel)]="ficha.CarTeste"
-                                                                #carTeste="ngModel"><br />
-                                                            <div>
-                                                                <button class="btn btn-danger h-100 btn-block"
-                                                                    type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-car" aria-expanded="true"
-                                                                    aria-controls="collapse-car">
-                                                                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Collapse Carisma -->
-                                            <div id="collapse-car" class="collapse" aria-labelledby="header-car"
-                                                data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">
-                                                    <div class="d-inline">
-                                                        <!-- Atuação -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="atuaRad" id="atuaRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="atuaRadID"
-                                                                        class="text-white">Atuação</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="atuaID" placeholder="Valor" name="atua"
-                                                                        [(ngModel)]="ficha.Atua" #atua="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Enganação -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="engaRad" id="engaRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="engaRadID"
-                                                                        class="text-white">Enganação</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="engaID" placeholder="Valor" name="enga"
-                                                                        [(ngModel)]="ficha.Enga" #enga="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Intimidação -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="intimRad" id="intimRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="intimRadID"
-                                                                        class="text-white">Intimidação</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="intiID" placeholder="Valor" name="intim"
-                                                                        [(ngModel)]="ficha.Intim" #intim="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Persuasão -->
-                                                        <div class="form-check-inline mr-lg-n5 pr-lg-n5">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                name="persuRad" id="persuRadID">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group ">
-                                                                    <label for="persuRadID"
-                                                                        class="text-white">Persuasão</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="persuID" placeholder="Valor" name="persu"
-                                                                        [(ngModel)]="ficha.Persu" #persu="ngModel">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fim Collapse Carisma -->
-                                        </div>
-                                        <!-- Fim Accordion-->
-                                        <br />
-                                        <div class="row row-lg-cols-3">
-                                            <div class="form-group col-lg">
-                                                <label for="inspiracaoID" class="">Inspiração</label>
-                                                <input type="number" min="0" class="form-control" id="inspiracaoID"
-                                                    placeholder="Inspiração" name="inspiracao"
-                                                    [(ngModel)]="ficha.Inspiracao" #inspiracao="ngModel">
-                                            </div>
-                                            <div class="form-group col-lg">
-                                                <label for="proficiencia" class="text-break text-nowrap">Bônus de
-                                                    Proficiência</label>
-                                                <input type="text" class="form-control" id="proficienciaID"
-                                                    name="proficiencia" #proficiencia="ngModel"
-                                                    [(ngModel)]="ficha.Proficiencia" placeholder="Proficiência"
-                                                    readonly="true">
-                                            </div>
-                                            <div class="form-group col-lg">
-                                                <label for="sabedoriaPassiva" class="text-break text-nowrap">Sabedoria
-                                                    Passiva
-                                                    (Percepção)</label>
-                                                <input type="number" class="form-control" id="sabedoriaPassivaID"
-                                                    name="sabedoriaPassiva" #sabedoriaPassiva="ngModel"
-                                                    [(ngModel)]="ficha.sabedoriaPassiva" readonly
-                                                    placeholder="Sabedoria Passiva" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Idiomas & Outras Proficiências -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">Idiomas & Outras Proficiências</div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="idiomasID">Idiomas & outras proficiências:</label>
-                                            <textarea class="form-control" id="idiomasID" rows="6" name="campoIdiomas"
-                                                [(ngModel)]="ficha.CampoIdiomas" #campoIdiomas="ngModel"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col ml-lg-6">
-                        <div class="container">
-                            <!-- Pontos de Vida, Classe de Armadura e Outros -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">Pontos de Vida, Classe de Armadura e Outros
-                                    </div>
-                                    <div class="card-body">
-
-                                        <div class="row row-lg-cols-2">
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center text-nowrap" for="caID">Classe de
-                                                    Armadura</label>
-                                                <input type="number" min="0" class="form-control" id="caID"
-                                                    placeholder="CA" name="ca" [(ngModel)]="ficha.Ca" #ca="ngModel" />
-                                            </div>
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center text-trucate"
-                                                    for="iniciID">Iniciativa</label>
-                                                <input type="number" disabled class="form-control" id="iniciID"
-                                                    placeholder="Iniciativa" name="inici" [(ngModel)]="ficha.Inici"
-                                                    #inici="ngModel" />
-                                            </div>
-                                        </div>
-
-                                        <label class="align-self-center">Deslocamentos</label>
-                                        <div class="row row-lg-cols-2">
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center" for="desloID">Terrestre</label>
-                                                <div class="input-group">
-                                                    <input type="number" min="0" class="form-control" id="desloID"
-                                                        placeholder="Terrestre" name="deslo" [(ngModel)]="ficha.Deslo"
-                                                        #deslo="ngModel" />
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-danger" type="button" disabled>
-                                                            m
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center" for="desloVID">Voo</label>
-                                                <div class="input-group">
-                                                    <input type="number" min="0" class="form-control" id="desloVID"
-                                                        placeholder="Voo" name="desloVoo" [(ngModel)]="ficha.DesloV"
-                                                        #desloV="ngModel" />
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-danger" type="button" disabled>
-                                                            m
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br />
-                                        <label class="align-self-center" for="pvMaxID">Pontos de Vida</label>
-                                        <div class="row row-lg-cols-3">
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center" for="pvMaxID">Máximos</label>
-                                                <input class="form-control" type="number" min="0"
-                                                    placeholder="PV Máximos" id="pvMaxID" name="pvMax">
-                                            </div>
-
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center" for="pvAtuID">Atuais</label>
-                                                <input class="form-control" type="number" min="0"
-                                                    placeholder="PV Atuais" id="pvAtuID" name="pvAtu">
-                                            </div>
-
-                                            <div class="form-group col-lg">
-                                                <label class="align-self-center" for="pvTempID">Temporários</label>
-                                                <input class="form-control" type="number" min="0"
-                                                    placeholder="PV Temporários" id="pvTempID" name="pvTemp">
-                                            </div>
-                                        </div>
-                                        <br />
-
-                                        <label class="align-self-top" for="dadosDeVida">Dados de Vida</label>
-                                        <div class="d-flex flex-column">
-                                            <div *ngFor="let DadoDeVida of ficha.DadosDeVida; index as i" class="mb-1">
-                                                <button class="btn btn-danger mr-3" (click)="removerDado(i)"
-                                                    type="button"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i></button>
-                                                <label class="align-self-end">{{DadoDeVida}}</label>
-                                            </div>
-                                            <div class="d-inline-flex">
-                                                <button class="btn btn-danger mr-3"
-                                                    (click)="adicionarDado(dadosDeVida.value)" type="button"><i
-                                                        class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <select class="custom-select" id="dadosDeVida" dadosDeVida.value=''
-                                                    #dadosDeVida>
-                                                    <option></option>
-                                                    <option value="d6">d6</option>
-                                                    <option value="d8">d8</option>
-                                                    <option value="d10">d10</option>
-                                                    <option value="d12">d12</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Ataques & Conjuração -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">
-                                        Ataques & Conjuração
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row row-cols-2">
-                                            <div class="form-group col">
-                                                <label for="nomeDoAtaque">Nome</label>
-                                                <input id="nomeDoAtaque" class="form-control" type="text"
-                                                    name="nomeDoAtaque" #nomeAtaque nomeAtaque.value=''
-                                                    placeholder="Nome do Ataque">
-                                            </div>
-                                            <div class="form-group col">
-                                                <label class="text-nowrap" for="bonusAtaque">Bônus Ataque</label>
-                                                <input id="bonusAtaque" class="form-control" type="number"
-                                                    name="bonusAtaque" #bonusAtaque bonusAtaque.value=''
-                                                    placeholder="Bônus do Ataque">
-                                            </div>
-                                            <div class="form-group col">
-                                                <label for="danoTipoAtaque">Dano/Tipo</label>
-                                                <div class="d-lg-flex">
-                                                    <input id="danoTipoAtaque" class="form-control mr-lg-2" type="text"
-                                                        name="danoTipoAtaque" #danoTipoAtaque danoTipoAtaque.value=''
-                                                        placeholder="Dano e Tipo do Ataque">
-                                                    <br />
-                                                    <div>
-                                                        <button class="btn btn-danger h-100 btn-block"
-                                                            (click)="adicionarAtaque(nomeAtaque.value, bonusAtaque.value, danoTipoAtaque.value)"
-                                                            type="button"><i class="fa fa-plus"
-                                                                aria-hidden="true"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div *ngIf="ficha.Ataques.length > 0" class="table-responsive-sm">
-                                            <table class="table table-bordered table-hover table-light">
-                                                <caption class="parag text-center">Ataques</caption>
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th class="parag align-middle" scope="col">
-                                                            Nome
-                                                        </th>
-                                                        <th class="parag align-middle" scope="col">
-                                                            Bônus Ataque
-                                                        </th>
-                                                        <th class="parag align-middle" scope="col">
-                                                            Tipo/Dano
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr scope="row" *ngFor="let ataque of ficha.Ataques; index as i">
-                                                        <td class="align-middle">
-                                                            <button class="btn btn-danger" (click)="removerAtaque(i)"
-                                                                type="button"><i class="fa fa-trash"
-                                                                    aria-hidden="true"></i>
-                                                            </button>
-                                                        </td>
-                                                        <td class="parag align-middle">
-                                                            {{ataque.NomeAtaque}}
-                                                        </td>
-                                                        <td
-                                                            class="parag text-center text-break text-lg-left align-middle">
-                                                            {{ataque.BonusAtaque}}
-                                                        </td>
-                                                        <td class="parag align-middle">
-                                                            {{ataque.DanoTipoAtaque}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <br />
-
-                                        <textarea id="ta" class="form-control" name="" rows="4"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Equipamento -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">
-                                        Equipamento
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- Dinheiro -->
-                                        <div class="row row-lg-cols-5">
-                                            <div class="form-group col-lg col-4">
-                                                <label for="pcID">PC</label>
-                                                <input id="pcID" class="form-control" type="number" min="0" name="pc"
-                                                    [(ngModel)]="ficha.Pc" #pc="ngModel" placeholder="PC" />
-                                            </div>
-                                            <div class="form-group col-lg col-4">
-                                                <label for="ppID">PP</label>
-                                                <input id="ppID" class="form-control" type="number" min="0" name="pp"
-                                                    [(ngModel)]="ficha.Pp" #pp="ngModel" placeholder="PP" />
-                                            </div>
-                                            <div class="form-group col-lg col-4">
-                                                <label for="peID">PE</label>
-                                                <input id="peID" class="form-control" type="number" min="0" name="pe"
-                                                    [(ngModel)]="ficha.Pe" #pe="ngModel" placeholder="PE" />
-                                            </div>
-                                            <div class="form-group col-lg col-6">
-                                                <label for="poID">PO</label>
-                                                <input id="poID" class="form-control" type="number" min="0" name="po"
-                                                    [(ngModel)]="ficha.Po" #po="ngModel" placeholder="PO" />
-                                            </div>
-                                            <div class="form-group col-lg col-6">
-                                                <label for="plID">PL</label>
-                                                <input id="plID" class="form-control" type="number" min="0" name="pl"
-                                                    [(ngModel)]="ficha.Pl" #pl="ngModel" placeholder="PL" />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <!-- Itens -->
-                                        <label>Equipamentos</label>
-                                        <div class="row row-lg-cols-3">
-                                            <div class="form-group col-lg">
-                                                <label for="nomeEquipamentoID">Nome</label>
-                                                <input class="form-control" type="text" id="nomeItemID" name="nomeItem"
-                                                    placeholder="Nome do Item" #nomeItem #nomeItem.value=''>
-                                            </div>
-                                            <div class="form-group col-lg">
-                                                <label for="statusID">Status</label>
-                                                <div class="d-lg-flex">
-                                                    <input class="form-control" type="text" id="statusItemID"
-                                                        name="statusItem" placeholder="Status do Item" #statusItem
-                                                        #statusItem.value=''><br />
-                                                    <div>
-                                                        <button class="btn btn-danger h-100 ml-lg-2 btn-block"
-                                                            type="button"
-                                                            (click)="adicionarItem(nomeItem.value, statusItem.value)"><i
-                                                                class="fa fa-plus" aria-hidden="true"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div *ngIf="ficha.Equips.length > 0" class="table-responsive-sm">
-                                            <table class="table table-bordered table-hover table-light">
-                                                <caption class="parag text-center">Itens</caption>
-                                                <thead class="thead-dark">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th class="parag align-middle" scope="col">
-                                                            Nome do Item
-                                                        </th>
-                                                        <th class="parag align-middle" scope="col">
-                                                            Status do Item
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr scope="row" *ngFor="let Equip of ficha.Equips; index as i">
-                                                        <td class="align-middle"> <button class="btn btn-danger"
-                                                                (click)="removerItem(i)" type="button">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                        </td>
-                                                        <td class="parag align-middle">
-                                                            {{Equip.NomeItem}}
-                                                        </td>
-                                                        <td class="parag align-middle">
-                                                            {{Equip.StatusItem}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- Fim Itens-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Descrição do Personagem -->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">Descrição do Personagem</div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="tracosID">Traços de personalidade</label>
-                                            <textarea id="tracosID" class="form-control" name="tracos" rows="3"
-                                                [(ngModel)]="ficha.Tracos" #tracos="ngModel"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ideaisID">Ideais</label>
-                                            <textarea id="ideaisID" class="form-control" name="ideais" rows="3"
-                                                [(ngModel)]="ficha.Ideais" #ideais="ngModel"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="vinculosID">Vínculos</label>
-                                            <textarea id="vinculosID" class="form-control" name="vinculos" rows="3"
-                                                [(ngModel)]="ficha.Vinculos" #vinculos="ngModel"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="fraquezasID">Fraquezas</label>
-                                            <textarea id="fraquezasID" class="form-control" name="fraquezas" rows="3"
-                                                [(ngModel)]="ficha.Fraquezas" #fraquezas="ngModel"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Características & Talentos-->
-                            <div class="row d-block">
-                                <div class="card">
-                                    <div class="card-header princi">
-                                        Características & Talentos
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="caracID">Características</label>
-                                            <textarea id="caracID" class="form-control" name="carac" rows="5"
-                                                [(ngModel)]="ficha.Carac" #carac="ngModel"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="talenID">Talentos</label>
-                                            <textarea id="talenID" class="form-control" name="talen" rows="5"
-                                                [(ngModel)]="ficha.Talen" #talen="ngModel"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fim Collapse Dados Principais-->
-            <!-- Header Caracaterísticas -->
-            <div class="main-collapse-header text-center text-break rounded d-block border mb-1"
-                id="header-caracteristicas" data-toggle="collapse" data-target="#collapse-caracteristicas"
-                aria-expanded="true" aria-controls="collapse-caracteristicas">
-                Características
-            </div>
-            <!-- Fim Header Caracaterísticas -->
-            <!-- Collapse Caracaterísticas -->
-            <div id="collapse-caracteristicas" class="collapse" aria-labelledby="header-caracteristicas"
-                data-parent="#accordionPrincipal">
-                CONTENT
-            </div>
-            <!-- Fim Collapse Caracaterísticas -->
-        </div>
-    </div>
     <div class="container mb-2 ">
         <ul class="nav nav-tabs nav-fill mb-md-1" id="tabFicha" role="tablist">
             <!-- Tab Dados Principais -->
             <li class="nav-item">
-                <a class="nav-link active" id="dados-principais-tab" data-toggle="tab" href="#dados-principais-content"
-                    role="tab" aria-controls="dados-principais-content" aria-selected="true">Dados Principais</a>
+                <a class="nav-link active border" id="dados-principais-tab" data-toggle="tab"
+                    href="#dados-principais-content" role="tab" aria-controls="dados-principais-content"
+                    aria-selected="true">Dados Principais</a>
             </li>
             <!-- Fim Tab Dados Principais -->
             <!-- Tab Caracerísticas -->
             <li class="nav-item">
-                <a class="nav-link" id="caracteristicas-tab" data-toggle="tab" href="#caracteristicas-content"
-                    role="tab" aria-controls="caracteristicas-content" aria-selected="false">Caracteristicas Físicas</a>
+                <a class="nav-link border" id="caracteristicas-tab" data-toggle="tab" href="#caracteristicas-content"
+                    role="tab" aria-controls="caracteristicas-content" aria-selected="false">Características Físicas</a>
             </li>
             <!-- Fim Tab Caracerísticas -->
+            <!-- Tab Magias -->
+            <li class="nav-item">
+                <a class="nav-link border" id="magias-tab" data-toggle="tab" href="#magias-content" role="tab"
+                    aria-controls="magias-content" aria-selected="false">Magias</a>
+            </li>
+            <!-- Fim Tab Magias -->
         </ul>
         <div class="tab-content" id="tabFichaContent">
             <!-- Content Dados Principais -->
@@ -1266,110 +35,212 @@
                                     <div class="card-header princi">Dados Básicos do Personagem</div>
                                     <div class="card-body">
                                         <div class="row row-cols-2 ">
+                                            <!-- Nome Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label class="" for="nomePersonagemID">Nome do Personagem</label>
                                                 <input type="text" class="form-control" id="nomePersonagemID"
                                                     name="nomePersonagem" [(ngModel)]="ficha.NomePersonagem"
                                                     #nomePersonagem="ngModel" placeholder="Seu Nome">
                                             </div>
+                                            <!-- Classe Personagem -->
                                             <div class="form-group col-lg-6">
-                                                <label class="" for="classeID">Escolha sua classe </label>
+                                                <label for="classeID">Escolha sua classe </label>
                                                 <select class="custom-select" id="classeID"
                                                     (change)="clickClasse(classe.value)" name="classe"
                                                     [(ngModel)]="ficha.Classe" #classe="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1" data-toggle="tooltip" data-placement="top"
+                                                    <option value="">------</option>
+                                                    <option value="Bárbaro" data-toggle="tooltip" data-placement="top"
                                                         title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
                                                         Bárbaro
                                                     </option>
-                                                    <option value="2" data-toggle="tooltip" data-placement="top"
+                                                    <option value="Bardo" data-toggle="tooltip" data-placement="top"
                                                         title="Um místico inspirador que possui poderes que ecoam a música da criação">
                                                         Bardo
                                                     </option>
-                                                    <option value="3" data-toggle="tooltip" data-placement="top"
+                                                    <option value="Bruxo" data-toggle="tooltip" data-placement="top"
                                                         title="Um portador de magia derivada de barganha com uma entidade planar">
                                                         Bruxo
                                                     </option>
-                                                    <option value="4" data-toggle="tooltip" data-placement="top"
+                                                    <option value="Clérigo" data-toggle="tooltip" data-placement="top"
                                                         title="Um campeão sacerdotal que empunha magia divina a serviço de um poder maior">
-                                                        Clérigo</option>
-                                                    <option value="5" data-toggle="tooltip" data-placement="top"
+                                                        Clérigo
+                                                    </option>
+                                                    <option value="Druida" data-toggle="tooltip" data-placement="top"
                                                         title="Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais">
-                                                        Druida</option>
-                                                    <option value="6" data-toggle="tooltip" data-placement="top"
+                                                        Druida
+                                                    </option>
+                                                    <option value="Feiticeiro" data-toggle="tooltip"
+                                                        data-placement="top"
                                                         title="Um conjurador que possui magia latente advinda de um dom ou linhagem">
-                                                        Feiticeiro</option>
-                                                    <option value="7" data-toggle="tooltip" data-placement="top"
+                                                        Feiticeiro
+                                                    </option>
+                                                    <option value="Guerreiro" data-toggle="tooltip" data-placement="top"
                                                         title="Um mestre do combate, perito em uma vasta gama de armas e armaduras">
-                                                        Guerreiro</option>
-                                                    <option value="8" data-toggle="tooltip" data-placement="top"
+                                                        Guerreiro
+                                                    </option>
+                                                    <option value="Ladino" data-toggle="tooltip" data-placement="top"
                                                         title="Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos">
                                                         Ladino
                                                     </option>
-                                                    <option value="9" data-toggle="tooltip" data-placement="top"
+                                                    <option value="Mago" data-toggle="tooltip" data-placement="top"
                                                         title="Um usuário de magia escolado, capaz de manipular as estruturas da realidade">
-                                                        Mago</option>
-                                                    <option value="10" data-toggle="tooltip" data-placement="top"
+                                                        Mago
+                                                    </option>
+                                                    <option value="Monge" data-toggle="tooltip" data-placement="top"
                                                         title="Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual">
-                                                        Monge</option>
-                                                    <option value="11" data-toggle="tooltip" data-placement="top"
+                                                        Monge
+                                                    </option>
+                                                    <option value="Paladino" data-toggle="tooltip" data-placement="top"
                                                         title="Um guerreiro divino vinculado a um juramento sagrado">
                                                         Paladino
                                                     </option>
-                                                    <option value="12" data-toggle="tooltip" data-placement="top"
+                                                    <option value="Patrulheiro" data-toggle="tooltip"
+                                                        data-placement="top"
                                                         title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
-                                                        Patrulheiro</option>
+                                                        Patrulheiro
+                                                    </option>
                                                 </select>
                                             </div>
 
+                                            <!-- Multiclasse Personagem -->
+                                            <div class="col-lg-6 mb-3">
+                                                <div class="form-check form-check-inline  mb-2">
+                                                    <input id="checkMulticlasseID" class="form-check-input"
+                                                        type="checkbox" name="checkMulticlasse" #checkMulticlasse
+                                                        (click)="ativarMulticlasse(checkMulticlasse)">
+                                                    <label for="checkMulticlasseID"
+                                                        class="form-check-label">Multiclasse</label>
+                                                </div>
+                                                <div *ngIf="this.ficha.Multiclasse.length > 0" class="">
+                                                    <div *ngFor="let classe of ficha.Multiclasse; index as i">
+                                                        <button class="btn btn-danger mr-2"
+                                                            (click)="removerMulticlasse(i)" type="button"><i
+                                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        <label class="align-self-end">{{classe}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-column-reverse">
+                                                    <div *ngIf="this.checked === true" class="d-inline-flex">
+                                                        <button class="btn btn-danger mr-2" type="button"
+                                                            (click)="adicionarMulticlasse(multiclasse.value)"><i
+                                                                class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <select class="custom-select" id="multiclasseID"
+                                                            name="multiclasse" #multiclasse multiclasse.value>
+                                                            <option value="">------</option>
+                                                            <option value="Bárbaro" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
+                                                                Bárbaro
+                                                            </option>
+                                                            <option value="Bardo" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um místico inspirador que possui poderes que ecoam a música da criação">
+                                                                Bardo
+                                                            </option>
+                                                            <option value="Bruxo" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um portador de magia derivada de barganha com uma entidade planar">
+                                                                Bruxo
+                                                            </option>
+                                                            <option value="Clérigo" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um campeão sacerdotal que empunha magia divina a serviço de um poder maior">
+                                                                Clérigo
+                                                            </option>
+                                                            <option value="Druida" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um sacerdote da Crença Antiga, detentor dos poderes da natureza – luz da lua e crescimento das plantas, fogo e relâmpagos – e capaz de adotar formas animais">
+                                                                Druida
+                                                            </option>
+                                                            <option value="Feiticeiro" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um conjurador que possui magia latente advinda de um dom ou linhagem">
+                                                                Feiticeiro
+                                                            </option>
+                                                            <option value="Guerreiro" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um mestre do combate, perito em uma vasta gama de armas e armaduras">
+                                                                Guerreiro
+                                                            </option>
+                                                            <option value="Ladino" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um trapaceiro que utiliza de furtividade e astúcia para sobrepujar os obstáculos e inimigos">
+                                                                Ladino
+                                                            </option>
+                                                            <option value="Mago" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um usuário de magia escolado, capaz de manipular as estruturas da realidade">
+                                                                Mago
+                                                            </option>
+                                                            <option value="Monge" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um mestre das artes marciais, utilizando o poder corporal para atingir a perfeição física e espiritual">
+                                                                Monge
+                                                            </option>
+                                                            <option value="Paladino" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um guerreiro divino vinculado a um juramento sagrado">
+                                                                Paladino
+                                                            </option>
+                                                            <option value="Patrulheiro" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
+                                                                Patrulheiro
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Nível Personagem -->
                                             <div class="form-group col-lg-6">
-                                                <label class="" for="selLvl">Nível</label>
+                                                <label class="selLvlID" for="selLvl">Nível</label>
                                                 <input type="number" class="form-control" min="1" max="20" name="nivel"
                                                     [(ngModel)]="ficha.Nivel" #nivel="ngModel"
                                                     (change)="mudarProf(nivel.value)" id="selLvlID"
                                                     placeholder="Seu Nível" />
                                             </div>
+                                            <!-- Antecedente Personagem -->
                                             <div class="form-group col-lg-6">
-                                                <label for="np">Antecedente</label>
+                                                <label for="antecedenteID">Antecedente</label>
                                                 <input type="text" class="form-control" id="antecedenteID"
                                                     name="antecedente" [(ngModel)]="ficha.Antecedente"
                                                     #antecedente="ngModel" placeholder="Seu Antecedente">
                                             </div>
-
-
+                                            <!-- Nível Jogador -->
                                             <div class="form-group col-lg-6">
-                                                <label for="np">Nome do Jogador</label>
+                                                <label for="nomeJogadorID">Nome do Jogador</label>
                                                 <input type="text" class="form-control" id="nomeJogadorID"
                                                     placeholder="Digite o nome do jogador" name="nomeJogador"
                                                     [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel"
                                                     placeholder="Seu nome">
                                             </div>
+                                            <!-- Raça Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label for="racaID">Raça</label>
                                                 <select class="custom-select" id="racaID" name="raca"
                                                     [(ngModel)]="ficha.Raca" #raca="ngModel"
                                                     (change)="mudarAtributosRaca(raca.value);">
-                                                    <option value="0"></option>
+                                                    <option value="">------</option>
                                                     <option value="1">Anão</option>
                                                     <option value="2">Draconato</option>
                                                     <option value="3">Elfo</option>
-                                                    <option value="4">Halfling</option>
-                                                    <option value="5">Humano</option>
-                                                    <option value="6">Gnomo</option>
-                                                    <option value="7">Meio-elfo</option>
-                                                    <option value="8">Meio-orc</option>
-                                                    <option value="9">Tiefling</option>
+                                                    <option value="3">Halfling</option>
+                                                    <option value="4">Humano</option>
+                                                    <option value="5">Gnomo</option>
+                                                    <option value="6">Meio-elfo</option>
+                                                    <option value="7">Meio-orc</option>
+                                                    <option value="8">Tiefling</option>
                                                 </select>
                                             </div>
-
+                                            <!-- Sub-raça -->
                                             <div class="form-group col-lg-6">
-                                                <label for="subRacaRadID">Sub-raça</label>
+                                                <label for="subRacaID">Sub-raça</label>
                                                 <div [ngSwitch]="raca.value">
                                                     <select *ngSwitchCase="1" class="custom-select" id="subRacaID"
                                                         name="subRaca" [(ngModel)]="ficha.SubRaca"
                                                         (change)="mudarAtributosSubRaca(subRaca.value)"
                                                         #subRaca="ngModel">
-                                                        <option value="0"></option>
+                                                        <option value="">------</option>
                                                         <option value="1">Anão da Colina</option>
                                                         <option value="2">Anão da Montanha</option>
                                                     </select>
@@ -1377,7 +248,7 @@
                                                         name="subRaca" [(ngModel)]="ficha.SubRaca"
                                                         (change)="mudarAtributosSubRaca(subRaca.value)"
                                                         #subRaca="ngModel">
-                                                        <option value="0"></option>
+                                                        <option value="">------</option>
                                                         <option value="1">Alto Elfo</option>
                                                         <option value="2">Elfo da Floresta</option>
                                                         <option value="3">Elfo Negro(Drow)</option>
@@ -1386,7 +257,7 @@
                                                         name="subRaca" [(ngModel)]="ficha.SubRaca"
                                                         (change)="mudarAtributosSubRaca(subRaca.value)"
                                                         #subRaca="ngModel">
-                                                        <option value="0"></option>
+                                                        <option value="">------</option>
                                                         <option value="1">Halfling Pés Leves</option>
                                                         <option value="2">Halfling Robusto</option>
                                                     </select>
@@ -1394,36 +265,40 @@
                                                         name="subRaca" [(ngModel)]="ficha.SubRaca"
                                                         (change)="mudarAtributosSubRaca(subRaca.value)"
                                                         #subRaca="ngModel">
-                                                        <option value="0"></option>
+                                                        <option value="">------</option>
                                                         <option value="1">Gnomo da Floresta</option>
                                                         <option value="2">Gnomo das Rochas</option>
                                                     </select>
                                                     <select *ngSwitchDefault class="custom-select" id="subRacaID"
                                                         disabled="true" name="subRaca" [(ngModel)]="ficha.SubRaca"
-                                                        #subRaca="ngModel"></select>
+                                                        #subRaca="ngModel">
+                                                        <option value="">------</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                            <!-- Tendência -->
                                             <div class="form-group col-lg-6">
                                                 <label for="tendenciaID">Tendência</label>
                                                 <select class="custom-select" id="tendenciaID" name="tendencia"
                                                     [(ngModel)]="ficha.Tendencia" #tendencia="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1">Bom</option>
-                                                    <option value="2">Neutro</option>
-                                                    <option value="3">Mal</option>
+                                                    <option value="">------</option>
+                                                    <option value="Bom">Bom</option>
+                                                    <option value="Neutro">Neutro</option>
+                                                    <option value="Mal">Mal</option>
                                                 </select>
                                             </div>
-
+                                            <!-- Alinhamento -->
                                             <div class="form-group col-lg-6">
                                                 <label class="" for="alinhamentoID">Alinhamento</label>
                                                 <select class="custom-select" id="alinhamentoID" name="alinhamento"
                                                     [(ngModel)]="ficha.Alinhamento" #alinhamento="ngModel">
-                                                    <option value="0"></option>
-                                                    <option value="1">Leal</option>
-                                                    <option value="2">Neutro</option>
-                                                    <option value="3">Cáotico</option>
+                                                    <option value="">------</option>
+                                                    <option value="Leal">Leal</option>
+                                                    <option value="Neutro">Neutro</option>
+                                                    <option value="Cáotico">Cáotico</option>
                                                 </select>
                                             </div>
+                                            <!-- Alinhamento -->
                                             <div class="form-group col-lg-6">
                                                 <label for="experienciaID">Experiência</label>
                                                 <input type="number" class="form-control" id="experienciaID"
@@ -1467,9 +342,7 @@
                                             <!-- Força -->
                                             <!-- Card Força -->
                                             <div class="card mb-0">
-                                                <div class="card-header d-lg-flex" id="header-for"
-                                                    data-toggle="collapse" data-target="#collapse-for"
-                                                    aria-expanded="true" aria-controls="collapse-for">
+                                                <div class="card-header d-lg-flex" id="header-for">
                                                     <div class="row row-cols-4">
                                                         <!--  -->
                                                         <div
@@ -2110,7 +983,7 @@
                                                     (Percepção)</label>
                                                 <input type="number" class="form-control" id="sabedoriaPassivaID"
                                                     name="sabedoriaPassiva" #sabedoriaPassiva="ngModel"
-                                                    [(ngModel)]="ficha.sabedoriaPassiva" readonly
+                                                    [(ngModel)]="ficha.SabedoriaPassiva" readonly
                                                     placeholder="Sabedoria Passiva" />
                                             </div>
                                         </div>
@@ -2213,18 +1086,18 @@
                                         <label class="align-self-top" for="dadosDeVida">Dados de Vida</label>
                                         <div class="d-flex flex-column">
                                             <div *ngFor="let DadoDeVida of ficha.DadosDeVida; index as i" class="mb-1">
-                                                <button class="btn btn-danger mr-3" (click)="removerDado(i)"
+                                                <button class="btn btn-danger mr-2" (click)="removerDado(i)"
                                                     type="button"><i class="fa fa-trash"
                                                         aria-hidden="true"></i></button>
                                                 <label class="align-self-end">{{DadoDeVida}}</label>
                                             </div>
                                             <div class="d-inline-flex">
-                                                <button class="btn btn-danger mr-3"
+                                                <button class="btn btn-danger mr-2"
                                                     (click)="adicionarDado(dadosDeVida.value)" type="button"><i
                                                         class="fa fa-plus" aria-hidden="true"></i></button>
                                                 <select class="custom-select" id="dadosDeVida" dadosDeVida.value=''
                                                     #dadosDeVida>
-                                                    <option></option>
+                                                    <option value="">------</option>
                                                     <option value="d6">d6</option>
                                                     <option value="d8">d8</option>
                                                     <option value="d10">d10</option>
@@ -2465,6 +1338,7 @@
                 </div>
             </div>
             <!-- Fim Content Dados Principais -->
+            <!-- Content Caracerísticas -->
             <div class="tab-pane fade" id="caracteristicas-content" role="tabpanel"
                 aria-labelledby="caracteristicas-tab">
                 <div class="row">
@@ -2474,12 +1348,11 @@
                             <div class="row d-block">
                                 <div class="card">
                                     <div class="card-header princi">
-                                        Detalhes Físicos de
                                         <div *ngIf="ficha.NomePersonagem === ''">
-                                            Seu Personagem
+                                            Detalhes Físicos de Seu Personagem
                                         </div>
                                         <div *ngIf="ficha.NomePersonagem !== ''">
-                                            {{ficha.NomePersonagem}}
+                                            Detalhes Físicos de {{ficha.NomePersonagem}}
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -2527,28 +1400,55 @@
                             <div class="row d-block">
                                 <div class="card">
                                     <div class="card-header princi">
-                                        Aparência do Personagem
+                                        <div *ngIf="ficha.NomePersonagem === ''">Aparência de Seu Personagem</div>
+                                        <div *ngIf="ficha.NomePersonagem !== ''">Aparência de {{ficha.NomePersonagem}}
+                                        </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-center align-items-center border border-dark rounded mb-2">
+                                        <div
+                                            class="d-flex justify-content-center align-items-center border border-dark rounded mb-2">
                                             <figure class="mt-3 mx-2">
-                                                <img class="w-100 rounded" 
+                                                <img class="igure-img img-fluid rounded"
                                                     src="https://vignette.wikia.nocookie.net/fengshenji/images/1/1c/Nitianerxing.jpg/revision/latest/scale-to-width-down/173?cb=20140809043808"
                                                     alt="Minha Figura">
                                             </figure>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" accept=".jpg, .jpeg, .png" class="custom-file-input" id="aparaenciaID">
-                                            <label *ngIf="ficha.NomePersonagem === ''" class="custom-file-label d-inline-block text-truncate"
-                                                for="customFile">Escolha o arquivo da aparência de Seu Personagem</label>
-                                            <label *ngIf="ficha.NomePersonagem !== ''" class="custom-file-label d-inline-block text-truncate"
-                                                for="customFile">Escolha o arquivo da aparência de {{ficha.NomePersonagem}}</label>
+                                            <input type="file" accept=".jpg, .jpeg, .png" class="custom-file-input"
+                                                id="aparaenciaID">
+                                            <label *ngIf="ficha.NomePersonagem === ''"
+                                                class="custom-file-label d-inline-block text-truncate"
+                                                for="customFile">Escolha o arquivo da aparência de Seu
+                                                Personagem</label>
+                                            <label *ngIf="ficha.NomePersonagem !== ''"
+                                                class="custom-file-label d-inline-block text-truncate"
+                                                for="customFile">Escolha o arquivo da aparência de
+                                                {{ficha.NomePersonagem}}</label>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                             <!-- Fim Aparência do Personagem -->
+                            <!-- História do Personagem -->
+                            <div class="row d-block">
+                                <div class="card">
+                                    <div class="card-header princi">
+                                        <div *ngIf="ficha.NomePersonagem === ''">História de Seu Personagem</div>
+                                        <div *ngIf="ficha.NomePersonagem !== ''">História de {{ficha.NomePersonagem}}
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="historiaPersonagemID">Sua História</label>
+                                            <textarea id="historiaPersonagemID" class="form-control"
+                                                name="historiaPersonagem" rows="10"
+                                                [(ngModel)]="ficha.HistoriaPersonagem"
+                                                #historiaPersonagem="ngModel"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fim História do Personagem -->
                         </div>
                     </div>
                     <div class="col ml-lg-6">
@@ -2560,15 +1460,118 @@
                                         Aliados & Organizações
                                     </div>
                                     <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nomeAOID">Nome</label>
+                                            <input id="nomeAOID" class="form-control" type="text" name="nomeAO"
+                                                [(ngModel)]="ficha.NomeAO" #nomeAO="ngModel">
+                                        </div>
+                                        <div
+                                            class="d-flex justify-content-center align-items-center border border-dark rounded mb-2">
+                                            <figure class="figure mt-3 mx-2">
+                                                <img class="figure-img img-fluid w-100 rounded"
+                                                    src="https://vignette.wikia.nocookie.net/gameofthrones/images/7/72/Casa_Lannister.png/revision/latest?cb=20150719062457&path-prefix=pt-br"
+                                                    alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" accept=".jpg, .jpeg, .png" class="custom-file-input"
+                                                id="simboloOAID">
+                                            <label class="custom-file-label d-inline-block text-truncate"
+                                                for="customFile">Escolha o símbolo de sua(eus)
+                                                organização/aliados</label>
+                                        </div>
+                                        <br /><br />
+                                        <div class="form-group">
+                                            <label *ngIf="ficha.NomeAO === ''" for="historiaOA">Informações sobre
+                                                sua(eus) organização/aliados</label>
+                                            <label *ngIf="ficha.NomeAO !== ''" for="historiaOA">Informações sobre
+                                                {{ficha.NomeAO}}</label>
+                                            <textarea id="infoOAID" class="form-control" name="infoOA" rows="5"
+                                                [(ngModel)]="ficha.InfoOA" #infoOA="ngModel"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Fim Aliados & Organizações -->
+                            <!-- Tesouros -->
+                            <div class="row d-block">
+                                <div class="card">
+                                    <div class="card-header princi">
+                                        <div *ngIf="ficha.NomePersonagem === ''" for="historiaOA">Tesouros de Seu
+                                            Personagem</div>
+                                        <div *ngIf="ficha.NomePersonagem !== ''" for="historiaOA">Tesouros de
+                                            {{ficha.NomePersonagem}}</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="tesourosID">Seus tesouros</label>
+                                            <textarea id="tesourosID" class="form-control" name="tesouros" rows="5"
+                                                [(ngModel)]="ficha.Tesouros"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fim Tesouros -->
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Fim Content Caracerísticas -->
+            <!-- Content Magias -->
+            <div class="tab-pane fade" id="magias-content" role="tabpanel" aria-labelledby="magias-tab">
+                <!-- Magias de Seu Personagem -->
+                <div class="row d-block">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header princi">
+                                <div *ngIf="ficha.NomePersonagem === ''">Magias de Seu Personagem</div>
+                                <div *ngIf="ficha.NomePersonagem !== ''">Magias de {{ficha.NomePersonagem}}</div>
+                            </div>
+                            <div class="card-body">
+                                <!-- Características de Conjurador(a) -->
+                                <div class="row row-lg-cols-4">
+
+                                    <div class="form-group col-lg col-12">
+                                        <label for="classeConjuradoraID">Classe(s) Conjuradora(s)</label>
+                                        <div
+                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Patrulheiro'">
+                                            <label>{{ficha.Classe}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg col-12">
+                                        <label>Atributo de Conjuração</label>
+                                        <input
+                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro'"
+                                            class="form-control" type="text" name="atrConju" ngModel="Carisma" readonly>
+                                        <input *ngIf="ficha.Classe === 'Patrulheiro'" class="form-control" type="text"
+                                            name="atrConju" ngModel="Sabedoria" readonly>
+                                    </div>
+                                    <div class="form-group col-lg col-12">
+                                        <label>CD P/ Evitar Suas Magias</label>
+                                        <input
+                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro'"
+                                            class="form-control" type="number" name="cdMagias" ngModel=""
+                                            readonly>
+                                        <input *ngIf="ficha.Classe === 'Patrulheiro'" class="form-control" type="number"
+                                            name="cdMagias" ngModel="" readonly>
+                                    </div>
+                                    <div class="form-group col-lg col-12">
+                                        <label>Modificador de Ataque Mágico</label>
+                                        
+                                    </div>
+                                </div>
+                                <!-- Fim Características de Conjurador(a) -->
+                                <!-- Magias do Personagem -->
+
+                                <!-- Fim Magias do Personagem -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim Magias de Seu Personagem -->
+            </div>
+            <!-- Fim Content Magias -->
         </div>
     </div>
     <div class="container">

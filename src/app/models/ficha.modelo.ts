@@ -3,62 +3,65 @@ import { Perfil } from './perfil.modelo';
 export class Ficha {
     //Dados Básicos
     public Id: number;
-    public NomePersonagem: string;
-    public Classe: string;
-    public Nivel: number;
-    public Antecedente: string;
-    public NomeJogador: string;
-    public Raca: string;
-    public SubRaca: string;
-    public Tendencia: string;
-    public Alinhamento: string;
-    public Experiencia: number;
+    public NomePersonagem: string = '';
+    public Classe: string = ''
+    public Multiclasse :  string[] = [];
+    public Nivel: number = 1;
+    public Antecedente: string  = '';
+    public NomeJogador: string = '';
+    public Raca: string = '';
+    public SubRaca: string  = '';
+    public Tendencia: string  = '';
+    public Alinhamento: string = '';
+    public Experiencia: number = 0;
 
     //Pontos de Vida, CA e Outros
-
     public DadosDeVida : string[] = [];
 
     //Atributos
-    public For: number;
-    public Des: number;
-    public Con: number;
-    public Int: number;
-    public Sab: number;
-    public Car: number;
-    public ForMod: number;
-    public DesMod: number;
-    public ConMod: number;
-    public IntMod: number;
-    public SabMod: number;
-    public CarMod: number;
-    public Inspiracao: number;
-    public Proficiencia: string;
-    public SabedoriaPassiva: number;
+    public For: number = 1;
+    public Des: number = 1;
+    public Con: number = 1;
+    public Int: number = 1;
+    public Sab: number = 1;
+    public Car: number = 1;
+    public ForMod: number = -5;
+    public DesMod: number = -5;
+    public ConMod: number = -5;
+    public IntMod: number = -5;
+    public SabMod: number = -5;
+    public CarMod: number = -5;
+    public Inspiracao: number = 0;
+    public Proficiencia: string = '+2';
+    public SabedoriaPassiva: number = -5;
 
     //Testes de Resistências
-    public ForTeste: number;
-    public DesTeste: number;
-    public ConTeste: number;
-    public IntTeste: number;
-    public SabTeste: number;
-    public CarTeste: number;
+    public ForTeste: number = 1;
+    public DesTeste: number = 1;
+    public ConTeste: number = 1;
+    public IntTeste: number = 1;
+    public SabTeste: number = 1;
+    public CarTeste: number = 1;
 
     //Pontos de Vida, Classe de Armadura e Outros
-    public Inici : number; 
+    public Inici : number = -5; 
 
     //Ataques & Conjurações
-    public Ataques = []
+    public Ataques : {NomeAtaque : string, BonusAtaque : number, DanoTipoAtaque : string}[] = []
 
     //Equipamentos
-    public Pc : number;
-    public Pp : number;
-    public Pe : number;
-    public Po : number;
-    public Pl : number;
-    public Equips = [];
+    public Pc : number = 0;
+    public Pp : number = 0;
+    public Pe : number = 0;
+    public Po : number = 0;
+    public Pl : number = 0;
+    public Equips : {NomeItem : string; StatusItem : string}[] = [];
 
     //Idiomas e Outras Características
-    public CampoIdiomas: string;
+    public CampoIdiomas: string = '';
+
+    //Magias
+    //Classes conjuradoras
 
     //Atuais
     public ClasseAtual : string = '0';

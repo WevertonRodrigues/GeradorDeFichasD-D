@@ -2,7 +2,7 @@
 @import url('../../../styles.css');
 
 a:link, a:visited, a:hover, a:active{
-    color: black;
+    color: rgb(73, 87, 80);
     font-weight: bolder;
 }
 .card
