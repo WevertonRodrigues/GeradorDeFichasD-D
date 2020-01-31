@@ -4,8 +4,8 @@ export class Ficha {
     //Dados Básicos
     public Id: number;
     public NomePersonagem: string = '';
-    public Classe: string = ''
-    public Multiclasse :  string[] = [];
+    public Classe: string = 'Bardo'
+    public Multiclasse :  {Classe : string, CDMagias : number, ModAM : number, Magias : string[][]}[] = [];
     public Nivel: number = 1;
     public Antecedente: string  = '';
     public NomeJogador: string = '';
@@ -62,6 +62,9 @@ export class Ficha {
 
     //Magias
     //Classes conjuradoras
+    public CDMagias : number = 0;
+    public ModAM : number = 0;
+    public Magias : string[][] = [][10]
 
     //Atuais
     public ClasseAtual : string = '0';

@@ -21,7 +21,7 @@ export class FichaComponent /*implements OnInit*/ {
     checked: boolean = false;
 
     constructor(private route: ActivatedRoute,
-        private router: Router, ) { }
+        private router: Router,) { }
 
     /*constructor(private route: ActivatedRoute,
         private router: Router,
@@ -35,6 +35,15 @@ export class FichaComponent /*implements OnInit*/ {
         })
         this.getFichas();
     }*/
+    msg : string[] = []
+    evento(v){
+        console.log(v)
+        this.msg.push(v);
+    }
+
+    resetar() {
+        this.ficha = new Ficha();
+    }
 
     mudarProf(lvlAtual: number): void {
         this.ficha.proficiencia = "+" + (Math.ceil(lvlAtual / 4) + 1)
@@ -502,15 +511,34 @@ export class FichaComponent /*implements OnInit*/ {
         /*for(let i = 0; i < 6; i++)
             if(this.retCheck(i).checked == true)
                 this.clickTeste(i, this.retCheck(i).checked);*/
-        this.ficha.classeAtual = c;
+        this.ficha.ClasseAtual = c;
+        this.calcularCD(c);
+        this.calcularModAtaqueMagico(c);
     }
 
-    ativarMulticlasse(c) {
-        //console.log(check.checked);
+    calcularCD(classe: string) {
+        if (classe === 'Bardo' || classe === 'Bruxo' || classe === 'Feiticeiro' || classe === 'Paladino')
+            return this.ficha.CDMagias = 8 + this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
+        if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
+            return this.ficha.CDMagias = 8 + this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
+        if (classe === 'Mago')
+            return this.ficha.CDMagias = 8 + this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
+    }
+
+    calcularModAtaqueMagico(classe: string) {
+        if (classe === 'Bardo' || classe === 'Bruxo' || classe === 'Feiticeiro' || classe === 'Paladino')
+            return this.ficha.ModAM = this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
+        if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
+            return this.ficha.ModAM = this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
+        if (classe === 'Mago')
+            return this.ficha.ModAM = this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
+    }
+
+    ativarMulticlasse(c: any) {
         this.checked = c.checked
         if (c.checked === false)
             if (this.ficha.Multiclasse.length !== 0) {
-                if (confirm('Aviso! \n Todas as multiclasses serão apagadas. \n Continuar?') === true)
+                if (confirm('Aviso! \nTodas as multiclasses serão apagadas. \nContinuar?') === true)
                     this.ficha.Multiclasse = [];
                 else {
                     this.checked = true
@@ -519,9 +547,11 @@ export class FichaComponent /*implements OnInit*/ {
             }
     }
     adicionarMulticlasse(classe: string) {
-        console.log(classe)
+        let cdMagias: number = this.calcularCD(classe);
+        let modAM: number = this.calcularModAtaqueMagico(classe);
+        let magias : string[][] = [][10]
         if (classe !== '')
-            this.ficha.Multiclasse.push(classe)
+            this.ficha.Multiclasse.push({ Classe: classe, CDMagias: cdMagias, ModAM: modAM, Magias : magias})
     }
 
     removerMulticlasse(i: number, id: number) {

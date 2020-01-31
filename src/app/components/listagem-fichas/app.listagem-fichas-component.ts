@@ -99,40 +99,6 @@ export class ListagemFichasComponent implements OnInit {
   }
 
   inicializarNovaFicha(): void {
-
-    this.ficha.NomePersonagem = '_';
-    this.ficha.Classe = '0';
-    this.ficha.Nivel = 1;
-    this.ficha.Antecedente = '_';
-    this.ficha.NomeJogador = '_';
-    this.ficha.Raca = '0';
-    this.ficha.SubRaca = '0';
-    this.ficha.Tendencia = '0';
-    this.ficha.Alinhamento = '0';
-    this.ficha.For = 0;
-    this.ficha.Des = 0;
-    this.ficha.Con = 0;
-    this.ficha.Int = 0;
-    this.ficha.Sab = 0;
-    this.ficha.Car = 0;
-    this.ficha.ForMod = -5;
-    this.ficha.DesMod = -5;
-    this.ficha.ConMod = -5;
-    this.ficha.IntMod = -5;
-    this.ficha.SabMod = -5;
-    this.ficha.CarMod = -5;
-    this.ficha.Inspiracao = 0;
-    this.ficha.Proficiencia = '+2';
-    this.ficha.ForTeste = -5;
-    this.ficha.DesTeste = -5;
-    this.ficha.ConTeste = -5;
-    this.ficha.IntTeste = -5;
-    this.ficha.SabTeste = -5;
-    this.ficha.CarTeste = -5;
-    this.ficha.CampoIdiomas = '_';
-    this.ficha.ClasseAtual = '0';
-    this.ficha.RacaAtual = '0';
-    this.ficha.SubRacaAtual = '0';
-    this.ficha.IdPerfil = this.perfilAtual;
+    this.ficha = new Ficha();            
   }
 }
