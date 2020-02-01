@@ -9,7 +9,6 @@ import { FichaService } from 'src/app/service/app.ficha-service';
     styleUrls: ['./app.ficha-component.css']
 })
 
-
 export class FichaComponent /*implements OnInit*/ {
     ficha: Ficha = new Ficha();
 
@@ -35,10 +34,12 @@ export class FichaComponent /*implements OnInit*/ {
         })
         this.getFichas();
     }*/
-    msg : string[] = []
+    
+    classe : {Classe : string, i : number}
+    
     evento(v){
-        console.log(v)
-        this.msg.push(v);
+        //console.log(v)
+        //this.msg.push(v);
     }
 
     resetar() {

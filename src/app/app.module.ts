@@ -15,7 +15,8 @@ import { FichaComponent } from './components/ficha/app.ficha-component';
 import { FormEntrarComponent } from './components/form-entrar/app.form-entrar-component';
 import { FormCadastroComponent } from './components/form-cadastro/app.form-cadastro-component';
 import { VoltarAoTopoComponent } from './components/voltar-ao-topo/voltar-ao-topo.component';
-import { ModalBardoComponent } from './components/ficha/modals/modal-bardo/modal-bardo.component';
+import { ModalMagiasComponent } from './components/ficha/modals/modal-magias/modal-magias.component';
+
 const appRoutes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'index', component: IndexComponent },
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent, AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent, VoltarAoTopoComponent, ModalBardoComponent,
+    AppComponent, CrudEntrarComponent, IndexComponent, PerfilComponent, ListagemFichasComponent, AlterarDadosComponent, FichaComponent, FormEntrarComponent, FormCadastroComponent, VoltarAoTopoComponent, ModalMagiasComponent,
   ],
   imports: [
     RouterModule.forRoot(

@@ -1779,7 +1779,7 @@
                                 <br/><br/>
                                 <div class="container text-center" *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Mago' || ficha.Classe === 'Paladino' || ficha.Classe === 'Patrulheiro'">
                                     <label>Suas Magias de {{ficha.Classe}}</label><br/>
-                                    <app-modal-bardo (adicionouMagias)="evento($event)"></app-modal-bardo>
+                                    <app-modal-magias [classe]="ficha.Classe" [index]="0" (adicionouMagias)="evento($event)"></app-modal-magias>
                                 </div>
                                 
 

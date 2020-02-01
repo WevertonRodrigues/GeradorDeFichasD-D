@@ -14,8 +14,12 @@
             <div class="modal-body">
                 <p class="parag">Nível 0</p>
                 <div class="form-check form-check-inline">
-                    <input id="magiaID" class="form-check-input" type="checkbox" name="magia" #magia (click)="add(magia)" >
-                    <label for="magiaID" class="form-check-label">Magia Tal e Tal</label>
+                    <input id="magia1ID" class="form-check-input" type="checkbox" name="magia1" (click)="adicionarMagia('Magia 1', 0)">
+                    <label for="magia1ID" class="form-check-label">Magia Tal e Tal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="magia2ID" class="form-check-input" type="checkbox" name="magia2" (click)="adicionarMagia('Magia 2', 0)">
+                    <label for="magia2ID" class="form-check-label">Magia Talis</label>
                 </div>
                 <hr>
                 <p class="parag">Nível 1</p>
@@ -36,7 +40,7 @@
                 <hr>
                 <p class="parag">Nível 9</p>
                 <hr>
-
+                {{classe}} | {{index}}
             </div>
             <!-- Footer -->
             <div class="modal-footer">
