@@ -1,7 +1,8 @@
-import { Component, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaService } from 'src/app/service/app.ficha-service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-ficha',
@@ -10,7 +11,7 @@ import { FichaService } from 'src/app/service/app.ficha-service';
 })
 
 
-export class FichaComponent /*implements OnInit*/ {
+export class FichaComponent implements OnInit {
     ficha: Ficha = new Ficha();
 
     fichas: Ficha[] = [];
@@ -21,24 +22,35 @@ export class FichaComponent /*implements OnInit*/ {
     checked: boolean = false;
 
     constructor(private route: ActivatedRoute,
-        private router: Router,) { }
+        private router: Router, ) { }
 
     /*constructor(private route: ActivatedRoute,
         private router: Router,
-        private fichaService: FichaService) { }
+        private fichaService: FichaService) { }*/
 
-    ngOnInit() {        
-        //this.ficha = new Ficha(233, '', '', 1, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, -5, -5, -5, -5, -5, -5, 0, '+2', 0, 0, 0, 0, 0, 0, '');    
-        this.route.params.subscribe((objeto: any) => {
+    ngOnInit() {          
+        /*this.route.params.subscribe((objeto: any) => {
             this.fichaAtual = +objeto['idFicha'];
             this.perfilAtual = +objeto['idPerfil'];
-        })
-        this.getFichas();
-    }*/
-    msg : string[] = []
-    evento(v){
-        console.log(v)
-        this.msg.push(v);
+        })*/
+        //this.getFichas();
+        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz()});
+        //console.log(this.ficha.Classes)
+    }
+
+    criarMatriz(){
+        var magias = new Array(10);
+        for (var i = 0; i < magias.length; i++) {
+            magias[i] = new Array();
+        }
+
+        return magias
+    }
+
+    evento(v: any) {
+        //console.log(v.Magias)
+       
+        this.ficha.Classes[v.i] = v.Magias        
     }
 
     resetar() {
@@ -364,16 +376,15 @@ export class FichaComponent /*implements OnInit*/ {
     }
 
     clickClasse(c: string): void {
-
-        for (let i = 0; i < 6; i++)
-            this.retCheck(i).checked = false;
+        /*for (let i = 0; i < 6; i++)
+            this.retCheck(i).checked = false;*/
 
         /*if(this.classeAtual != '0')
             for(let i = 0; i < 6; i++)
                 if(this.retCheck(i).checked == false)
                     this.clickTeste(i, this.retCheck(i).checked);*/
 
-        switch (c) {
+        /*switch (c) {
             case '1':
                 this.retCheck(0).checked = true;
                 this.retCheck(2).checked = true;
@@ -506,40 +517,38 @@ export class FichaComponent /*implements OnInit*/ {
                 break;
             default:
                 break;
-        }
+        }*/
 
         /*for(let i = 0; i < 6; i++)
             if(this.retCheck(i).checked == true)
                 this.clickTeste(i, this.retCheck(i).checked);*/
-        this.ficha.ClasseAtual = c;
-        this.calcularCD(c);
-        this.calcularModAtaqueMagico(c);
+        this.ficha.Classes[0] = { Classe: c, CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };       
     }
 
     calcularCD(classe: string) {
         if (classe === 'Bardo' || classe === 'Bruxo' || classe === 'Feiticeiro' || classe === 'Paladino')
-            return this.ficha.CDMagias = 8 + this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
+            return 8 + this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
-            return this.ficha.CDMagias = 8 + this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
+            return 8 + this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Mago')
-            return this.ficha.CDMagias = 8 + this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
+            return 8 + this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
     }
 
     calcularModAtaqueMagico(classe: string) {
         if (classe === 'Bardo' || classe === 'Bruxo' || classe === 'Feiticeiro' || classe === 'Paladino')
-            return this.ficha.ModAM = this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
+            return this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
-            return this.ficha.ModAM = this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
+            return this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Mago')
-            return this.ficha.ModAM = this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
+            return this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
     }
 
     ativarMulticlasse(c: any) {
         this.checked = c.checked
         if (c.checked === false)
-            if (this.ficha.Multiclasse.length !== 0) {
-                if (confirm('Aviso! \nTodas as multiclasses serão apagadas. \nContinuar?') === true)
-                    this.ficha.Multiclasse = [];
+            if (this.ficha.Classes.length !== 1) {
+                if (confirm('Aviso!\nTodas as multiclasses serão apagadas.\nContinuar?') === true)
+                    this.ficha.Classes.splice(1, this.ficha.Classes.length - 1);
                 else {
                     this.checked = true
                     c.checked = true
@@ -547,15 +556,14 @@ export class FichaComponent /*implements OnInit*/ {
             }
     }
     adicionarMulticlasse(classe: string) {
-        let cdMagias: number = this.calcularCD(classe);
-        let modAM: number = this.calcularModAtaqueMagico(classe);
-        let magias : string[][] = [][10]
         if (classe !== '')
-            this.ficha.Multiclasse.push({ Classe: classe, CDMagias: cdMagias, ModAM: modAM, Magias : magias})
+            this.ficha.Classes.push({ Classe: classe, CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz()});
+            
+        console.log(this.ficha.Classes)
     }
 
     removerMulticlasse(i: number, id: number) {
-        this.ficha.Multiclasse.splice(i, 1)
+        this.ficha.Classes.splice(i, 1)
     }
 
     adicionarDado(dado: string) {

@@ -47,7 +47,7 @@
                                                 <label for="classeID">Escolha sua classe </label>
                                                 <select class="custom-select" id="classeID"
                                                     (change)="clickClasse(classe.value)" name="classe"
-                                                    [(ngModel)]="ficha.Classe" #classe="ngModel">
+                                                    [(ngModel)]="ficha.Classes[0].Classe" #classe="ngModel">
                                                     <option value="">------</option>
                                                     <option value="Bárbaro" data-toggle="tooltip" data-placement="top"
                                                         title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
@@ -111,12 +111,15 @@
                                                     <label for="checkMulticlasseID"
                                                         class="form-check-label">Multiclasse</label>
                                                 </div>
-                                                <div *ngIf="this.ficha.Multiclasse.length > 0" class="">
-                                                    <div *ngFor="let classe of ficha.Multiclasse; index as i">
-                                                        <button class="btn btn-danger mr-2"
-                                                            (click)="removerMulticlasse(i)" type="button"><i
-                                                                class="fa fa-trash" aria-hidden="true"></i></button>
-                                                        <label class="align-self-end">{{classe.Classe}}</label>
+                                                <div *ngIf="this.ficha.Classes.length > 1">
+                                                    <div *ngFor="let classe of ficha.Classes; index as i">
+                                                        <div *ngIf="i !== 0">
+                                                            <button class="btn btn-danger mr-2"
+                                                                (click)="removerMulticlasse(i)" type="button"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></button>
+                                                            <label class="align-self-end">{{classe.Classe}} | {{i}}
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-column-reverse">
@@ -191,6 +194,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- Nível Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label class="selLvlID" for="selLvl">Nível</label>
@@ -214,6 +218,7 @@
                                                     [(ngModel)]="ficha.NomeJogador" #nomeJogador="ngModel"
                                                     placeholder="Seu nome">
                                             </div>
+
                                             <!-- Raça Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label for="racaID">Raça</label>
@@ -232,6 +237,7 @@
                                                     <option value="8">Tiefling</option>
                                                 </select>
                                             </div>
+
                                             <!-- Sub-raça -->
                                             <div class="form-group col-lg-6">
                                                 <label for="subRacaID">Sub-raça</label>
@@ -276,6 +282,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <!-- Tendência -->
                                             <div class="form-group col-lg-6">
                                                 <label for="tendenciaID">Tendência</label>
@@ -287,6 +294,7 @@
                                                     <option value="Mal">Mal</option>
                                                 </select>
                                             </div>
+
                                             <!-- Alinhamento -->
                                             <div class="form-group col-lg-6">
                                                 <label class="" for="alinhamentoID">Alinhamento</label>
@@ -1528,6 +1536,7 @@
                                 <div *ngIf="ficha.NomePersonagem !== ''">Magias de {{ficha.NomePersonagem}}</div>
                             </div>
                             <div class="card-body">
+                                <!-- Características de Conjurador(a) -->
                                 <div class="table-responsive">
                                     <table class="table table-light">
                                         <thead>
@@ -1539,255 +1548,78 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Primária -->
-                                            <tr>
+                                            <!-- Classes -->
+                                            <tr *ngFor="let classe of ficha.Classes">
                                                 <!-- Classe(s) Conjuradora(s) -->
-                                                <td class="align-middle"
-                                                    *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Mago' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino' || ficha.Classe === 'Patrulheiro'">
-                                                    <label>{{ficha.Classe}}</label>
+                                                <td
+                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' ||      classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
+                                                    <label>
+                                                        {{classe.Classe}}
+                                                    </label>
                                                 </td>
                                                 <!-- Atributo de Conjuração -->
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'">
-                                                    <input class="form-control" type="text" name="atrConju"
-                                                        ngModel="Carisma" readonly>
-                                                </td>
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'">
-                                                    <input class="form-control" type="text" name="atrConju"
+                                                <td>
+                                                    <input class="form-control mb-2" type="text" name="atrConjuM"
+                                                        ngModel="Carisma"
+                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
+                                                        readonly>
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
+                                                        class="form-control mb-2" type="text" name="atrConjuM"
                                                         ngModel="Sabedoria" readonly>
-                                                </td>
-                                                <td *ngIf="ficha.Classe === 'Mago'">
-                                                    <input class="form-control" type="text" name="atrConju"
-                                                        ngModel="Inteligência" readonly>
-                                                </td>
-                                                <!-- CD P/ Evitar Suas Magias  -->
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'">
-                                                    <input class="form-control" type="number" name="cdMagias"
-                                                        [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                                </td>
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'">
-                                                    <input class="form-control" type="number" name="cdMagias"
-                                                        [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                                </td>
-                                                <td *ngIf="ficha.Classe === 'Mago'">
-                                                    <input class="form-control" type="number" name="cdMagias"
-                                                        [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                                </td>
-                                                <!-- Modificador de Ataque Mágico -->
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'">
-                                                    <input class="form-control" type="number" name="modAM"
-                                                        [(ngModel)]="ficha.ModAM" modAM="ngModel" readonly>
-                                                </td>
-                                                <td
-                                                    *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'">
-                                                    <input class="form-control" type="number" name="modAM"
-                                                        [(ngModel)]="ficha.ModAM" modAM="ngModel" readonly>
-                                                </td>
-                                                <td *ngIf="ficha.Classe === 'Mago'" class="form-control">
-                                                    <input type="number" name="modAM" [(ngModel)]="ficha.ModAM"
-                                                        modAM="ngModel" readonly>
-                                                </td>
-                                            </tr>
-                                            <!-- Multi -->
-                                            <tr>
-                                                <!-- Classe(s) Conjuradora(s) -->
-                                                <td>
-                                                    <div *ngIf="ficha.Multiclasse.length > 0">
-                                                        <div class="align-middle mb-4" *ngFor="let classe of ficha.Multiclasse">
-                                                            <label
-                                                                *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                                                {{classe.Classe}}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!-- Atributo de Conjuração -->
-                                                <td>
-                                                    <div *ngIf="ficha.Multiclasse.length > 0">
-                                                        <div *ngFor="let classe of ficha.Multiclasse">
-                                                            <input class="form-control mb-4" type="text" name="atrConjuM"
-                                                                ngModel="Carisma"
-                                                                *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                                readonly>
-                                                            <input
-                                                                *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                                class="form-control mb-4" type="text" name="atrConjuM"
-                                                                ngModel="Sabedoria" readonly>
-                                                            <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-4"
-                                                                type="text" name="atrConjuM" ngModel="Inteligência"
-                                                                readonly>
-                                                        </div>
-                                                    </div>
+                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
+                                                        type="text" name="atrConjuM" ngModel="Inteligência" readonly>
                                                 </td>
                                                 <!-- CD P/ Evitar Suas Magias -->
                                                 <td>
-                                                    <div *ngIf="ficha.Multiclasse.length > 0">
-                                                        <div *ngFor="let classe of ficha.Multiclasse">
-                                                            <input class="form-control mb-4" type="number" name="cdMagiasM"
-                                                                [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
-                                                                *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                                readonly>
-                                                            <input
-                                                                *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                                class="form-control mb-4" type="number" name="cdMagiasM"
-                                                                [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
-                                                                readonly>
-                                                            <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-4"
-                                                                type="number" name="cdMagiasM"
-                                                                [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
-                                                                readonly>
-                                                        </div>
-                                                    </div>
+
+                                                    <input class="form-control mb-2" type="number" name="cdMagiasM"
+                                                        [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
+                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
+                                                        readonly>
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
+                                                        class="form-control mb-2" type="number" name="cdMagiasM"
+                                                        [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel" readonly>
+                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
+                                                        type="number" name="cdMagiasM" [(ngModel)]="classe.CDMagias"
+                                                        cdMagiasM="ngModel" readonly>
+
                                                 </td>
                                                 <!-- Modificador de Ataque Mágico -->
                                                 <td>
-                                                    <div *ngIf="ficha.Multiclasse.length > 0">
-                                                        <div *ngFor="let classe of ficha.Multiclasse">
-                                                            <input class="form-control mb-4" type="number" name="modAMM"
-                                                                [(ngModel)]="classe.ModAM" modAMM="ngModel"
-                                                                *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                                readonly>
-                                                            <input
-                                                                *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                                class="form-control mb-4" type="number" name="modAMM"
-                                                                [(ngModel)]="classe.ModAM" modAMM="ngModel" readonly>
-                                                            <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-4"
-                                                                type="number" name="modAMM" [(ngModel)]="classe.ModAM"
-                                                                modAMM="ngModel" readonly>
-                                                        </div>
-                                                    </div>
+
+                                                    <input class="form-control mb-2" type="number" name="modAMM"
+                                                        [(ngModel)]="classe.ModAM" modAMM="ngModel"
+                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
+                                                        readonly>
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
+                                                        class="form-control mb-2" type="number" name="modAMM"
+                                                        [(ngModel)]="classe.ModAM" modAMM="ngModel" readonly>
+                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
+                                                        type="number" name="modAMM" [(ngModel)]="classe.ModAM"
+                                                        modAMM="ngModel" readonly>
+
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- Características de Conjurador(a)
-                                <div class="row row-lg-cols-4 d-none">
-                                    <!-- Classe(s) Conjuradora(s)
-                                    <div class="form-group col-lg col-12">
-                                        <label>Classe(s) Conjuradora(s)</label>
-                                        <div
-                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Mago' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino' || ficha.Classe === 'Patrulheiro'">
-                                            <label>{{ficha.Classe}}</label>
-                                        </div>
-                                        <!-- Multi
-                                        <div *ngIf="ficha.Multiclasse.length > 0">
-                                            <div *ngFor="let classe of ficha.Multiclasse">
-                                                <label
-                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                                    {{classe.Classe}}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Atributo de Conjuração
-                                    <div class="form-group col-lg col-12">
-                                        <label>Atributo de Conjuração</label>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'"
-                                            class="form-control" type="text" name="atrConju" ngModel="Carisma" readonly>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'"
-                                            class="form-control" type="text" name="atrConju" ngModel="Sabedoria"
-                                            readonly>
-                                        <input *ngIf="ficha.Classe === 'Mago'" class="form-control" type="text"
-                                            name="atrConju" ngModel="Inteligência" readonly>
-                                        <!-- Multi
-                                        <div *ngIf="ficha.Multiclasse.length > 0">
-                                            <div *ngFor="let classe of ficha.Multiclasse">
-                                                <input class="form-control" type="text" name="atrConjuM"
-                                                    ngModel="Carisma"
-                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                    readonly>
-                                                <input
-                                                    *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                    class="form-control" type="text" name="atrConjuM"
-                                                    ngModel="Sabedoria" readonly>
-                                                <input *ngIf="classe.Classe === 'Mago'" class="form-control" type="text"
-                                                    name="atrConjuM" ngModel="Inteligência" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- CD P/ Evitar Suas Magias
-                                    <div class="form-group col-lg col-12">
-                                        <label>CD P/ Evitar Suas Magias</label>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'"
-                                            class="form-control" type="number" name="cdMagias"
-                                            [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'"
-                                            class="form-control" type="number" name="cdMagias"
-                                            [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                        <input *ngIf="ficha.Classe === 'Mago'" class="form-control" type="number"
-                                            name="cdMagias" [(ngModel)]="ficha.CDMagias" cdMagias="ngModel" readonly>
-                                        <!-- Multi
-                                        <div *ngIf="ficha.Multiclasse.length > 0">
-                                            <div *ngFor="let classe of ficha.Multiclasse">
-                                                <input class="form-control" type="number" name="cdMagiasM"
-                                                    [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
-                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                    readonly>
-                                                <input
-                                                    *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                    class="form-control" type="number" name="cdMagiasM"
-                                                    [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel" readonly>
-                                                <input *ngIf="classe.Classe === 'Mago'" class="form-control"
-                                                    type="number" name="cdMagiasM" [(ngModel)]="classe.CDMagias"
-                                                    cdMagiasM="ngModel" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modificador de Ataque Mágico
-                                    <div class="form-group col-lg col-12">
-                                        <label>Modificador de Ataque Mágico</label>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Feiticeiro' || ficha.Classe === 'Paladino'"
-                                            class="form-control" type="number" name="modAM" [(ngModel)]="ficha.ModAM"
-                                            modAM="ngModel" readonly>
-                                        <input
-                                            *ngIf="ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Patrulheiro'"
-                                            class="form-control" type="number" name="modAM" [(ngModel)]="ficha.ModAM"
-                                            modAM="ngModel" readonly>
-                                        <input *ngIf="ficha.Classe === 'Mago'" class="form-control" type="number"
-                                            name="modAM" [(ngModel)]="ficha.ModAM" modAM="ngModel" readonly>
-                                        <!-- Multi 
-                                        <div *ngIf="ficha.Multiclasse.length > 0">
-                                            <div *ngFor="let classe of ficha.Multiclasse">
-                                                <input class="form-control" type="number" name="modAMM"
-                                                    [(ngModel)]="classe.ModAM" modAMM="ngModel"
-                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
-                                                    readonly>
-                                                <input
-                                                    *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                    class="form-control" type="number" name="modAMM"
-                                                    [(ngModel)]="classe.ModAM" modAMM="ngModel" readonly>
-                                                <input *ngIf="classe.Classe === 'Mago'" class="form-control"
-                                                    type="number" name="modAMM" [(ngModel)]="classe.ModAM"
-                                                    modAMM="ngModel" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <!-- Fim Características de Conjurador(a) -->
-                                
+
                                 <!-- Lista de Magias -->
-                                <br/><br/>
-                                <div class="container text-center" *ngIf="ficha.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || ficha.Classe === 'Clérigo' || ficha.Classe === 'Druida' || ficha.Classe === 'Mago' || ficha.Classe === 'Paladino' || ficha.Classe === 'Patrulheiro'">
-                                    <label>Suas Magias de {{ficha.Classe}}</label><br/>
-                                    <app-modal-bardo (adicionouMagias)="evento($event)"></app-modal-bardo>
-                                </div>
-                                
-
-                                <div *ngIf="ficha.Multiclasse.length > 0" class="text-center">
-                                    <div *ngFor="let classe of ficha.Multiclasse">
-                                        <div *ngIf="classe.Classe === 'Bardo' || ficha.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                            <label>Suas Magias de {{classe.Classe}}</label> <br/>
-
+                                <br /><br />
+                                <div class="container text-center" *ngFor="let classe of ficha.Classes; index as i"
+                                    class="text-center">
+                                    <div
+                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
+                                        <label>Suas Magias de {{classe.Classe}}</label> <br />
+                                        <app-modal-bardo [classe]="classe.Classe" [index]="i"
+                                            [magiasPai]="classe.Magias" (salvarAlteracoes)="evento($event)">
+                                        </app-modal-bardo>
+                                        <div *ngFor="let magia of classe.Magias[0]">
+                                            {{magia}}
                                         </div>
                                     </div>
                                 </div>

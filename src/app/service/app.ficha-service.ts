@@ -30,7 +30,7 @@ export class FichaService {
 
         u.set('Id', ficha.Id.toString());
         u.set('NomePersonagem', ficha.NomePersonagem.toString());
-        u.set('Classe', ficha.Classe.toString());
+        u.set('Classe', ficha.Classes.toString());
         u.set('Nivel', ficha.Nivel.toString());
         u.set('Antecedente', ficha.Antecedente.toString());
         u.set('NomeJogador', ficha.NomeJogador.toString());
@@ -78,7 +78,7 @@ export class FichaService {
         }
         else {
             u.set('NomePersonagem', ficha.NomePersonagem.toString());
-            u.set('Classe', ficha.Classe.toString());
+            u.set('Classe', ficha.Classes.toString());
             u.set('Nivel', ficha.Nivel.toString());
             u.set('Antecedente', ficha.Antecedente.toString());
             u.set('NomeJogador', ficha.NomeJogador.toString());
