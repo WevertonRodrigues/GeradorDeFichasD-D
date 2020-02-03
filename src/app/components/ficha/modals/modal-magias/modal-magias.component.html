@@ -1,0 +1,59 @@
+<button class="btn btn-danger" type="button" data-toggle="modal" data-target=".myModal"><i
+        class="fa fa-plus"></i></button>
+
+<div class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="ModalNvlZero" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="parag">Magias</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <p class="parag">Nível 0</p>
+                <div class="form-check form-check-inline">
+<<<<<<< HEAD:src/app/components/ficha/modals/modal-bardo/modal-bardo.component.html
+                    <input id="magiaID" class="form-check-input" type="checkbox" name="magia" value="magia0" #magia (click)="adicionarMagia(magia.value, 0)" >
+                    <label for="magiaID" class="form-check-label">Magia Tal e Tal</label><br/>
+                    <input id="magia2ID" class="form-check-input" type="checkbox" name="magia2" value="magia2" #magia2 (click)="adicionarMagia(magia2.value, 0)" >
+                    <label for="magia2ID" class="form-check-label">Magia Tal e Tal 2</label>
+=======
+                    <input id="magia1ID" class="form-check-input" type="checkbox" name="magia1" (click)="adicionarMagia('Magia 1', 0)">
+                    <label for="magia1ID" class="form-check-label">Magia Tal e Tal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="magia2ID" class="form-check-input" type="checkbox" name="magia2" (click)="adicionarMagia('Magia 2', 0)">
+                    <label for="magia2ID" class="form-check-label">Magia Talis</label>
+>>>>>>> 566011e4b2533beccbf39c9ad080d36294afcebe:src/app/components/ficha/modals/modal-magias/modal-magias.component.html
+                </div>
+                <hr>
+                <p class="parag">Nível 1</p>
+                <hr>
+                <p class="parag">Nível 2</p>
+                <hr>
+                <p class="parag">Nível 3</p>
+                <hr>
+                <p class="parag">Nível 4</p>
+                <hr>
+                <p class="parag">Nível 5</p>
+                <hr>
+                <p class="parag">Nível 6</p>
+                <hr>
+                <p class="parag">Nível 7</p>
+                <hr>
+                <p class="parag">Nível 8</p>
+                <hr>
+                <p class="parag">Nível 9</p>
+                <hr>
+                {{classe}} | {{index}}
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger" (click)="salvarMagias()">Salvar alterações</button>
+            </div>
+        </div>
+    </div>
+</div>
