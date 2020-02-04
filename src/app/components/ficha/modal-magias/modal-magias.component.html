@@ -1,11 +1,11 @@
-<button class="btn btn-danger" type="button" data-toggle="modal" data-target=".myModal"><i
+<button class="btn btn-danger" type="button" data-toggle="modal" [attr.data-target]="'#obj-' + index"><i
         class="fa fa-plus"></i></button>
 
-<div class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="ModalNvlZero" aria-hidden="true">
+<div class="modal fade" [attr.id]="'obj-' + index" #modal tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="parag">Magias</p>
+                <p class="parag">Magias de {{classe}}</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,10 +14,10 @@
             <div class="modal-body">
                 <p class="parag">Nível 0</p>
                 <div class="form-check form-check-inline">
-                    <input id="magiaID" class="form-check-input" type="checkbox" name="magia" value="magia0" #magia (click)="adicionarMagia(magia.value, 0)" >
-                    <label for="magiaID" class="form-check-label">Magia Tal e Tal</label><br/>
-                    <input id="magia2ID" class="form-check-input" type="checkbox" name="magia2" value="magia2" #magia2 (click)="adicionarMagia(magia2.value, 0)" >
-                    <label for="magia2ID" class="form-check-label">Magia Tal e Tal 2</label>
+                    <input [attr.id]="'magia1' + modal.id + 'ID'" class="form-check-input" type="checkbox" name="magia1" value="magia1" #magia1 (click)="adicionarMagia(magia1.value, 0)" >
+                    <label [attr.for]="'magia1' + modal.id + 'ID'" class="form-check-label">Magia Tal e Tal</label><br/>
+                    <input [attr.id]="'magia2' + modal.id + 'ID'" class="form-check-input" type="checkbox" name="magia2" value="magia2" #magia2 (click)="adicionarMagia(magia2.value, 0)" >
+                    <label [attr.for]="'magia2' + modal.id + 'ID'" class="form-check-label">Magia Tal e Tal 2</label>
                 </div>
                 <hr>
                 <p class="parag">Nível 1</p>
@@ -43,7 +43,7 @@
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-danger" (click)="salvarMagias()">Salvar alterações</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="salvarMagias()">Salvar alterações</button>
             </div>
         </div>
     </div>

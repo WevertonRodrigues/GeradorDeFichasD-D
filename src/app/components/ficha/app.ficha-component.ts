@@ -43,18 +43,17 @@ export class FichaComponent implements OnInit {
         for (var i = 0; i < magias.length; i++) {
             magias[i] = new Array();
         }
-
         return magias
     }
 
-    evento(v: any) {
-        //console.log(v.Magias)
-       
-        this.ficha.Classes[v.i] = v.Magias        
+    evento(obj: any) {
+        console.log(obj)
+        this.ficha.Classes[obj.i].Magias = obj.Magias        
     }
 
     resetar() {
         this.ficha = new Ficha();
+        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz()});
     }
 
     mudarProf(lvlAtual: number): void {
@@ -559,7 +558,7 @@ export class FichaComponent implements OnInit {
         if (classe !== '')
             this.ficha.Classes.push({ Classe: classe, CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz()});
             
-        console.log(this.ficha.Classes)
+        //console.log(this.ficha.Classes)
     }
 
     removerMulticlasse(i: number, id: number) {
@@ -587,7 +586,7 @@ export class FichaComponent implements OnInit {
         if (item !== '' && status !== '') {
             this.ficha.Equips.push({ NomeItem: item, StatusItem: status });
         }
-        console.log(this.ficha.Equips)
+        //console.log(this.ficha.Equips)
     }
 
     removerItem(i: number) {

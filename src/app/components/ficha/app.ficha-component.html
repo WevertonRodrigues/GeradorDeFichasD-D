@@ -1588,7 +1588,6 @@
                                                 </td>
                                                 <!-- Modificador de Ataque Mágico -->
                                                 <td>
-
                                                     <input class="form-control mb-2" type="number" name="modAMM"
                                                         [(ngModel)]="classe.ModAM" modAMM="ngModel"
                                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
@@ -1615,9 +1614,9 @@
                                     <div
                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
                                         <label>Suas Magias de {{classe.Classe}}</label> <br />
-                                        <app-modal-bardo [classe]="classe.Classe" [index]="i"
+                                        <app-modal-magias [classe]="classe.Classe" [index]="i"
                                             [magiasPai]="classe.Magias" (salvarAlteracoes)="evento($event)">
-                                        </app-modal-bardo>
+                                        </app-modal-magias>
                                         <div *ngFor="let magia of classe.Magias[0]">
                                             {{magia}}
                                         </div>
