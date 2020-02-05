@@ -4,7 +4,7 @@ export class Ficha {
     //Dados Básicos
     public Id: number;
     public NomePersonagem: string = '';
-    public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : string[][]}[];    
+    public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
     public Nivel: number = 1;
     public Antecedente: string  = '';
     public NomeJogador: string = '';

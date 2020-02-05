@@ -6,19 +6,153 @@
         <div class="modal-content">
             <div class="modal-header">
                 <p class="parag">Magias de {{classe}}</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechar()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!-- Body -->
             <div class="modal-body">
                 <p class="parag">Nível 0</p>
-                <div class="form-check form-check-inline">
-                    <input [attr.id]="'magia1' + modal.id + 'ID'" class="form-check-input" type="checkbox" name="magia1" value="magia1" #magia1 (click)="adicionarMagia(magia1.value, 0)" >
-                    <label [attr.for]="'magia1' + modal.id + 'ID'" class="form-check-label">Magia Tal e Tal</label><br/>
-                    <input [attr.id]="'magia2' + modal.id + 'ID'" class="form-check-input" type="checkbox" name="magia2" value="magia2" #magia2 (click)="adicionarMagia(magia2.value, 0)" >
-                    <label [attr.for]="'magia2' + modal.id + 'ID'" class="form-check-label">Magia Tal e Tal 2</label>
-                </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'amizade-' + modal.id + '-ID'" class="form-check-input" type="checkbox"
+                            name="amizade" value="Amizade" #amizade (click)="adicionarMagia(amizade.value, 0)">
+                        <label [attr.for]="'amizade-' + modal.id + '-ID'" class="form-check-label">Amizade</label><br />
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'ataqueCerteiro-' + modal.id + '-ID'" class="form-check-input" type="checkbox"
+                            name="ataqueCerteiro" value="Ataque Certeiro" #ataqueCerteiro
+                            (click)="adicionarMagia(ataqueCerteiro.value, 0)">
+                        <label [attr.for]="'ataqueCerteiro-' + modal.id + '-ID'" class="form-check-label">Ataque
+                            Certeiro</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'bordaoMistico-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="bordaoMistico" value="Bordão Místico" #bordaoMistico (click)="adicionarMagia(bordaoMistico.value, 0)">
+                        <label [attr.for]="'bordaoMistico-' + modal.id + '-ID'" class="form-check-label">Bordão Místico</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'chamaSagrada-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="chamaSagrada" value="Chama Sagrada" #chamaSagrada (click)="adicionarMagia(chamaSagrada.value, 0)">
+                        <label [attr.for]="'chamaSagrada-' + modal.id + '-ID'" class="form-check-label">Chama Sagrada</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'consertar-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="consertar" value="Consertar" #consertar (click)="adicionarMagia(consertar.value, 0)">
+                        <label [attr.for]="'consertar-' + modal.id + '-ID'" class="form-check-label">Consertar</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'chicoteDeEspinhos-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="chicoteDeEspinhos" value="Chicote de Espinhos" #chicoteDeEspinhos (click)="adicionarMagia(chicoteDeEspinhos.value, 0)">
+                        <label [attr.for]="'chicoteDeEspinhos-' + modal.id + '-ID'" class="form-check-label">Chicote de Espinhos</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'criarChamas-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="criarChamas" value="Criar Chamas" #criarChamas (click)="adicionarMagia(criarChamas.value, 0)">
+                        <label [attr.for]="'criarChamas-' + modal.id + '-ID'" class="form-check-label">Criar Chamas</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'druidismo-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="druidismo" value="Druidismo" #druidismo (click)="adicionarMagia(druidismo.value, 0)">
+                        <label [attr.for]="'druidismo-' + modal.id + '-ID'" class="form-check-label">Druidismo</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'espirroAcido-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="espirroAcido" value="Espirro Ácido" #espirroAcido (click)="adicionarMagia(espirroAcido.value, 0)">
+                        <label [attr.for]="'espirroAcido-' + modal.id + '-ID'" class="form-check-label">Espirro Ácido</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'estabilizar-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="estabilizar" value="Estabilizar" #estabilizar (click)="adicionarMagia(estabilizar.value, 0)">
+                        <label [attr.for]="'estabilizar-' + modal.id + '-ID'" class="form-check-label">Estabilizar</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'globosDeLuz-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="globosDeLuz" value="Globos de Luz" #globosDeLuz (click)="adicionarMagia(globosDeLuz.value, 0)">
+                        <label [attr.for]="'globosDeLuz-' + modal.id + '-ID'" class="form-check-label">Globos de Luz</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'orientacao-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="orientacao" value="Orientação" #orientacao (click)="adicionarMagia(orientacao.value, 0)">
+                        <label [attr.for]="'orientacao-' + modal.id + '-ID'" class="form-check-label">Orientação</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'luz-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="luz" value="Luz" #luz (click)="adicionarMagia(luz.value, 0)">
+                        <label [attr.for]="'luz-' + modal.id + '-ID'" class="form-check-label">Luz</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'ilusaoMenor-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="ilusaoMenor" value="Ilusão Menor" #ilusaoMenor (click)="adicionarMagia(ilusaoMenor.value, 0)">
+                        <label [attr.for]="'ilusaoMenor-' + modal.id + '-ID'" class="form-check-label">Ilusão Menor</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'maosMagicas-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="maosMagicas" value="Mãos Mágicas" #maosMagicas (click)="adicionarMagia(maosMagicas.value, 0)">
+                        <label [attr.for]="'maosMagicas-' + modal.id + '-ID'" class="form-check-label">Mãos Mágicas</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'mensagem-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="mensagem" value="Mensagem" #mensagem (click)="adicionarMagia(mensagem.value, 0)">
+                        <label [attr.for]="'mensagem-' + modal.id + '-ID'" class="form-check-label">Mensagem</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'prestidigitacao-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="prestidigitacao" value="Prestidigitação" #prestidigitacao (click)="adicionarMagia(prestidigitacao.value, 0)">
+                        <label [attr.for]="'prestidigitacao-' + modal.id + '-ID'" class="form-check-label">Prestidigitação</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'protecaoContraLaminas-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="protecaoContraLaminas" value="Proteção contra Lâminas" #protecaoContraLaminas (click)="adicionarMagia(protecaoContraLaminas.value, 0)">
+                        <label [attr.for]="'protecaoContraLaminas-' + modal.id + '-ID'" class="form-check-label">Proteção contra Lâminas</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'raioDeFogo-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="raioDeFogo" value="Raio de Fogo" #raioDeFogo (click)="adicionarMagia(raioDeFogo.value, 0)">
+                        <label [attr.for]="'raioDeFogo-' + modal.id + '-ID'" class="form-check-label">Raio de Fogo</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'raioDeGelo-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="raioDeGelo" value="Raio de Gelo" #raioDeGelo (click)="adicionarMagia(raioDeGelo.value, 0)">
+                        <label [attr.for]="'raioDeGelo-' + modal.id + '-ID'" class="form-check-label">Raio de Gelo</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'rajadaDeVeneno-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="rajadaDeVeneno" value="Rajada de Veneno" #rajadaDeVeneno (click)="adicionarMagia(rajadaDeVeneno.value, 0)">
+                        <label [attr.for]="'rajadaDeVeneno-' + modal.id + '-ID'" class="form-check-label">Rajada de Veneno</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'resistencia-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="resistencia" value="Resistência" #resistencia (click)="adicionarMagia(resistencia.value, 0)">
+                        <label [attr.for]="'resistencia-' + modal.id + '-ID'" class="form-check-label">Resistência</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'rajadaMistica-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="rajadaMistica" value="Rajada Mística" #rajadaMistica (click)="adicionarMagia(rajadaMistica.value, 0)">
+                        <label [attr.for]="'rajadaMistica-' + modal.id + '-ID'" class="form-check-label">Rajada Mística</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'taumaturgia-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="taumaturgia" value="Taumaturgia" #taumaturgia (click)="adicionarMagia(taumaturgia.value, 0)">
+                        <label [attr.for]="'taumaturgia-' + modal.id + '-ID'" class="form-check-label">Taumaturgia</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'toqueArrepiante-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="toqueArrepiante" value="Toque Arrepiante" #toqueArrepiante (click)="adicionarMagia(toqueArrepiante.value, 0)">
+                        <label [attr.for]="'toqueArrepiante-' + modal.id + '-ID'" class="form-check-label">Toque Arrepiante</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'toqueChocante-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="toqueChocante" value="Toque Chocante" #toqueChocante (click)="adicionarMagia(toqueChocante.value, 0)">
+                        <label [attr.for]="'toqueChocante-' + modal.id + '-ID'" class="form-check-label">Toque Chocante</label>
+                    </div>
+                    <!-- -->
+                    <div class="form-check form-check-inline">
+                        <input [attr.id]="'zombariaViciosa-' + modal.id + '-ID'" class="form-check-input" type="checkbox" name="zombariaViciosa" value="Zombaria Viciosa" #zombariaViciosa (click)="adicionarMagia(zombariaViciosa.value, 0)">
+                        <label [attr.for]="'zombariaViciosa-' + modal.id + '-ID'" class="form-check-label">Zombaria Viciosa</label>
+                    </div>
+
                 <hr>
                 <p class="parag">Nível 1</p>
                 <hr>
@@ -37,13 +171,13 @@
                 <p class="parag">Nível 8</p>
                 <hr>
                 <p class="parag">Nível 9</p>
-                <hr>
 
             </div>
             <!-- Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="salvarMagias()">Salvar alterações</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="fechar()">Fechar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="salvarMagias()">Salvar
+                    alterações</button>
             </div>
         </div>
     </div>

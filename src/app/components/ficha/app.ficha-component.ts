@@ -47,8 +47,10 @@ export class FichaComponent implements OnInit {
     }
 
     evento(obj: any) {
-        console.log(obj)
+        //console.log(obj)
         this.ficha.Classes[obj.i].Magias = obj.Magias        
+        //this.ficha.Classes[obj.i].Magias
+        console.log(obj)
     }
 
     resetar() {
