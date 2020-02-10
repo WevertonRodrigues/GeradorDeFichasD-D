@@ -3,6 +3,7 @@ import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaService } from 'src/app/service/app.ficha-service';
 import { Observable } from 'rxjs';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
     selector: 'app-ficha',
@@ -34,7 +35,7 @@ export class FichaComponent implements OnInit {
             this.perfilAtual = +objeto['idPerfil'];
         })*/
         //this.getFichas();
-        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz()});
+        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: []});
         //console.log(this.ficha.Classes)
     }
 
@@ -670,6 +671,12 @@ export class FichaComponent implements OnInit {
             }
             this.voltar();
         }*/
+
+    salvarAlteracoes(){
+        for(let i = 0; i < this.ficha.Classes.length; i++)
+            if(this.ficha.Classes[i].Classe === 'Bardo' || this.ficha.Classes[i].Classe === 'Bruxo' || this.ficha.Classes[i].Classe === 'Clérigo' || this.ficha.Classes[i].Classe === 'Feiticeiro' || this.ficha.Classes[i].Classe === 'Mago' || this.ficha.Classes[i].Classe === 'Paladino' || this.ficha.Classes[i].Classe === 'Patrulheiro')
+                console.log(this.ficha.Classes[i].Magias)
+    }
 
     voltar(): void {
         this.router.navigate(['/perfil', this.perfilAtual],

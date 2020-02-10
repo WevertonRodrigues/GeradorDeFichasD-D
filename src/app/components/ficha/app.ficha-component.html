@@ -1123,7 +1123,7 @@
                                         Ataques & Conjuração
                                     </div>
                                     <div class="card-body">
-                                        <div class="row row-cols-2">
+                                        <div class="row row-cols-3">
                                             <div class="form-group col">
                                                 <label for="nomeDoAtaque">Nome</label>
                                                 <input id="nomeDoAtaque" class="form-control" type="text"
@@ -1245,11 +1245,12 @@
                                             <div class="form-group col-lg">
                                                 <label for="statusID">Status</label>
                                                 <div class="d-lg-flex">
-                                                    <input class="form-control" type="text" id="statusItemID"
+                                                    <input class="form-control mr-lg-2" type="text" id="statusItemID"
                                                         name="statusItem" placeholder="Status do Item" #statusItem
                                                         #statusItem.value=''><br />
+                                                    <br />
                                                     <div>
-                                                        <button class="btn btn-danger h-100 ml-lg-2 btn-block"
+                                                        <button class="btn btn-danger h-100  btn-block"
                                                             type="button"
                                                             (click)="adicionarItem(nomeItem.value, statusItem.value)"><i
                                                                 class="fa fa-plus" aria-hidden="true"></i></button>
@@ -1413,15 +1414,20 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
+                                        <div class="form-group">
+                                            <label *ngIf="ficha.NomePersonagem == ''; else naoVazioPerso" for="srcPersonagemID">URL da Imagem de Aparência</label>
+                                            <ng-template #naoVazioPerso><label for="srcPersonagemID">URL da Imagem de Aparência de {{ficha.NomePersonagem}}</label></ng-template>
+                                            <input id="srcPersonagemID" class="form-control" type="text" name="src" [(ngModel)]="ficha.SrcPersonagem" #src="ngModel">
+                                        </div>                                        
                                         <div
                                             class="d-flex justify-content-center align-items-center border border-dark rounded mb-2">
                                             <figure class="mt-3 mx-2">
-                                                <img class="igure-img img-fluid rounded"
-                                                    src="https://vignette.wikia.nocookie.net/fengshenji/images/1/1c/Nitianerxing.jpg/revision/latest/scale-to-width-down/173?cb=20140809043808"
-                                                    alt="Minha Figura">
+                                                <img class="figure-img img-fluid rounded"
+                                                    [attr.src]="ficha.SrcPersonagem"
+                                                    [attr.alt]="ficha.NomePersonagem">
                                             </figure>
                                         </div>
-                                        <div class="custom-file">
+                                        <!--<div class="custom-file">
                                             <input type="file" accept=".jpg, .jpeg, .png" class="custom-file-input"
                                                 id="aparaenciaID">
                                             <label *ngIf="ficha.NomePersonagem === ''"
@@ -1432,7 +1438,7 @@
                                                 class="custom-file-label d-inline-block text-truncate"
                                                 for="customFile">Escolha o arquivo da aparência de
                                                 {{ficha.NomePersonagem}}</label>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -1473,21 +1479,25 @@
                                             <input id="nomeAOID" class="form-control" type="text" name="nomeAO"
                                                 [(ngModel)]="ficha.NomeAO" #nomeAO="ngModel">
                                         </div>
+                                        <div class="form-group">
+                                            <label *ngIf="ficha.NomePersonagem == ''; else naoVazioAO" for="srcAOID">URL da Imagem dos Aliados/Organizações</label>
+                                            <ng-template #naoVazioAO><label for="srcAOID">URL da Imagem dos Aliados/Organizações de {{ficha.NomePersonagem}}</label></ng-template>
+                                            <input id="srcAOID" class="form-control" type="text" name="srcAO" [(ngModel)]="ficha.SrcAO" #srcAO="ngModel">
+                                        </div>   
                                         <div
                                             class="d-flex justify-content-center align-items-center border border-dark rounded mb-2">
                                             <figure class="figure mt-3 mx-2">
                                                 <img class="figure-img img-fluid w-100 rounded"
-                                                    src="https://vignette.wikia.nocookie.net/gameofthrones/images/7/72/Casa_Lannister.png/revision/latest?cb=20150719062457&path-prefix=pt-br"
-                                                    alt="">
+                                                    [attr.src]="ficha.SrcAO">
                                             </figure>
                                         </div>
-                                        <div class="custom-file">
+                                        <!--<div class="custom-file">
                                             <input type="file" accept=".jpg, .jpeg, .png" class="custom-file-input"
                                                 id="simboloOAID">
                                             <label class="custom-file-label d-inline-block text-truncate"
                                                 for="customFile">Escolha o símbolo de sua(eus)
                                                 organização/aliados</label>
-                                        </div>
+                                        </div>-->
                                         <br /><br />
                                         <div class="form-group">
                                             <label *ngIf="ficha.NomeAO === ''" for="historiaOA">Informações sobre
@@ -1559,46 +1569,46 @@
                                                 </td>
                                                 <!-- Atributo de Conjuração -->
                                                 <td>
-                                                    <input class="form-control mb-2" type="text" name="atrConjuM"
+                                                    <input class="form-control mb-2" type="text" name="atrConjuC"
                                                         ngModel="Carisma"
-                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
+                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'" #atrConjuC
                                                         readonly>
                                                     <input
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                        class="form-control mb-2" type="text" name="atrConjuM"
-                                                        ngModel="Sabedoria" readonly>
+                                                        class="form-control mb-2" type="text" name="atrConjuS"
+                                                        ngModel="Sabedoria" #atrConjuS readonly>
                                                     <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="text" name="atrConjuM" ngModel="Inteligência" readonly>
+                                                        type="text" name="atrConjuI" #atrConjuI ngModel="Inteligência" readonly>
                                                 </td>
                                                 <!-- CD P/ Evitar Suas Magias -->
                                                 <td>
 
-                                                    <input class="form-control mb-2" type="number" name="cdMagiasM"
-                                                        [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel"
+                                                    <input class="form-control mb-2" type="number" name="cdMagiasC"
+                                                        [(ngModel)]="classe.CDMagias" cdMagiasC="ngModel"
                                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
                                                         readonly>
                                                     <input
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                        class="form-control mb-2" type="number" name="cdMagiasM"
-                                                        [(ngModel)]="classe.CDMagias" cdMagiasM="ngModel" readonly>
+                                                        class="form-control mb-2" type="number" name="cdMagiasS"
+                                                        [(ngModel)]="classe.CDMagias" cdMagiasS="ngModel" readonly>
                                                     <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="number" name="cdMagiasM" [(ngModel)]="classe.CDMagias"
-                                                        cdMagiasM="ngModel" readonly>
+                                                        type="number" name="cdMagiasI" [(ngModel)]="classe.CDMagias"
+                                                        cdMagiasI="ngModel" readonly>
 
                                                 </td>
                                                 <!-- Modificador de Ataque Mágico -->
                                                 <td>
-                                                    <input class="form-control mb-2" type="number" name="modAMM"
-                                                        [(ngModel)]="classe.ModAM" modAMM="ngModel"
+                                                    <input class="form-control mb-2" type="number" name="modAMC"
+                                                        [(ngModel)]="classe.ModAM" modAMC="ngModel"
                                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
                                                         readonly>
                                                     <input
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
-                                                        class="form-control mb-2" type="number" name="modAMM"
-                                                        [(ngModel)]="classe.ModAM" modAMM="ngModel" readonly>
+                                                        class="form-control mb-2" type="number" name="modAMS"
+                                                        [(ngModel)]="classe.ModAM" modAMS="ngModel" readonly>
                                                     <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="number" name="modAMM" [(ngModel)]="classe.ModAM"
-                                                        modAMM="ngModel" readonly>
+                                                        type="number" name="modAMI" [(ngModel)]="classe.ModAM"
+                                                        modAMI="ngModel" readonly>
 
                                                 </td>
                                             </tr>
@@ -1613,13 +1623,56 @@
                                     class="text-center">
                                     <div
                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                        <label>Suas Magias de {{classe.Classe}}</label> <br />
-                                        <app-modal-magias [classe]="classe.Classe" [index]="i"
+                                        <br/><br/><label>Suas Magias de {{classe.Classe}}</label> <br />
+                                        <!--<app-modal-magias [classe]="classe.Classe" [index]="i"
                                             [magiasPai]="classe.Magias" (salvarAlteracoes)="evento($event)" >
                                         </app-modal-magias>
                                         <div *ngFor="let magia of classe.Magias[0]">
                                             {{magia.NomeMagia}}
+                                        </div>-->
+                                        <div class="row row-lg-cols-2">
+                                            <div class="form-group col-lg-6">
+                                                <label for="'n0-' + classe.Classe + '-ID'">Nível 0</label>
+                                                <textarea [attr.id]="'n0-' + classe + '-ID'" class="form-control" name="n0" rows="3" #n0="ngModel" [(ngModel)]="classe.Magias[0]" placeholder="Truques"></textarea>
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="'n1-' + classe.Classe + '-ID'">Nível 1</label>
+                                                <textarea id="'n1-' + classe.Classe + '-ID'" class="form-control" name="n1" rows="3" #n1="ngModel" [(ngModel)]="classe.Magias[1]" placeholder="Magias de Nível 1"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n2-' + classe.Classe + '-ID'">Nível 2</label>
+                                                <textarea id="'n2-' + classe.Classe + '-ID'" class="form-control" name="n2" rows="3" #n2="ngModel" [(ngModel)]="classe.Magias[2]" placeholder="Magias de Nível 2"></textarea>
+                                            </div>                                            
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n3-' + classe.Classe + '-ID'">Nível 3</label>
+                                                <textarea [attr.id]="'n3-' + classe + '-ID'" class="form-control" name="n3" rows="3" #n3="ngModel" [(ngModel)]="classe.Magias[3]" placeholder="Magias de Nível 3"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n4-' + classe.Classe + '-ID'">Nível 4</label>
+                                                <textarea id="'n4-' + classe.Classe + '-ID'" class="form-control" name="n4" rows="3" #n4="ngModel" [(ngModel)]="classe.Magias[4]" placeholder="Magias de Nível 4"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n5-' + classe.Classe + '-ID'">Nível 5</label>
+                                                <textarea id="'n5-' + classe.Classe + '-ID'" class="form-control" name="n5" rows="3" #n5="ngModel" [(ngModel)]="classe.Magias[5]" placeholder="Magias de Nível 5"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n6-' + classe.Classe + '-ID'">Nível 6</label>
+                                                <textarea id="'n6-' + classe.Classe + '-ID'" class="form-control" name="n6" rows="3" #n6="ngModel" [(ngModel)]="classe.Magias[6]" placeholder="Magias de Nível 6"></textarea>
+                                            </div>                                            
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n7-' + classe.Classe + '-ID'">Nível 7</label>
+                                                <textarea [attr.id]="'n7-' + classe + '-ID'" class="form-control" name="n7" rows="3" #n7="ngModel" [(ngModel)]="classe.Magias[7]" placeholder="Magias de Nível 7"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n8-' + classe.Classe + '-ID'">Nível 8</label>
+                                                <textarea id="'n8-' + classe.Classe + '-ID'" class="form-control" name="n8" rows="3" #n8="ngModel" [(ngModel)]="classe.Magias[8]" placeholder="Magias de Nível 8"></textarea>
+                                            </div>
+                                            <div class="form-group  col-lg-6">
+                                                <label for="'n9-' + classe.Classe + '-ID'">Nível 9</label>
+                                                <textarea id="'n9-' + classe.Classe + '-ID'" class="form-control" name="n9" rows="3" #n9="ngModel" [(ngModel)]="classe.Magias[9]" placeholder="Magias de Nível 9"></textarea>
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <!-- Fim Lista de Magias -->

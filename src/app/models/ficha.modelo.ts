@@ -4,6 +4,7 @@ export class Ficha {
     //Dados Básicos
     public Id: number;
     public NomePersonagem: string = '';
+    //public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
     public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
     public Nivel: number = 1;
     public Antecedente: string  = '';
@@ -62,6 +63,9 @@ export class Ficha {
     //Magias
     //Classes conjuradoras
 
+    //Caracteristicas
+    public SrcPersonagem : string = '';
+    public SrcAO :  string = '';
 
     //Atuais
     public ClasseAtual : string = '0';
