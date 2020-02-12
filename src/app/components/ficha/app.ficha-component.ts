@@ -63,15 +63,19 @@ export class FichaComponent implements OnInit {
     }
 
     mudarProf(lvlAtual: number): void {
-        this.ajustTests(Math.ceil(lvlAtual / 4) + 1);
-        this.ficha.proficiencia = "+" + (Math.ceil(lvlAtual / 4) + 1)
-        this.profAtual = Math.ceil(lvlAtual / 4) + 1        
+        var prof = Math.ceil(lvlAtual / 4) + 1    
+        if(this.profAtual !== prof)
+            this.ajustTests(prof);                
+        this.ficha.proficiencia = "+" + prof
+        this.profAtual = prof
     }
 
     ajustTests(prof : number){
-        /*if(this.profAtual !== prof){
-
-        }*/            
+        this.setTest(this.atr1Atual, false)            
+        this.setTest(this.atr2Atual, false)
+        this.ficha.proficiencia = "+" + prof
+        this.setTest(this.atr1Atual, true)
+        this.setTest(this.atr2Atual, true)
     }
 
     mudarMod(n: number): void {
@@ -349,7 +353,7 @@ export class FichaComponent implements OnInit {
 
     }
 
-    setTest(t: number, check: boolean): void {
+    setTest(t: number, check: boolean) {
         //this.arrayCheck[r] = check;
         let prof = parseInt(this.ficha.proficiencia);
         //console.log(this.arrayCheck.slice(r, r+1));
