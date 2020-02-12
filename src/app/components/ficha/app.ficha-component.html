@@ -46,7 +46,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="classeID">Escolha sua classe </label>
                                                 <select class="custom-select" id="classeID"
-                                                    (change)="clickClasse(classe.value)" name="classe"
+                                                    (change)="setClasse(classe.value)" name="classe"
                                                     [(ngModel)]="ficha.Classes[0].Classe" #classe="ngModel">
                                                     <option value="">------</option>
                                                     <option value="Bárbaro" data-toggle="tooltip" data-placement="top"
@@ -198,9 +198,9 @@
                                             <!-- Nível Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label class="selLvlID" for="selLvl">Nível</label>
-                                                <input type="number" class="form-control" min="1" max="20" name="nivel"
+                                                <input type="number" class="form-control" min="1" name="nivel"
                                                     [(ngModel)]="ficha.Nivel" #nivel="ngModel"
-                                                    (change)="mudarProf(nivel.value)" id="selLvlID"
+                                                    (change)="mudarProf(nivel.value)" id="nivelID"
                                                     placeholder="Seu Nível" />
                                             </div>
                                             <!-- Antecedente Personagem -->

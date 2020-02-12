@@ -20,6 +20,9 @@ export class FichaComponent implements OnInit {
     perfilAtual: number;
     fichaAtual: number;
 
+    atr1Atual : number;
+    atr2Atual : number;
+    profAtual : number;
     checked: boolean = false;
 
     constructor(private route: ActivatedRoute,
@@ -60,7 +63,15 @@ export class FichaComponent implements OnInit {
     }
 
     mudarProf(lvlAtual: number): void {
+        this.ajustTests(Math.ceil(lvlAtual / 4) + 1);
         this.ficha.proficiencia = "+" + (Math.ceil(lvlAtual / 4) + 1)
+        this.profAtual = Math.ceil(lvlAtual / 4) + 1        
+    }
+
+    ajustTests(prof : number){
+        /*if(this.profAtual !== prof){
+
+        }*/            
     }
 
     mudarMod(n: number): void {
@@ -338,7 +349,7 @@ export class FichaComponent implements OnInit {
 
     }
 
-    clickTeste(t: number, check: boolean): void {
+    setTest(t: number, check: boolean): void {
         //this.arrayCheck[r] = check;
         let prof = parseInt(this.ficha.proficiencia);
         //console.log(this.arrayCheck.slice(r, r+1));
@@ -353,7 +364,7 @@ export class FichaComponent implements OnInit {
                 this.ficha.setTeste(this.ficha.getTeste(t) + prof, t);
     }
 
-    retCheck(p: number): HTMLInputElement {
+    checksAtr(p: number): HTMLInputElement {
         let checkFor: HTMLInputElement = document.getElementById('forTesteRadID') as HTMLInputElement;
         let checkDes: HTMLInputElement = document.getElementById('desTesteRadID') as HTMLInputElement;
         let checkCon: HTMLInputElement = document.getElementById('conTesteRadID') as HTMLInputElement;
@@ -376,154 +387,96 @@ export class FichaComponent implements OnInit {
                 return checkCar;
         }
     }
+        
+    setClasse(c: string): void {
+        var atr1;
+        var atr2;
 
-    clickClasse(c: string): void {
-        /*for (let i = 0; i < 6; i++)
-            this.retCheck(i).checked = false;*/
+        for (let i = 0; i < 6; i++)
+            this.checksAtr(i).checked = false;
 
-        /*if(this.classeAtual != '0')
-            for(let i = 0; i < 6; i++)
-                if(this.retCheck(i).checked == false)
-                    this.clickTeste(i, this.retCheck(i).checked);*/
+        switch (c) {
+            case 'Bárbaro':
+                this.checksAtr(0).checked = true;
+                this.checksAtr(2).checked = true;
+                atr1 = 0;
+                atr2 = 2;
+                break;
+            case 'Bardo':
+                this.checksAtr(1).checked = true;
+                this.checksAtr(5).checked = true;
+                atr1 = 1;
+                atr2 = 5;
+                break;
+            case 'Bruxo':
+                this.checksAtr(4).checked = true;
+                this.checksAtr(5).checked = true;
+                atr1 = 4;
+                atr2 = 5;
+                break;
+            case 'Clérigo':
+                this.checksAtr(4).checked = true;
+                this.checksAtr(5).checked = true;
+                atr1 = 4;
+                atr2 = 5;
+                break;
+            case 'Druida':
+                this.checksAtr(3).checked = true;
+                this.checksAtr(4).checked = true;
+                atr1 = 3;
+                atr2 = 4;
+                break;
+            case 'Feiticeiro':
+                this.checksAtr(2).checked = true;
+                this.checksAtr(5).checked = true;
+                atr1 = 2;
+                atr2 = 5;
+                break;
+            case 'Guerreiro':
+                this.checksAtr(0).checked = true;
+                this.checksAtr(2).checked = true;
+                atr1 = 0;
+                atr2 = 2;
+                break;
+            case 'Ladino':
+                this.checksAtr(1).checked = true;
+                this.checksAtr(3).checked = true;
+                atr1 = 1;
+                atr2 = 3;
+                break;
+            case 'Mago':
+                this.checksAtr(3).checked = true;
+                this.checksAtr(4).checked = true;
+                atr1 = 3;
+                atr2 = 4;
+                break;
+            case 'Monge':
+                this.checksAtr(0).checked = true;
+                this.checksAtr(1).checked = true;
+                atr1 = 0;
+                atr2 = 1;
+                break;
+            case 'Paladino':
+                this.checksAtr(4).checked = true;
+                this.checksAtr(5).checked = true;
+                atr1 = 4;
+                atr2 = 5;
+                break;
+            case 'Patrulheiro':
+                this.checksAtr(0).checked = true;
+                this.checksAtr(1).checked = true;
+                atr1 = 0;
+                atr2 = 1;
+                break;
+        }                
 
-        /*switch (c) {
-            case '1':
-                this.retCheck(0).checked = true;
-                this.retCheck(2).checked = true;
-                break;
-            case '2':
-                this.retCheck(1).checked = true;
-                this.retCheck(5).checked = true;
-                break;
-            case '3':
-                this.retCheck(4).checked = true;
-                this.retCheck(5).checked = true;
-                break;
-            case '4':
-                this.retCheck(4).checked = true;
-                this.retCheck(5).checked = true;
-                break;
-            case '5':
-                this.retCheck(3).checked = true;
-                this.retCheck(4).checked = true;
-                break;
-            case '6':
-                this.retCheck(2).checked = true;
-                this.retCheck(5).checked = true;
-                break;
-            case '7':
-                this.retCheck(0).checked = true;
-                this.retCheck(2).checked = true;
-                break;
-            case '8':
-                this.retCheck(1).checked = true;
-                this.retCheck(3).checked = true;
-                break;
-            case '9':
-                this.retCheck(3).checked = true;
-                this.retCheck(4).checked = true;
-                break;
-            case '10':
-                this.retCheck(0).checked = true;
-                this.retCheck(1).checked = true;
-                break;
-            case '11':
-                this.retCheck(4).checked = true;
-                this.retCheck(5).checked = true;
-                break;
-            case '12':
-                this.retCheck(0).checked = true;
-                this.retCheck(1).checked = true;
-                break;
-            default:
-                break;
-        }
-
-        switch (this.ficha.classeAtual) {
-            case '1':
-                if (this.retCheck(0).checked != true)
-                    this.retCheck(0).checked = false;
-                if (this.retCheck(2).checked != true)
-                    this.retCheck(2).checked = false;
-                break;
-            case '2':
-                if (this.retCheck(1).checked != true)
-                    this.retCheck(1).checked = false;
-                if (this.retCheck(5).checked != true)
-                    this.retCheck(5).checked = false;
-                break;
-            case '3':
-                if (this.retCheck(4).checked != true)
-                    this.retCheck(4).checked = false;
-                if (this.retCheck(5).checked != true)
-                    this.retCheck(5).checked = false;
-                break;
-            case '4':
-                if (this.retCheck(4).checked != true)
-                    this.retCheck(4).checked = false;
-                if (this.retCheck(5).checked != true)
-                    this.retCheck(5).checked = false;
-                break;
-            case '5':
-                if (this.retCheck(3).checked != true)
-                    this.retCheck(3).checked = false;
-                if (this.retCheck(4).checked != true)
-                    this.retCheck(4).checked = false;
-                break;
-            case '6':
-                if (this.retCheck(2).checked != true)
-                    this.retCheck(2).checked = false;
-                if (this.retCheck(0).checked != true)
-                    this.retCheck(0).checked = false;
-                break;
-            case '7':
-                if (this.retCheck(0).checked == true)
-                    this.retCheck(0).checked = true;
-                else
-                    this.retCheck(0).checked = false;
-
-                if (this.retCheck(2).checked == true)
-                    this.retCheck(2).checked = true;
-                else
-                    this.retCheck(2).checked = false;
-                break;
-            case '8':
-                if (this.retCheck(1).checked != true)
-                    this.retCheck(1).checked = false;
-                if (this.retCheck(3).checked != true)
-                    this.retCheck(3).checked = false;
-                break;
-            case '9':
-                if (this.retCheck(3).checked != true)
-                    this.retCheck(3).checked = false;
-                if (this.retCheck(4).checked != true)
-                    this.retCheck(4).checked = false;
-                break;
-            case '10':
-                if (this.retCheck(0).checked != true)
-                    this.retCheck(0).checked = false;
-                if (this.retCheck(1).checked != true)
-                    this.retCheck(1).checked = false;
-                break;
-            case '11':
-                if (this.retCheck(4).checked != true)
-                    this.retCheck(4).checked = false;
-                if (this.retCheck(5).checked != true)
-                    this.retCheck(5).checked = false;
-                break;
-            case '12':
-                if (this.retCheck(0).checked != true)
-                    this.retCheck(0).checked = false;
-                if (this.retCheck(1).checked != true)
-                    this.retCheck(1).checked = false;
-                break;
-            default:
-                break;
-        }*/
-
-        /*for(let i = 0; i < 6; i++)
-            if(this.retCheck(i).checked == true)
-                this.clickTeste(i, this.retCheck(i).checked);*/
+        this.setTest(atr1, this.checksAtr(atr1).checked);
+        this.setTest(atr2, this.checksAtr(atr2).checked);
+        this.setTest(this.atr1Atual, false);
+        this.setTest(this.atr2Atual, false);
+        this.atr1Atual = atr1
+        this.atr2Atual = atr2
+        
         this.ficha.Classes[0] = { Classe: c, CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };       
     }
 

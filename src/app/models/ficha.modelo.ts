@@ -68,84 +68,13 @@ export class Ficha {
     public SrcAO :  string = '';
 
     //Atuais
-    public ClasseAtual : string = '0';
     public RacaAtual : string = '0';
     public SubRacaAtual : string = '0';
     
     //Perfil
     public IdPerfil : number;
 
-
-    /*constructor(
-        private _ID: number,
-        private _NomePersonagem: string,
-        private _Classe : string,
-        private _Nivel : number,
-        private _Antecedente : string,
-        private _NomeJogador : string,
-        private _Raca : string,
-        private _SubRaca : string,
-        private _Tendencia : string,
-        private _Alinhamento : string,
-        private _Experiencia : number,
-        private _For : number,
-        private _Des : number,
-        private _Con : number,
-        private _Int : number,
-        private _Sab : number,
-        private _Car : number,
-        private _ForMod : number,
-        private _DesMod : number,
-        private _ConMod : number,
-        private _IntMod : number,
-        private _SabMod : number,
-        private _CarMod : number,
-        private _Inspiracao : number,
-        private _Proficiencia : string,
-        private _ForTeste : number,
-        private _DesTeste : number,
-        private _ConTeste : number,
-        private _IntTeste : number,
-        private _SabTeste : number,
-        private _CarTeste : number,
-        private _CampoIdiomas : string
-    ) {
-        this.Id = _ID;
-        this.NomePersonagem = _NomePersonagem;
-        this.Classe = _Classe;
-        this.Nivel = _Nivel;
-        this.Antecedente = _Antecedente;
-        this.NomeJogador = _NomeJogador;
-        this.Raca = _Raca;
-        this.SubRaca = _SubRaca;
-        this.Tendencia = _Tendencia;
-        this.Alinhamento = _Alinhamento;
-        this.Experiencia = _Experiencia;
-        this.For = _For;
-        this.Des = _Des;
-        this.Con = _Con;
-        this.Int = _Int;
-        this.Sab = _Sab;
-        this.Car = _Car;
-        this.ForMod = _ForMod;
-        this.DesMod = _DesMod;
-        this.ConMod = _ConMod;
-        this.IntMod = _IntMod;
-        this.SabMod = _SabMod;
-        this.CarMod = _CarMod;
-        this.Inspiracao = _Inspiracao;
-        this.Proficiencia = _Proficiencia;
-        this.ForTeste = _ForTeste;
-        this.DesTeste = _DesTeste;
-        this.ConTeste = _ConTeste;
-        this.IntTeste = _IntTeste;
-        this.SabTeste = _SabTeste;
-        this.CarTeste = _CarTeste;
-        this.CampoIdiomas = _CampoIdiomas;
-    }*/
-
     //Setters and Getters
-
     //Dados Básicos
     public get id(): number {
         return this.Id;
@@ -389,14 +318,7 @@ export class Ficha {
     }
 
     //Atuais
-    public get classeAtual() : string {
-        return this.ClasseAtual;
-    }
-    public set classeAtual(c : string){
-        this.ClasseAtual = c;
-    }
-
-    public get racaAtual() : string {
+        public get racaAtual() : string {
         return this.RacaAtual;
     }
     public set racaAtual(r : string){
