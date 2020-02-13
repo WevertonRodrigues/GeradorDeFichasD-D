@@ -5,7 +5,7 @@ export class Ficha {
     public Id: number;
     public NomePersonagem: string = '';
     //public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
-    public Classes :  {Classe : string, DadoDeVida : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
+    public Classes :  {Classe : string, DadoDeVida : string, CDMagias : number, ModAM : number, Magias  : string[] } [];
     public Nivel: number = 1;
     public Antecedente: string  = '';
     public NomeJogador: string = '';
@@ -415,76 +415,76 @@ export class Ficha {
         }
     }
     
-    public getMod(atr : number): number{
+    public getMod(atr : string): number{
 
-        if(atr == 0)
+        if(atr == 'forTesteRadID')
             return this.ForMod;
-        if(atr == 1)
+        if(atr == 'desTesteRadID')
             return this.DesMod;
-        if(atr == 2)
+        if(atr == 'conTesteRadID')
             return this.ConMod;
-        if(atr == 3)
+        if(atr == 'intTesteRadID')
             return this.IntMod;
-        if(atr == 4)
+        if(atr == 'sabTesteRadID4')
             return this.SabMod;
-        if(atr == 5)
+        if(atr == 'carTesteRadID5')
             return this.CarMod;
     }
 
-    public setMod(n : number, atr : number){
-        if(atr == 0){
+    public setMod(n : number, atr : string){
+        if(atr == 'forTesteRadID'){
             this.ForMod = n;
         }
-        if(atr == 1){
+        if(atr == 'desTesteRadID'){
             this.DesMod = n;
         }
-        if(atr == 2){
+        if(atr == 'conTesteRadID'){
             this.ConMod = n;
         }
-        if(atr == 3){
+        if(atr == 'intTesteRadID'){
             this.IntMod = n;
         }
-        if(atr == 4){
+        if(atr == 'sabTesteRadID4'){
             this.SabMod = n;
         }
-        if(atr == 5){
+        if(atr == 'carTesteRadID'){
             this.CarMod = n;
         }
     }
 
-    public getTeste(atr : number): number{
+    public getTeste(atr : string): number{
 
-        if(atr == 0)
+        if(atr == 'forTesteRadID')
             return this.ForTeste;
-        if(atr == 1)
+        if(atr == 'desTesteRadID')
             return this.DesTeste;
-        if(atr == 2)
+        if(atr == 'conTesteRadID')
             return this.ConTeste;
-        if(atr == 3)
+        if(atr == 'intTesteRadID')
             return this.IntTeste;
-        if(atr == 4)
+        if(atr == 'sabTesteRadID')
             return this.SabTeste;
-        if(atr == 5)
+        if(atr == 'carTesteRadID')
             return this.CarTeste;
     }
 
-    public setTeste(n : number, atr : number){
-        if(atr == 0){
+    public setTeste(n : number, atr : string){
+        if(atr == 'forTesteRadID'){
             this.ForTeste = n;
         }
-        if(atr == 1){
+        if(atr == 'desTesteRadID'){
             this.DesTeste = n;
         }            
-        if(atr == 2){
+        if(atr == 'conTesteRadID'){
             this.ConTeste = n;
         }
-        if(atr == 3){
+        if(atr == 'intTesteRadID'){
             this.IntTeste = n;
         }
-        if(atr == 4){
+        if(atr == 'sabTesteRadID'){
             this.SabTeste = n;
         }
-        if(atr == 5){
+        if(atr == 'carTesteRadID'){
             this.CarTeste = n;
         }
     }
