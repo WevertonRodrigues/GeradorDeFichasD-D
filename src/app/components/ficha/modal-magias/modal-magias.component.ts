@@ -144,8 +144,6 @@ export class ModalMagiasComponent implements OnInit, AfterViewInit {
       this.magias[nivel].push({ NomeMagia: magia })
     else
       this.magias[nivel].splice(i, 1)
-
-
   }
 
   salvarMagias() {

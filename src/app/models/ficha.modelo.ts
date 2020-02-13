@@ -5,7 +5,7 @@ export class Ficha {
     public Id: number;
     public NomePersonagem: string = '';
     //public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
-    public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
+    public Classes :  {Classe : string, DadoDeVida : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
     public Nivel: number = 1;
     public Antecedente: string  = '';
     public NomeJogador: string = '';
@@ -15,9 +15,16 @@ export class Ficha {
     public Alinhamento: string = '';
     public Experiencia: number = 0;
 
-    //Pontos de Vida, CA e Outros
+    //Pontos de Vida, CA & Outros
+    public Ca : number = 0;
+    public Deslo = 0;
+    public DesloV = 0;
+    public PvMax = 0;
+    public PvAtu = 0;
+    public PvTemp = 0;
     public DadosDeVida : string[] = [];
 
+    //Atributos & Perícias
     //Atributos
     public For: number = 1;
     public Des: number = 1;
@@ -25,16 +32,13 @@ export class Ficha {
     public Int: number = 1;
     public Sab: number = 1;
     public Car: number = 1;
+    //Modificadores
     public ForMod: number = -5;
     public DesMod: number = -5;
     public ConMod: number = -5;
     public IntMod: number = -5;
     public SabMod: number = -5;
     public CarMod: number = -5;
-    public Inspiracao: number = 0;
-    public Proficiencia: string = '+2';
-    public SabedoriaPassiva: number = -5;
-
     //Testes de Resistências
     public ForTeste: number = 1;
     public DesTeste: number = 1;
@@ -42,12 +46,44 @@ export class Ficha {
     public IntTeste: number = 1;
     public SabTeste: number = 1;
     public CarTeste: number = 1;
+    //Perícias
+    //Força
+    public Atletismo : number = -5;
+    //Destreza
+    public Acrobacia : number = -5;
+    public Furtividade : number = -5;    
+    public Prestidigitacao : number = -5;
+    //Inteligência
+    public Arcanismo : number = -5;
+    public Historia : number = -5;
+    public Investigacao : number = -5;
+    public Natureza : number = -5;
+    public Religiao : number = -5;
+    //Sabedoria
+    public Intuicao : number = -5;
+    public Medicina : number = -5;
+    public Percepcao : number = -5;
+    public Lca : number = -5;
+    public Sobrevivencia : number = -5;
+    //Carisma
+    public Atuacao : number = -5;
+    public Enganacao : number = -5;
+    public Intimidacao : number = -5;
+    public Persuacao : number = -5;
+    //Outros
+    public Inspiracao: number = 0;
+    public Proficiencia: string = '+2';
+    public SabedoriaPassiva: number = -5;
+    
+    //Idiomas & Outras Características
+    public CampoIdiomas: string = '';
 
-    //Pontos de Vida, Classe de Armadura e Outros
+    //Pontos de Vida, Classe de Armadura & Outros
     public Inici : number = -5; 
 
     //Ataques & Conjurações
     public Ataques : {NomeAtaque : string, BonusAtaque : number, DanoTipoAtaque : string}[] = []
+    public TaAC : string = '';
 
     //Equipamentos
     public Pc : number = 0;
@@ -57,10 +93,17 @@ export class Ficha {
     public Pl : number = 0;
     public Equips : {NomeItem : string; StatusItem : string}[] = [];
 
-    //Idiomas e Outras Características
-    public CampoIdiomas: string = '';
+    //Descrição do Personagem
+    public Tracos : string = '';
+    public Ideais : string = '';
+    public Vinculos : string = '';
+    public Fraquezas : string = '';
 
-    //Magias
+    //Características & Talentos
+    public Caracteristicas : string = '';
+    public Talentos : string = ''
+
+    //Magias - Página 3
     //Classes conjuradoras
 
     //Caracteristicas

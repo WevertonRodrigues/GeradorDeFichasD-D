@@ -1,4 +1,4 @@
-import { Component, ViewChild, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, ViewChild, ComponentFactoryResolver, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaService } from 'src/app/service/app.ficha-service';
@@ -13,36 +13,39 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 
 export class FichaComponent implements OnInit {
-    ficha: Ficha = new Ficha();
+    private ficha: Ficha = new Ficha();
 
-    fichas: Ficha[] = [];
+    private fichas: Ficha[] = [];
 
-    perfilAtual: number;
-    fichaAtual: number;
+    private perfilAtual: number;
+    private fichaAtual: number;
 
-    atr1Atual : number;
-    atr2Atual : number;
-    profAtual : number;
-    checked: boolean = false;
+    private atr1Atual: number;
+    private atr2Atual: number;
+    private profAtual: number;
+    private checked: boolean = false;  
+
+    @ViewChild('multiclasse', {static : false}) private multiclasse: ElementRef;
+
 
     constructor(private route: ActivatedRoute,
-        private router: Router, ) { }
+        private router: Router, private renderer: Renderer2) { }
 
     /*constructor(private route: ActivatedRoute,
         private router: Router,
         private fichaService: FichaService) { }*/
 
-    ngOnInit() {          
+    ngOnInit() {
         /*this.route.params.subscribe((objeto: any) => {
             this.fichaAtual = +objeto['idFicha'];
             this.perfilAtual = +objeto['idPerfil'];
         })*/
         //this.getFichas();
-        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: []});
+        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: [] });
         //console.log(this.ficha.Classes)
     }
 
-    criarMatriz(){
+    criarMatriz() {
         var magias = new Array(10);
         for (var i = 0; i < magias.length; i++) {
             magias[i] = new Array();
@@ -52,26 +55,26 @@ export class FichaComponent implements OnInit {
 
     evento(obj: any) {
         //console.log(obj)
-        this.ficha.Classes[obj.i].Magias = obj.Magias        
+        this.ficha.Classes[obj.i].Magias = obj.Magias
         //this.ficha.Classes[obj.i].Magias
         console.log(obj)
     }
 
     resetar() {
         this.ficha = new Ficha();
-        this.ficha.Classes = new Array({Classe: '', CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz()});
+        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });
     }
 
     mudarProf(lvlAtual: number): void {
-        var prof = Math.ceil(lvlAtual / 4) + 1    
-        if(this.profAtual !== prof)
-            this.ajustTests(prof);                
+        var prof = Math.ceil(lvlAtual / 4) + 1
+        if (this.profAtual !== prof)
+            this.ajustTests(prof);
         this.ficha.proficiencia = "+" + prof
         this.profAtual = prof
     }
 
-    ajustTests(prof : number){
-        this.setTest(this.atr1Atual, false)            
+    ajustTests(prof: number) {
+        this.setTest(this.atr1Atual, false)
         this.setTest(this.atr2Atual, false)
         this.ficha.proficiencia = "+" + prof
         this.setTest(this.atr1Atual, true)
@@ -369,6 +372,7 @@ export class FichaComponent implements OnInit {
     }
 
     checksAtr(p: number): HTMLInputElement {
+                
         let checkFor: HTMLInputElement = document.getElementById('forTesteRadID') as HTMLInputElement;
         let checkDes: HTMLInputElement = document.getElementById('desTesteRadID') as HTMLInputElement;
         let checkCon: HTMLInputElement = document.getElementById('conTesteRadID') as HTMLInputElement;
@@ -391,10 +395,10 @@ export class FichaComponent implements OnInit {
                 return checkCar;
         }
     }
-        
-    setClasse(c: string): void {
-        var atr1;
-        var atr2;
+
+    setClassePrimaria(c: string): void {
+        var atr1: number = 0;
+        var atr2: number = 0;
 
         for (let i = 0; i < 6; i++)
             this.checksAtr(i).checked = false;
@@ -472,7 +476,7 @@ export class FichaComponent implements OnInit {
                 atr1 = 0;
                 atr2 = 1;
                 break;
-        }                
+        }
 
         this.setTest(atr1, this.checksAtr(atr1).checked);
         this.setTest(atr2, this.checksAtr(atr2).checked);
@@ -480,8 +484,7 @@ export class FichaComponent implements OnInit {
         this.setTest(this.atr2Atual, false);
         this.atr1Atual = atr1
         this.atr2Atual = atr2
-        
-        this.ficha.Classes[0] = { Classe: c, CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };       
+        this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };
     }
 
     calcularCD(classe: string) {
@@ -514,24 +517,33 @@ export class FichaComponent implements OnInit {
                 }
             }
     }
+
     adicionarMulticlasse(classe: string) {
         if (classe !== '')
-            this.ficha.Classes.push({ Classe: classe, CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz()});
-            
-        //console.log(this.ficha.Classes)
+            this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
+        this.removeOfSelect(classe)
     }
 
     removerMulticlasse(i: number, id: number) {
         this.ficha.Classes.splice(i, 1)
     }
 
-    adicionarDado(dado: string) {
-        if (dado !== '')
-            this.ficha.DadosDeVida.push(dado);
+    removeOfSelect(classe : string){
+        //if(classe === 'Paladino')
+        this.renderer.removeChild(this.multiclasse.nativeElement, 0)
     }
 
-    removerDado(i: number) {
-        this.ficha.DadosDeVida.splice(i, 1)
+    adicionarDado(classe: string) {
+        if(classe === 'Feiticeiro' || classe === 'Mago')
+            return 'd6';
+        if(classe === 'Bardo' || classe === 'Bruxo' || classe === 'Clérigo' || classe === 'Druida' || classe === 'Ladino' || classe === 'Monge')
+            return 'd8';
+        if(classe === 'Guerreiro' || classe === 'Paladino' || classe === 'Patrulheiro')
+            return 'd10';
+        if(classe === 'Bárbaro')
+            return 'd12';
+        if(classe === '')
+            return '';
     }
 
     adicionarAtaque(nome: string, ba: any, dt: string) {
@@ -629,9 +641,9 @@ export class FichaComponent implements OnInit {
             this.voltar();
         }*/
 
-    salvarAlteracoes(){
-        for(let i = 0; i < this.ficha.Classes.length; i++)
-            if(this.ficha.Classes[i].Classe === 'Bardo' || this.ficha.Classes[i].Classe === 'Bruxo' || this.ficha.Classes[i].Classe === 'Clérigo' || this.ficha.Classes[i].Classe === 'Feiticeiro' || this.ficha.Classes[i].Classe === 'Mago' || this.ficha.Classes[i].Classe === 'Paladino' || this.ficha.Classes[i].Classe === 'Patrulheiro')
+    salvarAlteracoes() {
+        for (let i = 0; i < this.ficha.Classes.length; i++)
+            if (this.ficha.Classes[i].Classe === 'Bardo' || this.ficha.Classes[i].Classe === 'Bruxo' || this.ficha.Classes[i].Classe === 'Clérigo' || this.ficha.Classes[i].Classe === 'Feiticeiro' || this.ficha.Classes[i].Classe === 'Mago' || this.ficha.Classes[i].Classe === 'Paladino' || this.ficha.Classes[i].Classe === 'Patrulheiro')
                 console.log(this.ficha.Classes[i].Magias)
     }
 
