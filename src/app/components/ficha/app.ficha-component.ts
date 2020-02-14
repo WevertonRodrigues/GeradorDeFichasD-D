@@ -1,9 +1,6 @@
-import { Component, ViewChild, ComponentFactoryResolver, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FichaService } from 'src/app/service/app.ficha-service';
-import { Observable } from 'rxjs';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
     selector: 'app-ficha',
@@ -15,18 +12,15 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 export class FichaComponent implements OnInit {
     private ficha: Ficha = new Ficha();
 
-    private fichas: Ficha[] = [];
 
     private perfilAtual: number;
-    private fichaAtual: number;
 
-    private atr1Atual: {id : number, idDOM : string} = {id : 0, idDOM : ''};
-    private atr2Atual: {id : number, idDOM : string} = {id : 0, idDOM : ''};
+    private atr1Atual: string = '';
+    private atr2Atual: string = '';
 
     private profAtual: number;
-    private checked: boolean = false;  
 
-    @ViewChild('multiclasse', {static : false}) private multiclasse: ElementRef;
+    @ViewChild('multiclasse', { static: false }) private multiclasse: ElementRef;
 
 
     constructor(private route: ActivatedRoute,
@@ -68,6 +62,10 @@ export class FichaComponent implements OnInit {
         this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
     }
 
+    setSKill(id : string, ){
+        console.log(this.checkAtr(id).checked)
+    }
+
     mudarProf(lvlAtual: number): void {
         var prof = Math.ceil(lvlAtual / 4) + 1
         if (this.profAtual !== prof)
@@ -77,15 +75,11 @@ export class FichaComponent implements OnInit {
     }
 
     ajustTests(prof: number) {
-        this.setTest(this.atr1Atual.idDOM, false)
-        this.setTest(this.atr2Atual.idDOM, false)
+        this.setSaving(this.atr1Atual, false)
+        this.setSaving(this.atr2Atual, false)
         this.ficha.proficiencia = "+" + prof
-        this.setTest(this.atr1Atual.idDOM, true)
-        this.setTest(this.atr2Atual.idDOM, true)
-    }
-
-    ajustSkills(prof : number){
-
+        this.setSaving(this.atr1Atual, true)
+        this.setSaving(this.atr2Atual, true)
     }
 
     mudarMod(n: number): void {
@@ -95,7 +89,7 @@ export class FichaComponent implements OnInit {
 
     mudarTeste(n: string): void {
         //console.log(this.ficha.getTeste(n));
-        let m: number = this.ficha.getMod(n); /*+ this.ficha.getTeste(n)*/;
+        //let m: number = this.ficha.getMod(n); /*+ this.ficha.getTeste(n)*/;
         let t: number = this.ficha.getTeste(n);
         /*console.log(t);
         console.log(m);
@@ -363,7 +357,7 @@ export class FichaComponent implements OnInit {
 
     }
 
-    setTest(t: string, check: boolean) {
+    setSaving(t: string, check: boolean) {
         //this.arrayCheck[r] = check;
         let prof = parseInt(this.ficha.proficiencia);
         //console.log(this.arrayCheck.slice(r, r+1));
@@ -373,127 +367,114 @@ export class FichaComponent implements OnInit {
             this.ficha.setTeste(this.ficha.getTeste(t) + prof, t);
         else
             this.ficha.setTeste(this.ficha.getTeste(t) - prof, t);
-            
+
     }
 
-    checksAtr(id : string): HTMLInputElement {
-        
-        
+    checkAtr(id: string): HTMLInputElement {
+        /*if (id == this.atr1Atual)
+            id = this.atr1Atual
+        if (id == this.atr2Atual)
+            id = this.atr2Atual*/
+
         let check: HTMLInputElement = document.getElementById(id) as HTMLInputElement;
-        let checkFor: HTMLInputElement = document.getElementById('forTesteRadID') as HTMLInputElement;
-        let checkDes: HTMLInputElement = document.getElementById('desTesteRadID') as HTMLInputElement;
-        let checkCon: HTMLInputElement = document.getElementById('conTesteRadID') as HTMLInputElement;
-        let checkInt: HTMLInputElement = document.getElementById('intTesteRadID') as HTMLInputElement;
-        let checkSab: HTMLInputElement = document.getElementById('sabTesteRadID') as HTMLInputElement;
-        let checkCar: HTMLInputElement = document.getElementById('carTesteRadID') as HTMLInputElement;
 
         return check;
-        /*switch (p) {
-            case 0:
-                return checkFor;
-            case 1:
-                return checkDes;
-            case 2:
-                return checkCon;
-            case 3:
-                return checkInt;
-            case 4:
-                return checkSab;
-            case 5:
-                return checkCar;
-        }*/
     }
 
-    setClassePrimaria(c: string): void {
-        var atr1 : {id : number, idDOM : string} = {id : 0, idDOM : ''};
-        var atr2 : {id : number, idDOM : string} = {id : 0, idDOM : ''};
+    setPrimaryClass(c: string): void {
+        var atr1: string = '';
+        var atr2: string = '';
 
-        var testeRads : string[] = ['forTesteRadID', 'desTesteRadID', 'conTesteRadID', 'intTesteRadID', 'sabTesteRadID', 'carTesteRadID'];
+        var testeRads: string[] = ['forTesteRadID', 'desTesteRadID', 'conTesteRadID', 'intTesteRadID', 'sabTesteRadID', 'carTesteRadID'];
 
-        for (let i = 0; i < 6; i++){            
-            this.checksAtr(testeRads[i]).checked = false;
-        }    
+        for (let i = 0; i < 6; i++)
+            this.checkAtr(testeRads[i]).checked = false;
+
         switch (c) {
             case 'Bárbaro':
-                this.checksAtr(testeRads[0]).checked = true;
-                this.checksAtr(testeRads[2]).checked = true;
-                atr1.idDOM = testeRads[0];
-                atr2.idDOM = testeRads[2];
+                this.checkAtr(testeRads[0]).checked = true;
+                this.checkAtr(testeRads[2]).checked = true;
+                atr1 = testeRads[0];
+                atr2 = testeRads[2];
                 break;
             case 'Bardo':
-                this.checksAtr(testeRads[1]).checked = true;
-                this.checksAtr(testeRads[5]).checked = true;
-                atr1.idDOM = testeRads[1];
-                atr2.idDOM = testeRads[5];
+                this.checkAtr(testeRads[1]).checked = true;
+                this.checkAtr(testeRads[5]).checked = true;
+                atr1 = testeRads[1];
+                atr2 = testeRads[5];
                 break;
             case 'Bruxo':
-                this.checksAtr(testeRads[4]).checked = true;
-                this.checksAtr(testeRads[5]).checked = true;
-                atr1.idDOM = testeRads[4];
-                atr2.idDOM = testeRads[5];
+                this.checkAtr(testeRads[4]).checked = true;
+                this.checkAtr(testeRads[5]).checked = true;
+                atr1 = testeRads[4];
+                atr2 = testeRads[5];
                 break;
             case 'Clérigo':
-                this.checksAtr(testeRads[4]).checked = true;
-                this.checksAtr(testeRads[5]).checked = true;
-                atr1.idDOM = testeRads[4];
-                atr2.idDOM = testeRads[5];
+                this.checkAtr(testeRads[4]).checked = true;
+                this.checkAtr(testeRads[5]).checked = true;
+                atr1 = testeRads[4];
+                atr2 = testeRads[5];
                 break;
             case 'Druida':
-                this.checksAtr(testeRads[3]).checked = true;
-                this.checksAtr(testeRads[4]).checked = true;
-                atr1.idDOM = testeRads[3];
-                atr2.idDOM = testeRads[4];
+                this.checkAtr(testeRads[3]).checked = true;
+                this.checkAtr(testeRads[4]).checked = true;
+                atr1 = testeRads[3];
+                atr2 = testeRads[4];
                 break;
             case 'Feiticeiro':
-                this.checksAtr(testeRads[2]).checked = true;
-                this.checksAtr(testeRads[5]).checked = true;
-                atr1.idDOM = testeRads[2];
-                atr2.idDOM = testeRads[5];
+                this.checkAtr(testeRads[2]).checked = true;
+                this.checkAtr(testeRads[5]).checked = true;
+                atr1 = testeRads[2];
+                atr2 = testeRads[5];
                 break;
             case 'Guerreiro':
-                this.checksAtr(testeRads[0]).checked = true;
-                this.checksAtr(testeRads[2]).checked = true;
-                atr1.idDOM = testeRads[0];
-                atr2.idDOM = testeRads[2];
+                this.checkAtr(testeRads[0]).checked = true;
+                this.checkAtr(testeRads[2]).checked = true;
+                atr1 = testeRads[0];
+                atr2 = testeRads[2];
                 break;
             case 'Ladino':
-                this.checksAtr(testeRads[1]).checked = true;
-                this.checksAtr(testeRads[3]).checked = true;
-                atr1.idDOM = testeRads[1];
-                atr2.idDOM = testeRads[3];
+                this.checkAtr(testeRads[1]).checked = true;
+                this.checkAtr(testeRads[3]).checked = true;
+                atr1 = testeRads[1];
+                atr2 = testeRads[3];
                 break;
             case 'Mago':
-                this.checksAtr(testeRads[3]).checked = true;
-                this.checksAtr(testeRads[4]).checked = true;
-                atr1.idDOM = testeRads[3];
-                atr2.idDOM = testeRads[4];
+                this.checkAtr(testeRads[3]).checked = true;
+                this.checkAtr(testeRads[4]).checked = true;
+                atr1 = testeRads[3];
+                atr2 = testeRads[4];
                 break;
             case 'Monge':
-                this.checksAtr(testeRads[0]).checked = true;
-                this.checksAtr(testeRads[1]).checked = true;
-                atr1.idDOM = (testeRads[0]);
-                atr2.idDOM = (testeRads[1]);
+                this.checkAtr(testeRads[0]).checked = true;
+                this.checkAtr(testeRads[1]).checked = true;
+                atr1 = testeRads[0];
+                atr2 = testeRads[1];
                 break;
             case 'Paladino':
-                this.checksAtr(testeRads[4]).checked = true;
-                this.checksAtr(testeRads[5]).checked = true;
-                atr1.idDOM = testeRads[4];
-                atr2.idDOM = testeRads[5];
+                this.checkAtr(testeRads[4]).checked = true;
+                this.checkAtr(testeRads[5]).checked = true;
+                atr1 = testeRads[4];
+                atr2 = testeRads[5];
                 break;
             case 'Patrulheiro':
-                this.checksAtr(testeRads[0]).checked = true;
-                this.checksAtr(testeRads[1]).checked = true;
-                atr1.idDOM = testeRads[0];
-                atr2.idDOM = testeRads[1];
+                this.checkAtr(testeRads[0]).checked = true;
+                this.checkAtr(testeRads[1]).checked = true;
+                atr1 = testeRads[0];
+                atr2 = testeRads[1];
                 break;
         }
 
-        this.setTest(atr1.id, this.checksAtr(atr1.idDOM).checked);
-        this.setTest(atr2.id, this.checksAtr(atr2.idDOM).checked);
-        this.setTest(this.atr1Atual.id, false);
-        this.setTest(this.atr2Atual.id, false);
-        this.atr1Atual.id = atr1.id
-        this.atr2Atual.id = atr2.id
+        if (atr1 !== '')
+            this.setSaving(atr1, this.checkAtr(atr1).checked);
+        if (atr2 !== '')
+            this.setSaving(atr2, this.checkAtr(atr2).checked);
+
+        this.setSaving(this.atr1Atual, false);
+        this.setSaving(this.atr2Atual, false);
+        this.atr1Atual = atr1
+        this.atr2Atual = atr2
+
         //this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };
         this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: new Array() };
     }
@@ -517,15 +498,12 @@ export class FichaComponent implements OnInit {
     }
 
     ativarMulticlasse(c: any) {
-        this.checked = c.checked
         if (c.checked === false)
             if (this.ficha.Classes.length !== 1) {
                 if (confirm('Aviso!\nTodas as multiclasses serão apagadas.\nContinuar?') === true)
                     this.ficha.Classes.splice(1, this.ficha.Classes.length - 1);
-                else {
-                    this.checked = true
+                else
                     c.checked = true
-                }
             }
     }
 
@@ -533,28 +511,28 @@ export class FichaComponent implements OnInit {
         if (classe !== '')
             //this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
             this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });
-        this.removeOfSelect(classe)
+        this.removeOfSelect()
     }
 
-    removerMulticlasse(i: number, id: number) {
+    removerMulticlasse(i: number) {
         this.ficha.Classes.splice(i, 1)
     }
 
-    removeOfSelect(classe : string){
+    removeOfSelect() {
         //if(classe === 'Paladino')
         this.renderer.removeChild(this.multiclasse.nativeElement, 0)
     }
 
     adicionarDado(classe: string) {
-        if(classe === 'Feiticeiro' || classe === 'Mago')
+        if (classe === 'Feiticeiro' || classe === 'Mago')
             return 'd6';
-        if(classe === 'Bardo' || classe === 'Bruxo' || classe === 'Clérigo' || classe === 'Druida' || classe === 'Ladino' || classe === 'Monge')
+        if (classe === 'Bardo' || classe === 'Bruxo' || classe === 'Clérigo' || classe === 'Druida' || classe === 'Ladino' || classe === 'Monge')
             return 'd8';
-        if(classe === 'Guerreiro' || classe === 'Paladino' || classe === 'Patrulheiro')
+        if (classe === 'Guerreiro' || classe === 'Paladino' || classe === 'Patrulheiro')
             return 'd10';
-        if(classe === 'Bárbaro')
+        if (classe === 'Bárbaro')
             return 'd12';
-        if(classe === '')
+        if (classe === '')
             return '';
     }
 

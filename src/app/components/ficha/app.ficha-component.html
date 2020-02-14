@@ -46,7 +46,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="classeID">Escolha sua classe </label>
                                                 <select class="custom-select" id="classeID"
-                                                    (change)="setClassePrimaria(classe.value)" name="classe"
+                                                    (change)="setPrimaryClass(classe.value)" name="classe"
                                                     [(ngModel)]="ficha.Classes[0].Classe" #classe="ngModel">
                                                     <option value="">------</option>
                                                     <option value="Bárbaro" data-toggle="tooltip" data-placement="top"
@@ -399,7 +399,7 @@
                                                                     <label for="atleRadID"
                                                                         class="text-white">Atletismo</label>
                                                                     <input type="number" class="form-control"
-                                                                        id="atleID" placeholder="Valor" name="atle"
+                                                                        id="atleID" placeholder="Valor" (change)="setSkill()" name="atle"
                                                                         [(ngModel)]="ficha.Atletismo" #atle="ngModel">
                                                                 </div>
                                                             </div>

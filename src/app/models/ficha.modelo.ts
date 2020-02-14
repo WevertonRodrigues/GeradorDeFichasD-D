@@ -40,12 +40,12 @@ export class Ficha {
     public SabMod: number = -5;
     public CarMod: number = -5;
     //Testes de Resistências
-    public ForTeste: number = 1;
-    public DesTeste: number = 1;
-    public ConTeste: number = 1;
-    public IntTeste: number = 1;
-    public SabTeste: number = 1;
-    public CarTeste: number = 1;
+    public ForTeste: number = -5;
+    public DesTeste: number = -5;
+    public ConTeste: number = -5;
+    public IntTeste: number = -5;
+    public SabTeste: number = -5;
+    public CarTeste: number = -5;
     //Perícias
     //Força
     public Atletismo : number = -5;
@@ -415,77 +415,74 @@ export class Ficha {
         }
     }
     
-    public getMod(atr : string): number{
+    public getMod(atr : number): number{
 
-        if(atr == 'forTesteRadID')
+        if(atr == 0)
             return this.ForMod;
-        if(atr == 'desTesteRadID')
+        if(atr == 1)
             return this.DesMod;
-        if(atr == 'conTesteRadID')
+        if(atr == 2)
             return this.ConMod;
-        if(atr == 'intTesteRadID')
+        if(atr == 3)
             return this.IntMod;
-        if(atr == 'sabTesteRadID4')
+        if(atr == 4)
             return this.SabMod;
-        if(atr == 'carTesteRadID5')
+        if(atr == 5)
             return this.CarMod;
     }
 
-    public setMod(n : number, atr : string){
-        if(atr == 'forTesteRadID'){
+    public setMod(n : number, atr : number){
+        if(atr == 0){
             this.ForMod = n;
         }
-        if(atr == 'desTesteRadID'){
+        if(atr == 1){
             this.DesMod = n;
         }
-        if(atr == 'conTesteRadID'){
+        if(atr == 2){
             this.ConMod = n;
         }
-        if(atr == 'intTesteRadID'){
+        if(atr == 3){
             this.IntMod = n;
         }
-        if(atr == 'sabTesteRadID4'){
+        if(atr == 4){
             this.SabMod = n;
         }
-        if(atr == 'carTesteRadID'){
+        if(atr == 5){
             this.CarMod = n;
         }
     }
 
     public getTeste(atr : string): number{
-
-        if(atr == 'forTesteRadID')
+        if(atr === 'forTesteRadID')
             return this.ForTeste;
-        if(atr == 'desTesteRadID')
+        if(atr === 'desTesteRadID')
             return this.DesTeste;
-        if(atr == 'conTesteRadID')
+        if(atr === 'conTesteRadID')
             return this.ConTeste;
-        if(atr == 'intTesteRadID')
+        if(atr === 'intTesteRadID')
             return this.IntTeste;
-        if(atr == 'sabTesteRadID')
+        if(atr === 'sabTesteRadID')
             return this.SabTeste;
-        if(atr == 'carTesteRadID')
+        if(atr === 'carTesteRadID')
             return this.CarTeste;
+        if(atr === 'atleID')
+            return this.Atletismo;
     }
 
     public setTeste(n : number, atr : string){
-        if(atr == 'forTesteRadID'){
+        if(atr === 'forTesteRadID')
             this.ForTeste = n;
-        }
-        if(atr == 'desTesteRadID'){
-            this.DesTeste = n;
-        }            
-        if(atr == 'conTesteRadID'){
+        if(atr === 'desTesteRadID')
+            this.DesTeste = n;  
+        if(atr === 'conTesteRadID')
             this.ConTeste = n;
-        }
-        if(atr == 'intTesteRadID'){
+        if(atr === 'intTesteRadID')
             this.IntTeste = n;
-        }
-        if(atr == 'sabTesteRadID'){
+        if(atr === 'sabTesteRadID')
             this.SabTeste = n;
-        }
-        if(atr == 'carTesteRadID'){
+        if(atr === 'carTesteRadID')
             this.CarTeste = n;
-        }
+        if(atr === 'atleID')
+            this.Atletismo = n;
     }
 }
