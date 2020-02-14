@@ -344,8 +344,8 @@
                                                                 Atributo
                                                             </label>
                                                             <input type="number" class="form-control align-self-center"
-                                                                id="forID" placeholder="Hab" (click)="mudarMod(0)"
-                                                                (change)="mudarMod(0)" name="for"
+                                                                id="forID" placeholder="Hab"
+                                                                (change)="mudarMod(0, 'forTesteRadID')" name="for"
                                                                 [(ngModel)]="ficha.For" #for="ngModel">
                                                         </div>
                                                         <!-- -->
@@ -367,7 +367,7 @@
                                                             </div>
                                                             <div class="col d-lg-flex px-0">
                                                                 <input type="number" class="form-control mr-lg-1"
-                                                                    id="forTesteID" (click)="mudarTeste(0)"
+                                                                    id="forTesteID" (click)="mudarTeste(0, 'forRadTesteID')"
                                                                     placeholder="Res" name="forTeste"
                                                                     [(ngModel)]="ficha.ForTeste"
                                                                     #forTeste="ngModel"><br />
@@ -393,13 +393,13 @@
                                                     <div class="d-inline">
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="atleRad" id="atleRadID">
+                                                                name="atleRad" id="atleRadID" (click)="setSKill('atleRadID', 0, 'atleID')" >
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="atleRadID"
                                                                         class="text-white">Atletismo</label>
                                                                     <input type="number" class="form-control"
-                                                                        id="atleID" placeholder="Valor" (change)="setSkill()" name="atle"
+                                                                        id="atleID" placeholder="Valor" name="atle"
                                                                         [(ngModel)]="ficha.Atletismo" #atle="ngModel">
                                                                 </div>
                                                             </div>
@@ -425,8 +425,8 @@
                                                                 Atributo
                                                             </label>
                                                             <input type="number" class="form-control" id="desID"
-                                                                placeholder="Hab" (click)="mudarMod(1)"
-                                                                (change)="mudarMod(1)" name="des"
+                                                                placeholder="Hab"
+                                                                (change)="mudarMod(1, 'desTesteRadID')" name="des"
                                                                 [(ngModel)]="ficha.Des" #des="ngModel">
                                                         </div>
                                                         <!-- -->
@@ -447,7 +447,7 @@
                                                             </div>
                                                             <div class="col d-lg-flex px-0">
                                                                 <input type="number" class="form-control mr-lg-1"
-                                                                    id="desTesteID" (click)="mudarTeste(1)"
+                                                                    id="desTesteID" (click)="mudarTeste(1, 'desRadTesteID')"
                                                                     placeholder="Res" name="desTeste"
                                                                     [(ngModel)]="ficha.DesTeste"
                                                                     #desTeste="ngModel"><br />
@@ -473,7 +473,7 @@
                                                         <!-- Acrobacia -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="acroRad" id="acroRadID">
+                                                                name="acroRad" id="acroRadID" (click)="setSKill('acroRadID', 1, 'acroID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="acroRadID"
@@ -487,10 +487,10 @@
                                                         <!-- Furtividade -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="furtRad" id="furtRadID">
+                                                                name="furtRad" id="furtRadID" (click)="setSKill('furtRadID', 1, 'furtID')" >
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label for="furtRadID"
+                                                                    <label for="furtRadID" 
                                                                         class="text-white">Furtividade</label>
                                                                     <input type="number" class="form-control"
                                                                         id="furtID" placeholder="Valor" name="furt"
@@ -501,7 +501,7 @@
                                                         <!-- Prestidigitação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="prestRad" id="prestRadID">
+                                                                name="prestRad" id="prestRadID" (click)="setSKill('prestRadID', 1, 'prestID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="prestRadID"

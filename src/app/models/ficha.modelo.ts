@@ -5,24 +5,24 @@ export class Ficha {
     public Id: number;
     public NomePersonagem: string = '';
     //public Classes :  {Classe : string, CDMagias : number, ModAM : number, Magias  : { NomeMagia : string[]}[] } [];
-    public Classes :  {Classe : string, DadoDeVida : string, CDMagias : number, ModAM : number, Magias  : string[] } [];
+    public Classes: { Classe: string, DadoDeVida: string, CDMagias: number, ModAM: number, Magias: string[] }[];
     public Nivel: number = 1;
-    public Antecedente: string  = '';
+    public Antecedente: string = '';
     public NomeJogador: string = '';
     public Raca: string = '';
-    public SubRaca: string  = '';
-    public Tendencia: string  = '';
+    public SubRaca: string = '';
+    public Tendencia: string = '';
     public Alinhamento: string = '';
     public Experiencia: number = 0;
 
     //Pontos de Vida, CA & Outros
-    public Ca : number = 0;
+    public Ca: number = 0;
     public Deslo = 0;
     public DesloV = 0;
     public PvMax = 0;
     public PvAtu = 0;
     public PvTemp = 0;
-    public DadosDeVida : string[] = [];
+    public DadosDeVida: string[] = [];
 
     //Atributos & Perícias
     //Atributos
@@ -48,74 +48,74 @@ export class Ficha {
     public CarTeste: number = -5;
     //Perícias
     //Força
-    public Atletismo : number = -5;
+    public Atletismo: number = -5;
     //Destreza
-    public Acrobacia : number = -5;
-    public Furtividade : number = -5;    
-    public Prestidigitacao : number = -5;
+    public Acrobacia: number = -5;
+    public Furtividade: number = -5;
+    public Prestidigitacao: number = -5;
     //Inteligência
-    public Arcanismo : number = -5;
-    public Historia : number = -5;
-    public Investigacao : number = -5;
-    public Natureza : number = -5;
-    public Religiao : number = -5;
+    public Arcanismo: number = -5;
+    public Historia: number = -5;
+    public Investigacao: number = -5;
+    public Natureza: number = -5;
+    public Religiao: number = -5;
     //Sabedoria
-    public Intuicao : number = -5;
-    public Medicina : number = -5;
-    public Percepcao : number = -5;
-    public Lca : number = -5;
-    public Sobrevivencia : number = -5;
+    public Intuicao: number = -5;
+    public Medicina: number = -5;
+    public Percepcao: number = -5;
+    public Lca: number = -5;
+    public Sobrevivencia: number = -5;
     //Carisma
-    public Atuacao : number = -5;
-    public Enganacao : number = -5;
-    public Intimidacao : number = -5;
-    public Persuacao : number = -5;
+    public Atuacao: number = -5;
+    public Enganacao: number = -5;
+    public Intimidacao: number = -5;
+    public Persuacao: number = -5;
     //Outros
     public Inspiracao: number = 0;
     public Proficiencia: string = '+2';
     public SabedoriaPassiva: number = -5;
-    
+
     //Idiomas & Outras Características
     public CampoIdiomas: string = '';
 
     //Pontos de Vida, Classe de Armadura & Outros
-    public Inici : number = -5; 
+    public Inici: number = -5;
 
     //Ataques & Conjurações
-    public Ataques : {NomeAtaque : string, BonusAtaque : number, DanoTipoAtaque : string}[] = []
-    public TaAC : string = '';
+    public Ataques: { NomeAtaque: string, BonusAtaque: number, DanoTipoAtaque: string }[] = []
+    public TaAC: string = '';
 
     //Equipamentos
-    public Pc : number = 0;
-    public Pp : number = 0;
-    public Pe : number = 0;
-    public Po : number = 0;
-    public Pl : number = 0;
-    public Equips : {NomeItem : string; StatusItem : string}[] = [];
+    public Pc: number = 0;
+    public Pp: number = 0;
+    public Pe: number = 0;
+    public Po: number = 0;
+    public Pl: number = 0;
+    public Equips: { NomeItem: string; StatusItem: string }[] = [];
 
     //Descrição do Personagem
-    public Tracos : string = '';
-    public Ideais : string = '';
-    public Vinculos : string = '';
-    public Fraquezas : string = '';
+    public Tracos: string = '';
+    public Ideais: string = '';
+    public Vinculos: string = '';
+    public Fraquezas: string = '';
 
     //Características & Talentos
-    public Caracteristicas : string = '';
-    public Talentos : string = ''
+    public Caracteristicas: string = '';
+    public Talentos: string = ''
 
     //Magias - Página 3
     //Classes conjuradoras
 
     //Caracteristicas
-    public SrcPersonagem : string = '';
-    public SrcAO :  string = '';
+    public SrcPersonagem: string = '';
+    public SrcAO: string = '';
 
     //Atuais
-    public RacaAtual : string = '0';
-    public SubRacaAtual : string = '0';
-    
+    public RacaAtual: string = '0';
+    public SubRacaAtual: string = '0';
+
     //Perfil
-    public IdPerfil : number;
+    public IdPerfil: number;
 
     //Setters and Getters
     //Dados Básicos
@@ -293,7 +293,7 @@ export class Ficha {
     public set inspiracao(i: number) {
         this.Inspiracao = i;
     }
-    
+
     public get proficiencia(): string {
         return this.Proficiencia;
     }
@@ -361,128 +361,154 @@ export class Ficha {
     }
 
     //Atuais
-        public get racaAtual() : string {
+    public get racaAtual(): string {
         return this.RacaAtual;
     }
-    public set racaAtual(r : string){
+    public set racaAtual(r: string) {
         this.RacaAtual = r;
     }
 
-    public get sunRacaAtual() : string {
+    public get sunRacaAtual(): string {
         return this.SubRacaAtual;
     }
-    public set subRacaAtual(sR : string){
+    public set subRacaAtual(sR: string) {
         this.SubRacaAtual = sR;
     }
 
 
     //Funções Próprias
-    public getAtr(atr : number): number{
+    public getAtr(atr: number): number {
 
-        if(atr == 0)
+        if (atr == 0)
             return this.For;
-        if(atr == 1)
+        if (atr == 1)
             return this.Des;
-        if(atr == 2)
+        if (atr == 2)
             return this.Con;
-        if(atr == 3)
+        if (atr == 3)
             return this.Int;
-        if(atr == 4)
+        if (atr == 4)
             return this.Sab;
-        if(atr == 5)
+        if (atr == 5)
             return this.Car;
     }
 
-    public setAtr(n : number, atr : number){
+    public setAtr(n: number, atr: number) {
 
-        if(atr == 0){
+        if (atr == 0) {
             this.For = n;
         }
-        if(atr == 1){
+        if (atr == 1) {
             this.Des = n;
         }
-        if(atr == 2){
+        if (atr == 2) {
             this.Con = n;
         }
-        if(atr == 3){
+        if (atr == 3) {
             this.Int = n;
         }
-        if(atr == 4){
+        if (atr == 4) {
             this.Sab = n;
         }
-        if(atr == 5){
+        if (atr == 5) {
             this.Car = n;
         }
     }
-    
-    public getMod(atr : number): number{
 
-        if(atr == 0)
+    public getMod(atr: number): number {
+
+        if (atr == 0)
             return this.ForMod;
-        if(atr == 1)
+        if (atr == 1)
             return this.DesMod;
-        if(atr == 2)
+        if (atr == 2)
             return this.ConMod;
-        if(atr == 3)
+        if (atr == 3)
             return this.IntMod;
-        if(atr == 4)
+        if (atr == 4)
             return this.SabMod;
-        if(atr == 5)
+        if (atr == 5)
             return this.CarMod;
     }
 
-    public setMod(n : number, atr : number){
-        if(atr == 0){
+    public setMod(n: number, atr: number) {
+        if (atr == 0) {
             this.ForMod = n;
         }
-        if(atr == 1){
+        if (atr == 1) {
             this.DesMod = n;
         }
-        if(atr == 2){
+        if (atr == 2) {
             this.ConMod = n;
         }
-        if(atr == 3){
+        if (atr == 3) {
             this.IntMod = n;
         }
-        if(atr == 4){
+        if (atr == 4) {
             this.SabMod = n;
         }
-        if(atr == 5){
+        if (atr == 5) {
             this.CarMod = n;
         }
     }
 
-    public getTeste(atr : string): number{
-        if(atr === 'forTesteRadID')
+    public getTeste(atr: string): number {
+        if (atr === 'forTesteRadID')
             return this.ForTeste;
-        if(atr === 'desTesteRadID')
+        if (atr === 'desTesteRadID')
             return this.DesTeste;
-        if(atr === 'conTesteRadID')
+        if (atr === 'conTesteRadID')
             return this.ConTeste;
-        if(atr === 'intTesteRadID')
+        if (atr === 'intTesteRadID')
             return this.IntTeste;
-        if(atr === 'sabTesteRadID')
+        if (atr === 'sabTesteRadID')
             return this.SabTeste;
-        if(atr === 'carTesteRadID')
+        if (atr === 'carTesteRadID')
             return this.CarTeste;
-        if(atr === 'atleID')
-            return this.Atletismo;
     }
 
-    public setTeste(n : number, atr : string){
-        if(atr === 'forTesteRadID')
+    public setTeste(n: number, atr: string) {
+        if (atr === 'forTesteRadID')
             this.ForTeste = n;
-        if(atr === 'desTesteRadID')
-            this.DesTeste = n;  
-        if(atr === 'conTesteRadID')
+        if (atr === 'desTesteRadID')
+            this.DesTeste = n;
+        if (atr === 'conTesteRadID')
             this.ConTeste = n;
-        if(atr === 'intTesteRadID')
+        if (atr === 'intTesteRadID')
             this.IntTeste = n;
-        if(atr === 'sabTesteRadID')
+        if (atr === 'sabTesteRadID')
             this.SabTeste = n;
-        if(atr === 'carTesteRadID')
+        if (atr === 'carTesteRadID')
             this.CarTeste = n;
-        if(atr === 'atleID')
-            this.Atletismo = n;
     }
+
+
+    public getPericia(peri: string) {
+        //Força
+        if (peri === 'atleID')
+            return this.Atletismo;
+        //Destreza
+        if (peri === 'acroID')        
+            return this.Acrobacia;
+        if (peri === 'furtID')
+            return this.Furtividade;
+        if (peri === 'prestID')
+            return this.Prestidigitacao;
+
+    }
+
+    public setPericia(n: number, peri: string) {
+        //Força
+        if (peri === 'atleID')
+            this.Atletismo = n;
+        //Destreza
+        if (peri === 'acroID')
+            this.Acrobacia = n;
+        if (peri === 'furtID')
+            this.Furtividade = n;
+        if (peri === 'prestID')
+            this.Prestidigitacao = n;
+    }
+
+
 }

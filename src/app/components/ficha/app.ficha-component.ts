@@ -18,7 +18,7 @@ export class FichaComponent implements OnInit {
     private atr1Atual: string = '';
     private atr2Atual: string = '';
 
-    private profAtual: number;
+    private profAtual: number = 2;
 
     @ViewChild('multiclasse', { static: false }) private multiclasse: ElementRef;
 
@@ -62,16 +62,46 @@ export class FichaComponent implements OnInit {
         this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
     }
 
-    setSKill(id : string, ){
-        console.log(this.checkAtr(id).checked)
+    setSKill(idCheck: string, idMod: number, idInput: string) {
+        //console.log(this.checkAtr(id).checked)
+        if (this.checkAtr(idCheck).checked)
+            this.ficha.setPericia(this.ficha.getPericia(idInput) + parseInt(this.ficha.proficiencia), idInput)
+        else
+            this.ficha.setPericia(this.ficha.getPericia(idInput) - parseInt(this.ficha.proficiencia), idInput)
+
     }
 
     mudarProf(lvlAtual: number): void {
+
         var prof = Math.ceil(lvlAtual / 4) + 1
-        if (this.profAtual !== prof)
+
+        if (this.profAtual !== prof) {
             this.ajustTests(prof);
+            this.ajustPer();
+        }
+
         this.ficha.proficiencia = "+" + prof
+
         this.profAtual = prof
+    }
+
+    ajustPer() {
+        var per: { check: string, input: string }[] = [
+            //Força
+            { check: 'atleRadID', input: 'atleID' },
+            //Destreza
+            { check: 'acroRadID', input: 'acroID' },
+            { check: 'furtRadID', input: 'furtID' },
+            { check: 'prestRadID', input: 'prestID' },
+        ]
+        //var n: number[] = new Array<number>(0, 1, 2, 3, 4, 5)
+
+        for (let i = 0; i < per.length; i++)
+            //if (n[i] != 2)
+                if (this.checkAtr(per[i].check).checked) {
+                    this.ficha.setPericia(this.ficha.getPericia(per[i].input) - this.profAtual, per[i].input)
+                    this.ficha.setPericia(this.ficha.getPericia(per[i].input) + parseInt(this.ficha.proficiencia), per[i].input)
+                }
     }
 
     ajustTests(prof: number) {
@@ -82,80 +112,75 @@ export class FichaComponent implements OnInit {
         this.setSaving(this.atr2Atual, true)
     }
 
-    mudarMod(n: number): void {
+    mudarMod(n: number, teste: string): void {
         this.ficha.setMod((Math.trunc(this.ficha.getAtr(n) / 2) - 5), n);
-        //this.mudarTeste(n);
+        //this.mudarTeste(n, teste);
     }
 
-    mudarTeste(n: string): void {
-        //console.log(this.ficha.getTeste(n));
-        //let m: number = this.ficha.getMod(n); /*+ this.ficha.getTeste(n)*/;
-        let t: number = this.ficha.getTeste(n);
-        /*console.log(t);
-        console.log(m);
-        console.log(t+m);*/
-        this.ficha.setTeste(t, n);
+    mudarTeste(mod: number, teste: string): void {
+        let n: number = this.ficha.getMod(mod);
+        this.ficha.setTeste(n, teste);
     }
 
     mudarAtributosRaca(r: string): void {
         switch (r) {
             case '1':
                 this.ficha.con += 2;
-                this.mudarMod(2);
+                this.mudarMod(2, 'conTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '2':
                 this.ficha.for += 2;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 this.ficha.car += 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '3':
                 this.ficha.des += 2;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '4':
                 this.ficha.des += 2;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '5':
                 this.ficha.for += 1;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 this.ficha.des += 1;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 this.ficha.con += 1;
-                this.mudarMod(2);
+                this.mudarMod(2, 'conTesteID');
                 this.ficha.int += 1;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 this.ficha.sab += 1;
-                this.mudarMod(4);
+                this.mudarMod(4, 'sabTesteID');
                 this.ficha.car += 1;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '6':
                 this.ficha.int += 2;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '7':
                 this.ficha.car += 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '8':
                 this.ficha.for += 2;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             case '9':
                 this.ficha.car += 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 this.ficha.int += 1;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 this.mudarAtributosSubRaca('0');
                 break;
             default:
@@ -166,53 +191,53 @@ export class FichaComponent implements OnInit {
         switch (this.ficha.racaAtual) {
             case '1':
                 this.ficha.con -= 2;
-                this.mudarMod(2);
+                this.mudarMod(2, 'conTesteID');
                 break;
             case '2':
                 this.ficha.for -= 2;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 this.ficha.car -= 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 break;
             case '3':
                 this.ficha.des -= 2;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 break;
             case '4':
                 this.ficha.des -= 2;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 break;
             case '5':
                 this.ficha.for -= 1;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 this.ficha.des -= 1;
-                this.mudarMod(1);
+                this.mudarMod(1, 'desTesteID');
                 this.ficha.con -= 1;
-                this.mudarMod(2);
+                this.mudarMod(2, 'conTesteID');
                 this.ficha.int -= 1;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 this.ficha.sab -= 1;
-                this.mudarMod(4);
+                this.mudarMod(4, 'sabTesteID');
                 this.ficha.car -= 1;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 break;
             case '6':
                 this.ficha.int -= 2;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 break;
             case '7':
                 this.ficha.car -= 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 break;
             case '8':
                 this.ficha.for -= 2;
-                this.mudarMod(0);
+                this.mudarMod(0, 'forTesteID');
                 break;
             case '9':
                 this.ficha.car -= 2;
-                this.mudarMod(5);
+                this.mudarMod(5, 'carTesteID');
                 this.ficha.int -= 1;
-                this.mudarMod(3);
+                this.mudarMod(3, 'intTesteID');
                 break;
             default:
                 break;
@@ -227,11 +252,11 @@ export class FichaComponent implements OnInit {
                 switch (sR) {
                     case '1':
                         this.ficha.sab += 1;
-                        this.mudarMod(4);
+                        this.mudarMod(4, 'sabTesteID');
                         break;
                     case '2':
                         this.ficha.for += 2;
-                        this.mudarMod(1);
+                        this.mudarMod(1, 'desTesteID');
                         break;
                     default:
                         break;
@@ -241,15 +266,15 @@ export class FichaComponent implements OnInit {
                 switch (sR) {
                     case '1':
                         this.ficha.int += 1;
-                        this.mudarMod(3);
+                        this.mudarMod(3, 'intTesteID');
                         break;
                     case '2':
                         this.ficha.sab += 1;
-                        this.mudarMod(4);
+                        this.mudarMod(4, 'sabTesteID');
                         break;
                     case '3':
                         this.ficha.car += 1;
-                        this.mudarMod(5);
+                        this.mudarMod(5, 'carTesteID');
                         break;
                     default:
                         break;
@@ -259,11 +284,11 @@ export class FichaComponent implements OnInit {
                 switch (sR) {
                     case '1':
                         this.ficha.car += 1;
-                        this.mudarMod(5);
+                        this.mudarMod(5, 'carTesteID');
                         break;
                     case '2':
                         this.ficha.con += 1;
-                        this.mudarMod(2)
+                        this.mudarMod(2, 'conTesteID')
                         break;
                     default:
                         break;
@@ -273,11 +298,11 @@ export class FichaComponent implements OnInit {
                 switch (sR) {
                     case '1':
                         this.ficha.des += 1;
-                        this.mudarMod(1);
+                        this.mudarMod(1, 'desTesteID');
                         break;
                     case '2':
                         this.ficha.con += 1;
-                        this.mudarMod(2);
+                        this.mudarMod(2, 'conTesteID');
                         break;
                     default:
                         break;
@@ -292,11 +317,11 @@ export class FichaComponent implements OnInit {
                 switch (this.ficha.subRacaAtual) {
                     case '1':
                         this.ficha.sab -= 1;
-                        this.mudarMod(4);
+                        this.mudarMod(4, 'sabTesteID');
                         break;
                     case '2':
                         this.ficha.for -= 2;
-                        this.mudarMod(1);
+                        this.mudarMod(1, 'desTesteID');
                         break;
                     default:
                         break;
@@ -306,15 +331,15 @@ export class FichaComponent implements OnInit {
                 switch (this.ficha.subRacaAtual) {
                     case '1':
                         this.ficha.int -= 1;
-                        this.mudarMod(3);
+                        this.mudarMod(3, 'intTesteID');
                         break;
                     case '2':
                         this.ficha.sab -= 1;
-                        this.mudarMod(4);
+                        this.mudarMod(4, 'sabTesteID');
                         break;
                     case '3':
                         this.ficha.car -= 1;
-                        this.mudarMod(5);
+                        this.mudarMod(5, 'carTesteID');
                         break;
                     default:
                         break;
@@ -324,11 +349,11 @@ export class FichaComponent implements OnInit {
                 switch (this.ficha.subRacaAtual) {
                     case '1':
                         this.ficha.car -= 1;
-                        this.mudarMod(5);
+                        this.mudarMod(5, 'carTesteID');
                         break;
                     case '2':
                         this.ficha.con -= 1;
-                        this.mudarMod(2)
+                        this.mudarMod(2, 'conTesteID')
                         break;
                     default:
                         break;
@@ -338,11 +363,11 @@ export class FichaComponent implements OnInit {
                 switch (this.ficha.subRacaAtual) {
                     case '1':
                         this.ficha.des -= 1;
-                        this.mudarMod(1);
+                        this.mudarMod(1, 'desTesteID');
                         break;
                     case '2':
                         this.ficha.con -= 1;
-                        this.mudarMod(2);
+                        this.mudarMod(2, 'conTesteID');
                         break;
                     default:
                         break;
@@ -358,11 +383,7 @@ export class FichaComponent implements OnInit {
     }
 
     setSaving(t: string, check: boolean) {
-        //this.arrayCheck[r] = check;
         let prof = parseInt(this.ficha.proficiencia);
-        //console.log(this.arrayCheck.slice(r, r+1));
-        //console.log(check);
-        //console.log(this.checkFor);
         if (check === true)
             this.ficha.setTeste(this.ficha.getTeste(t) + prof, t);
         else
@@ -371,11 +392,6 @@ export class FichaComponent implements OnInit {
     }
 
     checkAtr(id: string): HTMLInputElement {
-        /*if (id == this.atr1Atual)
-            id = this.atr1Atual
-        if (id == this.atr2Atual)
-            id = this.atr2Atual*/
-
         let check: HTMLInputElement = document.getElementById(id) as HTMLInputElement;
 
         return check;
