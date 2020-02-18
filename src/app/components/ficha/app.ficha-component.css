@@ -5,6 +5,9 @@ a:link, a:visited, a:hover, a:active{
     color: rgb(73, 87, 80);
     font-weight: bolder;
 }
+.bg{
+    background-color: rgba(236, 36, 29, 0.89);
+}
 .card
 {
     max-height: 400%;
@@ -38,14 +41,12 @@ footer{
     padding-top: 0rem;
     padding-bottom: 0rem;
 }
-textarea{
-    resize: none;
-}
 .textCenter{
     text-align: center;
 }
-select, input[type=number], input[type=text], input[type=textarea], label, .parag, a{
+select, input[type=number], input[type=text], textarea, label, .parag, a{
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 145%;
+    resize: none;
 }

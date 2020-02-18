@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,13 +18,10 @@ export class FichaComponent implements OnInit {
     private atr1Atual: string = '';
     private atr2Atual: string = '';
 
-    private profAtual: number = 2;
-
-    @ViewChild('multiclasse', { static: false }) private multiclasse: ElementRef;
-
+    private profAtual: number = 2;   
 
     constructor(private route: ActivatedRoute,
-        private router: Router, private renderer: Renderer2) { }
+        private router: Router,) { }
 
     /*constructor(private route: ActivatedRoute,
         private router: Router,
@@ -37,7 +34,7 @@ export class FichaComponent implements OnInit {
         })*/
         //this.getFichas();
         //this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });        
-        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
+        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });        
         //console.log(this.ficha.Classes)
     }
 
@@ -521,22 +518,17 @@ export class FichaComponent implements OnInit {
                 else
                     c.checked = true
             }
+        
     }
 
     adicionarMulticlasse(classe: string) {
         if (classe !== '')
             //this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
-            this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });
-        this.removeOfSelect()
+            this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });        
     }
 
     removerMulticlasse(i: number) {
         this.ficha.Classes.splice(i, 1)
-    }
-
-    removeOfSelect() {
-        //if(classe === 'Paladino')
-        this.renderer.removeChild(this.multiclasse.nativeElement, 0)
     }
 
     adicionarDado(classe: string) {

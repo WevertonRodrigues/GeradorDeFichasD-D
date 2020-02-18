@@ -101,14 +101,26 @@ export class Ficha {
 
     //Características & Talentos
     public Caracteristicas: string = '';
-    public Talentos: string = ''
+    public Talentos: string = ''    
 
-    //Magias - Página 3
-    //Classes conjuradoras
-
-    //Caracteristicas
+    //Características Físicas e outros detalhes - Page 2
+    //Detalhes Físicos de Seu Personagem
+    public Idade : string = '';
+    public Altura : string = '';
+    public Peso : string = '';
+    public CorOlhos : string = '';
+    public CorPele : string = '';
+    public CorCabelo : string = '';
+    //Aparência de Seu Personagem
     public SrcPersonagem: string = '';
+    //História do Personagem
+    public HistoriaPersonagem: string = '';
+    //Aliados & Organizações
+    public NomeAO: string = '';
     public SrcAO: string = '';
+    public InfoOA: string = '';
+    //Tesouros
+    public Tesouros: string = '';
 
     //Atuais
     public RacaAtual: string = '0';
@@ -494,6 +506,37 @@ export class Ficha {
             return this.Furtividade;
         if (peri === 'prestID')
             return this.Prestidigitacao;
+        //Inteligência
+        if (peri === 'arcaID')        
+            return this.Arcanismo;
+        if (peri === 'histID')
+            return this.Historia;
+        if (peri === 'inveID')
+            return this.Investigacao;
+        if (peri === 'natuID')
+            return this.Natureza;
+        if (peri === 'reliID')
+            return this.Religiao;
+        //Sabedoria
+        if (peri === 'intuiID')        
+            return this.Intuicao;
+        if (peri === 'medID')
+            return this.Medicina;
+        if (peri === 'percID')
+            return this.Percepcao;
+        if (peri === 'lcaID')
+            return this.Lca;
+        if (peri === 'sobreID')
+            return this.Sobrevivencia;
+        //Carisma
+        if (peri === 'atuaID')        
+            return this.Atuacao;
+        if (peri === 'engaID')
+            return this.Enganacao;
+        if (peri === 'intiID')
+            return this.Intimidacao;
+        if (peri === 'persuID')
+            return this.Persuacao;
 
     }
 
@@ -508,6 +551,37 @@ export class Ficha {
             this.Furtividade = n;
         if (peri === 'prestID')
             this.Prestidigitacao = n;
+        //Inteligência
+        if (peri === 'arcaID')        
+            this.Arcanismo = n;
+        if (peri === 'histID')
+            this.Historia = n;
+        if (peri === 'inveID')
+            this.Investigacao = n;
+        if (peri === 'natuID')
+            this.Natureza = n;
+        if (peri === 'reliID')
+            this.Religiao = n;
+        //Sabedoria
+        if (peri === 'intuiID')        
+            this.Intuicao = n;
+        if (peri === 'medID')
+            this.Medicina = n;
+        if (peri === 'percID')
+            this.Percepcao = n;
+        if (peri === 'lcaID')
+            this.Lca = n;
+        if (peri === 'sobreID')
+            this.Sobrevivencia = n;
+        //Carisma
+        if (peri === 'atuaID')        
+            this.Atuacao = n;
+        if (peri === 'engaID')
+            this.Enganacao = n;
+        if (peri === 'intiID')
+            this.Intimidacao = n;
+        if (peri === 'persuID')
+            this.Persuacao = n;
     }
 
 
