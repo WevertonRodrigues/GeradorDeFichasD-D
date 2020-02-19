@@ -34,7 +34,7 @@ export class FichaComponent implements OnInit {
         })*/
         //this.getFichas();
         //this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });        
-        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });        
+        this.ficha.Classes = new Array({ Classe: '', Arquetipo: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });        
         //console.log(this.ficha.Classes)
     }
 
@@ -53,10 +53,14 @@ export class FichaComponent implements OnInit {
         console.log(obj)
     }
 
+    arquetipo(obj : any){
+        this.ficha.Classes[obj.Index].Arquetipo = obj.Arquetipo;
+    }
+
     resetar() {
         this.ficha = new Ficha();
         //this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });
-        this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
+        this.ficha.Classes = new Array({ Classe: '', Arquetipo: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
     }
 
     setSKill(idCheck: string, idMod: number, idInput: string) {
@@ -489,7 +493,7 @@ export class FichaComponent implements OnInit {
         this.atr2Atual = atr2
 
         //this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };
-        this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: new Array() };
+        this.ficha.Classes[0] = { Classe: c, Arquetipo : '', DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: new Array() };
     }
 
     calcularCD(classe: string) {
@@ -524,7 +528,7 @@ export class FichaComponent implements OnInit {
     adicionarMulticlasse(classe: string) {
         if (classe !== '')
             //this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
-            this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });        
+            this.ficha.Classes.push({ Classe: classe, Arquetipo : '', DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });        
     }
 
     removerMulticlasse(i: number) {

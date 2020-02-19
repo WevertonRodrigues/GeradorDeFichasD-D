@@ -42,9 +42,19 @@
                                                     name="nomePersonagem" [(ngModel)]="ficha.NomePersonagem"
                                                     #nomePersonagem="ngModel" placeholder="Seu Nome">
                                             </div>
+
+                                            <!-- Nível Personagem -->
+                                            <div class="form-group col-lg-6">
+                                                <label class="selLvlID" for="nivelID">Nível</label>
+                                                <input type="number" class="form-control" min="1" name="nivel"
+                                                    [(ngModel)]="ficha.Nivel" #nivel="ngModel"
+                                                    (change)="mudarProf(nivel.value)" id="nivelID"
+                                                    placeholder="Seu Nível" />
+                                            </div>
+
                                             <!-- Classe Personagem -->
                                             <div class="form-group col-lg-6">
-                                                <label for="classeID">Escolha sua classe </label>
+                                                <label for="classeID">Escolha sua classe</label>
                                                 <select class="custom-select" id="classeID"
                                                     (change)="setPrimaryClass(classe.value)" name="classe"
                                                     [(ngModel)]="ficha.Classes[0].Classe" #classe="ngModel">
@@ -99,12 +109,18 @@
                                                         title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
                                                         Patrulheiro
                                                     </option>
-                                                </select>
+                                                </select>                                                
+                                            </div>
+
+                                            <div *ngIf="ficha.Classes[0].Classe !== ''" class="form-group col-lg-6">
+                                                <label>Arquétipo</label>
+                                                <arquetipos (mandarArquetipo)="arquetipo($event)" [index]="0"
+                                                    [classe]="ficha.Classes[0].Classe"></arquetipos>
                                             </div>
 
                                             <!-- Multiclasse Personagem -->
                                             <div class="col-lg-6 mb-3">
-                                                <div class="form-check form-check-inline  mb-2">
+                                                <div class="form-check form-check-inline mb-2">
                                                     <input id="checkMulticlasseID" class="form-check-input"
                                                         type="checkbox" name="checkMulticlasse" #checkMulticlasse
                                                         (click)="ativarMulticlasse(checkMulticlasse)">
@@ -114,7 +130,7 @@
                                                 <div *ngIf="this.ficha.Classes.length > 1">
                                                     <div *ngFor="let classe of ficha.Classes; index as i">
                                                         <div *ngIf="i !== 0">
-                                                            <button class="btn btn-danger mr-2"
+                                                            <button class="btn btn-danger mr-2 mb-lg-3"
                                                                 (click)="removerMulticlasse(i)" type="button"><i
                                                                     class="fa fa-trash" aria-hidden="true"></i></button>
                                                             <label class="align-self-end">{{classe.Classe}}
@@ -123,7 +139,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex flex-column-reverse">
-                                                    <div *ngIf="checkMulticlasse.checked === true" class="d-inline-flex">
+                                                    <div *ngIf="checkMulticlasse.checked === true"
+                                                        class="d-inline-flex">
                                                         <button class="btn btn-danger mr-2" type="button"
                                                             (click)="adicionarMulticlasse(multiclasse.value)"><i
                                                                 class="fa fa-plus" aria-hidden="true"></i></button>
@@ -195,14 +212,17 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Nível Personagem -->
-                                            <div class="form-group col-lg-6">
-                                                <label class="selLvlID" for="selLvl">Nível</label>
-                                                <input type="number" class="form-control" min="1" name="nivel"
-                                                    [(ngModel)]="ficha.Nivel" #nivel="ngModel"
-                                                    (change)="mudarProf(nivel.value)" id="nivelID"
-                                                    placeholder="Seu Nível" />
+                                            <div class="form-group col-lg-6" *ngIf="this.ficha.Classes.length > 1">
+                                                <label>Arquétipos</label>
+                                                <div *ngFor="let classe of ficha.Classes; index as i">
+                                                    <div *ngIf="i !== 0">
+                                                        <arquetipos (mandarArquetipo)="arquetipo($event)" [index]="i"
+                                                            [classe]="classe.Classe"></arquetipos>
+                                                    </div>
+                                                </div>
                                             </div>
+
+
                                             <!-- Antecedente Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label for="antecedenteID">Antecedente</label>
@@ -367,7 +387,8 @@
                                                             </div>
                                                             <div class="col d-lg-flex px-0">
                                                                 <input type="number" class="form-control mr-lg-1"
-                                                                    id="forTesteID" (click)="mudarTeste(0, 'forRadTesteID')"
+                                                                    id="forTesteID"
+                                                                    (click)="mudarTeste(0, 'forRadTesteID')"
                                                                     placeholder="Res" name="forTeste"
                                                                     [(ngModel)]="ficha.ForTeste"
                                                                     #forTeste="ngModel"><br />
@@ -393,7 +414,8 @@
                                                     <div class="d-inline">
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="atleRad" id="atleRadID" (click)="setSKill('atleRadID', 0, 'atleID')" >
+                                                                name="atleRad" id="atleRadID"
+                                                                (click)="setSKill('atleRadID', 0, 'atleID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="atleRadID"
@@ -447,7 +469,8 @@
                                                             </div>
                                                             <div class="col d-lg-flex px-0">
                                                                 <input type="number" class="form-control mr-lg-1"
-                                                                    id="desTesteID" (click)="mudarTeste(1, 'desRadTesteID')"
+                                                                    id="desTesteID"
+                                                                    (click)="mudarTeste(1, 'desRadTesteID')"
                                                                     placeholder="Res" name="desTeste"
                                                                     [(ngModel)]="ficha.DesTeste"
                                                                     #desTeste="ngModel"><br />
@@ -468,12 +491,13 @@
                                             <!-- Collapse Destreza -->
                                             <div id="collapse-des" class="collapse" aria-labelledby="header-des"
                                                 data-parent="#acoAtributos">
-                                                <div class="card-body bg-secondary">                                                    
+                                                <div class="card-body bg-secondary">
                                                     <div class="d-inline">
                                                         <!-- Acrobacia -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="acroRad" id="acroRadID" (click)="setSKill('acroRadID', 1, 'acroID')">
+                                                                name="acroRad" id="acroRadID"
+                                                                (click)="setSKill('acroRadID', 1, 'acroID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="acroRadID"
@@ -487,10 +511,11 @@
                                                         <!-- Furtividade -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="furtRad" id="furtRadID" (click)="setSKill('furtRadID', 1, 'furtID')" >
+                                                                name="furtRad" id="furtRadID"
+                                                                (click)="setSKill('furtRadID', 1, 'furtID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label for="furtRadID" 
+                                                                    <label for="furtRadID"
                                                                         class="text-white">Furtividade</label>
                                                                     <input type="number" class="form-control"
                                                                         id="furtID" placeholder="Valor" name="furt"
@@ -501,14 +526,16 @@
                                                         <!-- Prestidigitação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="prestRad" id="prestRadID" (click)="setSKill('prestRadID', 1, 'prestID')">
+                                                                name="prestRad" id="prestRadID"
+                                                                (click)="setSKill('prestRadID', 1, 'prestID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="prestRadID"
                                                                         class="text-white">Prestidigitação</label>
                                                                     <input type="number" class="form-control"
                                                                         id="prestID" placeholder="Valor" name="prest"
-                                                                        [(ngModel)]="ficha.Prestidigitacao" #prest="ngModel">
+                                                                        [(ngModel)]="ficha.Prestidigitacao"
+                                                                        #prest="ngModel">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -650,13 +677,14 @@
                                                         <!-- Arcanismo -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input " type="checkbox"
-                                                                name="arcaRad" id="arcaRadID" (click)="setSKill('arcaRadID', 3, 'arcaID')">
+                                                                name="arcaRad" id="arcaRadID"
+                                                                (click)="setSKill('arcaRadID', 3, 'arcaID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="arcaRadID"
                                                                         class="text-white">Arcanismo</label>
                                                                     <input type="number" class="form-control"
-                                                                        id="arcaID"  placeholder="Valor" name="arca"
+                                                                        id="arcaID" placeholder="Valor" name="arca"
                                                                         [(ngModel)]="ficha.Arcanismo" #arca="ngModel">
                                                                 </div>
                                                             </div>
@@ -664,7 +692,8 @@
                                                         <!-- História -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="histRad" id="histRadID" (click)="setSKill('histRadID', 3, 'histID')">
+                                                                name="histRad" id="histRadID"
+                                                                (click)="setSKill('histRadID', 3, 'histID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="histRadID"
@@ -678,21 +707,24 @@
                                                         <!-- Investigação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="inveRad" id="inveRadID" (click)="setSKill('inveRadID', 3, 'inveID')">
+                                                                name="inveRad" id="inveRadID"
+                                                                (click)="setSKill('inveRadID', 3, 'inveID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="inveRadID"
                                                                         class="text-white">Investigação</label>
                                                                     <input type="number" class="form-control"
                                                                         id="inveID" placeholder="Valor" name="inve"
-                                                                        [(ngModel)]="ficha.Investigacao" #inve="ngModel">
+                                                                        [(ngModel)]="ficha.Investigacao"
+                                                                        #inve="ngModel">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Natureza -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="natuRad" id="natuRadID" (click)="setSKill('natuRadID', 3, 'natuID')">
+                                                                name="natuRad" id="natuRadID"
+                                                                (click)="setSKill('natuRadID', 3, 'natuID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="natuRadID"
@@ -706,7 +738,8 @@
                                                         <!-- Religião -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="reliRad" id="reliRadID" (click)="setSKill('reliRadID', 3, 'reliID')">
+                                                                name="reliRad" id="reliRadID"
+                                                                (click)="setSKill('reliRadID', 3, 'reliID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="reliRadID"
@@ -786,7 +819,8 @@
                                                         <!-- Intuição -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="intuiRad" id="intuiRadID" (click)="setSKill('intuiRadID', 4, 'intuiID')">
+                                                                name="intuiRad" id="intuiRadID"
+                                                                (click)="setSKill('intuiRadID', 4, 'intuiID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="intuiRadID"
@@ -800,7 +834,8 @@
                                                         <!-- Medicina -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="medRad" id="medRadID" (click)="setSKill('medRadID', 4, 'medID')">
+                                                                name="medRad" id="medRadID"
+                                                                (click)="setSKill('medRadID', 4, 'medID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="medRadID"
@@ -814,7 +849,8 @@
                                                         <!-- Percepção -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="percRad" id="percRadID" (click)="setSKill('percRadID', 4, 'percID')">
+                                                                name="percRad" id="percRadID"
+                                                                (click)="setSKill('percRadID', 4, 'percID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="percRadID"
@@ -828,7 +864,8 @@
                                                         <!-- Lidar Com Animais -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="lcaRad" id="lcaRadID" (click)="setSKill('lcaRadID', 4, 'lcaID')">
+                                                                name="lcaRad" id="lcaRadID"
+                                                                (click)="setSKill('lcaRadID', 4, 'lcaID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="lcaRadID"
@@ -844,14 +881,16 @@
                                                         <!-- Sobrevivência -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="sobreRad" id="sobreRadID" (click)="setSKill('sobreRadID', 4, 'sobreID')">
+                                                                name="sobreRad" id="sobreRadID"
+                                                                (click)="setSKill('sobreRadID', 4, 'sobreID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="sobreRadID"
                                                                         class="text-white">Sobrevivência</label>
                                                                     <input type="number" class="form-control"
                                                                         id="sobreID" placeholder="Valor" name="sobre"
-                                                                        [(ngModel)]="ficha.Sobrevivencia" #sobre="ngModel">
+                                                                        [(ngModel)]="ficha.Sobrevivencia"
+                                                                        #sobre="ngModel">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -923,7 +962,8 @@
                                                         <!-- Atuação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="atuaRad" id="atuaRadID" (click)="setSKill('atuaRadID', 5, 'atuaID')">
+                                                                name="atuaRad" id="atuaRadID"
+                                                                (click)="setSKill('atuaRadID', 5, 'atuaID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label for="atuaRadID"
@@ -937,7 +977,8 @@
                                                         <!-- Enganação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="engaRad" id="engaRadID" (click)="setSKill('engaRadID', 5, 'engaID')">
+                                                                name="engaRad" id="engaRadID"
+                                                                (click)="setSKill('engaRadID', 5, 'engaID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="engaRadID"
@@ -951,21 +992,24 @@
                                                         <!-- Intimidação -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="intimRad" id="intimRadID" (click)="setSKill('intimRadID', 5, 'intiID')">
+                                                                name="intimRad" id="intimRadID"
+                                                                (click)="setSKill('intimRadID', 5, 'intiID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="intimRadID"
                                                                         class="text-white">Intimidação</label>
                                                                     <input type="number" class="form-control"
                                                                         id="intiID" placeholder="Valor" name="intim"
-                                                                        [(ngModel)]="ficha.Intimidacao" #intim="ngModel">
+                                                                        [(ngModel)]="ficha.Intimidacao"
+                                                                        #intim="ngModel">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Persuasão -->
                                                         <div class="form-check-inline mr-lg-n5 pr-lg-n5">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="persuRad" id="persuRadID" (click)="setSKill('persuRadID', 5, 'persuID')">
+                                                                name="persuRad" id="persuRadID"
+                                                                (click)="setSKill('persuRadID', 5, 'persuID')">
                                                             <div class="col-lg-6">
                                                                 <div class="form-group ">
                                                                     <label for="persuRadID"
@@ -1197,7 +1241,7 @@
                                         <br />
 
                                         <textarea id="taACID" class="form-control" name="taACI" rows="4" #taAC="ngModel"
-                                        [(ngModel)]="ficha.TaAC" placeholder="Info"></textarea>
+                                            [(ngModel)]="ficha.TaAC" placeholder="Info"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1303,22 +1347,26 @@
                                         <div class="form-group">
                                             <label for="tracosID">Traços de personalidade</label>
                                             <textarea id="tracosID" class="form-control" name="tracos" rows="3"
-                                                [(ngModel)]="ficha.Tracos" #tracos="ngModel" placeholder="Seus traços"></textarea>
+                                                [(ngModel)]="ficha.Tracos" #tracos="ngModel"
+                                                placeholder="Seus traços"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="ideaisID">Ideais</label>
                                             <textarea id="ideaisID" class="form-control" name="ideais" rows="3"
-                                                [(ngModel)]="ficha.Ideais" #ideais="ngModel" placeholder="Seus ideais"></textarea>
+                                                [(ngModel)]="ficha.Ideais" #ideais="ngModel"
+                                                placeholder="Seus ideais"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="vinculosID">Vínculos</label>
                                             <textarea id="vinculosID" class="form-control" name="vinculos" rows="3"
-                                                [(ngModel)]="ficha.Vinculos" #vinculos="ngModel" placeholder="Seus vínculos"></textarea>
+                                                [(ngModel)]="ficha.Vinculos" #vinculos="ngModel"
+                                                placeholder="Seus vínculos"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="fraquezasID">Fraquezas</label>
                                             <textarea id="fraquezasID" class="form-control" name="fraquezas" rows="3"
-                                                [(ngModel)]="ficha.Fraquezas" #fraquezas="ngModel" placeholder="Suas fraquezas"></textarea>
+                                                [(ngModel)]="ficha.Fraquezas" #fraquezas="ngModel"
+                                                placeholder="Suas fraquezas"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1334,12 +1382,14 @@
                                         <div class="form-group">
                                             <label for="caracID">Características</label>
                                             <textarea id="caracID" class="form-control" name="carac" rows="5"
-                                                [(ngModel)]="ficha.Caracteristicas" #carac="ngModel" placeholder="Características"></textarea>
+                                                [(ngModel)]="ficha.Caracteristicas" #carac="ngModel"
+                                                placeholder="Características"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="talenID">Talentos</label>
                                             <textarea id="talenID" class="form-control" name="talen" rows="5"
-                                                [(ngModel)]="ficha.Talentos" #talen="ngModel" placeholder="Talentos"></textarea>
+                                                [(ngModel)]="ficha.Talentos" #talen="ngModel"
+                                                placeholder="Talentos"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1366,7 +1416,7 @@
                                             Detalhes Físicos de {{ficha.NomePersonagem}}
                                         </div>
                                     </div>
-                                    <div class="card-body">                                        
+                                    <div class="card-body">
                                         <!-- Detalhes Físicos de Seu Personagem -->
                                         <div class="row row-cols-3">
                                             <div class="col col-md-4 form-group">
@@ -1461,8 +1511,8 @@
                                             <label for="historiaPersonagemID">Sua História</label>
                                             <textarea id="historiaPersonagemID" class="form-control"
                                                 name="historiaPersonagem" rows="10"
-                                                [(ngModel)]="ficha.HistoriaPersonagem"
-                                                #historiaPersonagem="ngModel" placeholder="Sua história"></textarea>
+                                                [(ngModel)]="ficha.HistoriaPersonagem" #historiaPersonagem="ngModel"
+                                                placeholder="Sua história"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1514,7 +1564,8 @@
                                             <label *ngIf="ficha.NomeAO !== ''" for="historiaOA">Informações sobre
                                                 {{ficha.NomeAO}}</label>
                                             <textarea id="infoOAID" class="form-control" name="infoOA" rows="5"
-                                                [(ngModel)]="ficha.InfoOA" #infoOA="ngModel" placeholder="Informações"></textarea>
+                                                [(ngModel)]="ficha.InfoOA" #infoOA="ngModel"
+                                                placeholder="Informações"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1633,7 +1684,8 @@
                                     class="text-center">
                                     <div
                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                        <br /><br /><label class="bg text-white w-50 rounded">Suas Magias de {{classe.Classe}}</label> <br />
+                                        <br /><br /><label class="bg text-white w-50 rounded">Suas Magias de
+                                            {{classe.Classe}}</label> <br />
                                         <!--<app-modal-magias [classe]="classe.Classe" [index]="i"
                                             [magiasPai]="classe.Magias" (salvarAlteracoes)="evento($event)" >
                                         </app-modal-magias>

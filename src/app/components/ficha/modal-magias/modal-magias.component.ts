@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 @Component({
   selector: 'app-modal-magias',
   templateUrl: './modal-magias.component.html',
-  styleUrls: ['./modal-magias.component.css']
+  styleUrls: ['../../ficha/app.ficha-component.css']
 })
 export class ModalMagiasComponent implements OnInit, AfterViewInit {
 
@@ -13,7 +13,7 @@ export class ModalMagiasComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() magiasPai: string | any[];
 
-  @Output() private salvarAlteracoes = new EventEmitter();
+  @Output() salvarAlteracoes = new EventEmitter();
 
   @ViewChild('amizade', { static: false }) amizade: HTMLElement;
   @ViewChild('ataqueCerteiro', { static: false }) ataqueCerteiro: HTMLElement;
