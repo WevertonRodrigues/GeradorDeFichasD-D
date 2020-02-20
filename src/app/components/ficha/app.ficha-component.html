@@ -57,7 +57,7 @@
                                                 <label for="classeID">Escolha sua classe</label>
                                                 <select class="custom-select" id="classeID"
                                                     (change)="setPrimaryClass(classe.value)" name="classe"
-                                                    [(ngModel)]="ficha.Classes[0].Classe" #classe="ngModel">
+                                                     #classe>
                                                     <option value="">------</option>
                                                     <option value="Bárbaro" data-toggle="tooltip" data-placement="top"
                                                         title="Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha">
@@ -109,7 +109,7 @@
                                                         title="Um guerreiro que utiliza de poderio marcial e magia natural para combater ameaças nos limites da civilização">
                                                         Patrulheiro
                                                     </option>
-                                                </select>                                                
+                                                </select>
                                             </div>
 
                                             <div *ngIf="ficha.Classes[0].Classe !== ''" class="form-group col-lg-6">
@@ -117,7 +117,6 @@
                                                 <arquetipos (mandarArquetipo)="arquetipo($event)" [index]="0"
                                                     [classe]="ficha.Classes[0].Classe"></arquetipos>
                                             </div>
-
                                             <!-- Multiclasse Personagem -->
                                             <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline mb-2">
@@ -222,7 +221,6 @@
                                                 </div>
                                             </div>
 
-
                                             <!-- Antecedente Personagem -->
                                             <div class="form-group col-lg-6">
                                                 <label for="antecedenteID">Antecedente</label>
@@ -249,12 +247,12 @@
                                                     <option value="1">Anão</option>
                                                     <option value="2">Draconato</option>
                                                     <option value="3">Elfo</option>
-                                                    <option value="3">Halfling</option>
-                                                    <option value="4">Humano</option>
-                                                    <option value="5">Gnomo</option>
-                                                    <option value="6">Meio-elfo</option>
-                                                    <option value="7">Meio-orc</option>
-                                                    <option value="8">Tiefling</option>
+                                                    <option value="4">Halfling</option>
+                                                    <option value="5">Humano</option>
+                                                    <option value="6">Gnomo</option>
+                                                    <option value="7">Meio-elfo</option>
+                                                    <option value="8">Meio-orc</option>
+                                                    <option value="9">Tiefling</option>
                                                 </select>
                                             </div>
 
@@ -1611,7 +1609,7 @@
                                     <table class="table table-light">
                                         <thead>
                                             <tr>
-                                                <th class="parag">Classe(s) Conjuradora(s)</th>
+                                                <th class="parag">Classe/Árquetipo Conjuradora/dor</th>
                                                 <th class="parag">Atributo de Conjuração</th>
                                                 <th class="parag">CD P/ Evitar Suas Magias</th>
                                                 <th class="parag">Modificador de Ataque Mágico</th>
@@ -1621,10 +1619,14 @@
                                             <!-- Classes -->
                                             <tr *ngFor="let classe of ficha.Classes">
                                                 <!-- Classe(s) Conjuradora(s) -->
-                                                <td
-                                                    *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                                    <label>
+                                                <td>
+                                                    <label
+                                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
                                                         {{classe.Classe}}
+                                                    </label>
+                                                    <label
+                                                        *ngIf="classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano'">
+                                                        {{classe.Arquetipo}}
                                                     </label>
                                                 </td>
                                                 <!-- Atributo de Conjuração -->
@@ -1637,13 +1639,13 @@
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
                                                         class="form-control mb-2" type="text" name="atrConjuS"
                                                         ngModel="Sabedoria" #atrConjuS readonly>
-                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="text" name="atrConjuI" #atrConjuI ngModel="Inteligência"
-                                                        readonly>
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Mago' || classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano'"
+                                                        class="form-control mb-2" type="text" name="atrConjuI"
+                                                        #atrConjuI ngModel="Inteligência" readonly>
                                                 </td>
                                                 <!-- CD P/ Evitar Suas Magias -->
                                                 <td>
-
                                                     <input class="form-control mb-2" type="number" name="cdMagiasC"
                                                         [(ngModel)]="classe.CDMagias" cdMagiasC="ngModel"
                                                         *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Feiticeiro' || classe.Classe === 'Paladino'"
@@ -1652,10 +1654,10 @@
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
                                                         class="form-control mb-2" type="number" name="cdMagiasS"
                                                         [(ngModel)]="classe.CDMagias" cdMagiasS="ngModel" readonly>
-                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="number" name="cdMagiasI" [(ngModel)]="classe.CDMagias"
-                                                        cdMagiasI="ngModel" readonly>
-
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Mago' || classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano'"
+                                                        class="form-control mb-2" type="number" name="cdMagiasI"
+                                                        [(ngModel)]="classe.CDMagias" cdMagiasI="ngModel" readonly>
                                                 </td>
                                                 <!-- Modificador de Ataque Mágico -->
                                                 <td>
@@ -1667,9 +1669,10 @@
                                                         *ngIf="classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Patrulheiro'"
                                                         class="form-control mb-2" type="number" name="modAMS"
                                                         [(ngModel)]="classe.ModAM" modAMS="ngModel" readonly>
-                                                    <input *ngIf="classe.Classe === 'Mago'" class="form-control mb-2"
-                                                        type="number" name="modAMI" [(ngModel)]="classe.ModAM"
-                                                        modAMI="ngModel" readonly>
+                                                    <input
+                                                        *ngIf="classe.Classe === 'Mago' || classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano'"
+                                                        class="form-control mb-2" type="number" name="modAMI"
+                                                        [(ngModel)]="classe.ModAM" modAMI="ngModel" readonly>
 
                                                 </td>
                                             </tr>
@@ -1682,17 +1685,25 @@
                                 <br /><br />
                                 <div class="container text-center" *ngFor="let classe of ficha.Classes; index as i"
                                     class="text-center">
-                                    <div
-                                        *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'">
-                                        <br /><br /><label class="bg text-white w-50 rounded">Suas Magias de
-                                            {{classe.Classe}}</label> <br />
+                                    <div>
+                                        <br /><br />
+                                        <label
+                                            *ngIf="classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'"
+                                            class="bg text-white w-50 rounded">Suas Magias de
+                                            {{classe.Classe}}</label>
+                                        <label
+                                            *ngIf="classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano'" class="bg text-white w-50 rounded">
+                                            Suas Magias como {{classe.Arquetipo}}
+                                        </label>
+                                        <br />
                                         <!--<app-modal-magias [classe]="classe.Classe" [index]="i"
                                             [magiasPai]="classe.Magias" (salvarAlteracoes)="evento($event)" >
                                         </app-modal-magias>
                                         <div *ngFor="let magia of classe.Magias[0]">
                                             {{magia.NomeMagia}}
                                         </div>-->
-                                        <div class="row row-lg-cols-2">
+                                        <div *ngIf="classe.Arquetipo === 'Cavaleiro Arcano' || classe.Arquetipo === 'Trapaceiro Arcano' || classe.Classe === 'Bardo' || classe.Classe === 'Bruxo' || classe.Classe === 'Clérigo' || classe.Classe === 'Druida' || classe.Classe === 'Mago' || classe.Classe === 'Paladino' || classe.Classe === 'Patrulheiro'"
+                                        class="row row-lg-cols-2">
                                             <div class="form-group col-lg-6">
                                                 <label for="'n0-' + classe.Classe + '-ID'"
                                                     class="bg-secondary text-white w-50 rounded">Nível 0</label>
@@ -1781,7 +1792,7 @@
     <div class="container">
         <div class="d-flex justify-content-center  mb-3">
             <button type="button" class="btn btn-danger mr-1" (click)="voltar()">
-                << VOLTAR </button> <button type="button" class="btn btn-warning mr-1" (click)="resetar()">
+                << VOLTAR </button> <button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" class="btn btn-warning mr-1" (click)="resetar()">
                         LIMPAR FICHA
                     </button>
                     <button type="submit" class="btn btn-danger ">
@@ -1791,3 +1802,22 @@
     </div>
     <app-voltar-ao-topo></app-voltar-ao-topo>
 </form>
+
+<div class="fade modal" tabindex="-1" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl"  role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title font-weight-bold" id="titleModalID">Aviso!</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="parag">{{msg}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+  </div>
+</div>

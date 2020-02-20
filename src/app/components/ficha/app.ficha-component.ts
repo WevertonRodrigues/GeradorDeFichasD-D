@@ -1,6 +1,9 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
 import { Ficha } from 'src/app/models/ficha.modelo';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'app-ficha',
@@ -10,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 export class FichaComponent implements OnInit {
+    
+
     private ficha: Ficha = new Ficha();
 
 
@@ -17,11 +22,10 @@ export class FichaComponent implements OnInit {
 
     private atr1Atual: string = '';
     private atr2Atual: string = '';
-
-    private profAtual: number = 2;   
+    private profAtual: number = 2;
 
     constructor(private route: ActivatedRoute,
-        private router: Router,) { }
+        private router: Router, ) { }
 
     /*constructor(private route: ActivatedRoute,
         private router: Router,
@@ -34,8 +38,15 @@ export class FichaComponent implements OnInit {
         })*/
         //this.getFichas();
         //this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });        
-        this.ficha.Classes = new Array({ Classe: '', Arquetipo: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });        
+        this.ficha.Classes = new Array({ Classe: '', Arquetipo: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
         //console.log(this.ficha.Classes)
+    }
+
+    msg : string
+
+    showModal(msg : string){
+        this.msg = msg
+        jQuery('#myModal').modal('toggle')
     }
 
     criarMatriz() {
@@ -53,14 +64,28 @@ export class FichaComponent implements OnInit {
         console.log(obj)
     }
 
-    arquetipo(obj : any){
+    arquetipo(obj: any) {
         this.ficha.Classes[obj.Index].Arquetipo = obj.Arquetipo;
+        if (obj.Arquetipo === 'Cavaleiro Arcano' || obj.Arquetipo === 'Trapaceiro Arcano') {
+            this.ficha.Classes[obj.Index].CDMagias = this.calcularCD(obj.Arquetipo)
+            this.ficha.Classes[obj.Index].ModAM = this.calcularModAtaqueMagico(obj.Arquetipo)
+        }
     }
 
     resetar() {
         this.ficha = new Ficha();
         //this.ficha.Classes = new Array({ Classe: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: this.criarMatriz() });
         this.ficha.Classes = new Array({ Classe: '', Arquetipo: '', DadoDeVida: this.adicionarDado(''), CDMagias: this.calcularCD(''), ModAM: this.calcularModAtaqueMagico(''), Magias: new Array() });
+    }
+
+    checkIncludeClass(c: string) {
+        //console.log(this.ficha.Classes.map((c) => c.Classe))
+        console.log(this.ficha.Classes.map((c) => c.Classe).includes(c))
+        return this.ficha.Classes.map((c) => c.Classe).includes(c)
+        /*if(this.ficha.Classes.map((c) =>  c.Classe).includes(classs))
+            console.log('Contém');
+        else
+            console.log('Não Contém');*/
     }
 
     setSKill(idCheck: string, idMod: number, idInput: string) {
@@ -99,10 +124,10 @@ export class FichaComponent implements OnInit {
 
         for (let i = 0; i < per.length; i++)
             //if (n[i] != 2)
-                if (this.checkAtr(per[i].check).checked) {
-                    this.ficha.setPericia(this.ficha.getPericia(per[i].input) - this.profAtual, per[i].input)
-                    this.ficha.setPericia(this.ficha.getPericia(per[i].input) + parseInt(this.ficha.proficiencia), per[i].input)
-                }
+            if (this.checkAtr(per[i].check).checked) {
+                this.ficha.setPericia(this.ficha.getPericia(per[i].input) - this.profAtual, per[i].input)
+                this.ficha.setPericia(this.ficha.getPericia(per[i].input) + parseInt(this.ficha.proficiencia), per[i].input)
+            }
     }
 
     ajustTests(prof: number) {
@@ -399,101 +424,109 @@ export class FichaComponent implements OnInit {
     }
 
     setPrimaryClass(c: string): void {
-        var atr1: string = '';
-        var atr2: string = '';
 
-        var testeRads: string[] = ['forTesteRadID', 'desTesteRadID', 'conTesteRadID', 'intTesteRadID', 'sabTesteRadID', 'carTesteRadID'];
+        if (this.checkIncludeClass(c) === false) {
+            var atr1: string = '';
+            var atr2: string = '';
 
-        for (let i = 0; i < 6; i++)
-            this.checkAtr(testeRads[i]).checked = false;
+            var testeRads: string[] = ['forTesteRadID', 'desTesteRadID', 'conTesteRadID', 'intTesteRadID', 'sabTesteRadID', 'carTesteRadID'];
 
-        switch (c) {
-            case 'Bárbaro':
-                this.checkAtr(testeRads[0]).checked = true;
-                this.checkAtr(testeRads[2]).checked = true;
-                atr1 = testeRads[0];
-                atr2 = testeRads[2];
-                break;
-            case 'Bardo':
-                this.checkAtr(testeRads[1]).checked = true;
-                this.checkAtr(testeRads[5]).checked = true;
-                atr1 = testeRads[1];
-                atr2 = testeRads[5];
-                break;
-            case 'Bruxo':
-                this.checkAtr(testeRads[4]).checked = true;
-                this.checkAtr(testeRads[5]).checked = true;
-                atr1 = testeRads[4];
-                atr2 = testeRads[5];
-                break;
-            case 'Clérigo':
-                this.checkAtr(testeRads[4]).checked = true;
-                this.checkAtr(testeRads[5]).checked = true;
-                atr1 = testeRads[4];
-                atr2 = testeRads[5];
-                break;
-            case 'Druida':
-                this.checkAtr(testeRads[3]).checked = true;
-                this.checkAtr(testeRads[4]).checked = true;
-                atr1 = testeRads[3];
-                atr2 = testeRads[4];
-                break;
-            case 'Feiticeiro':
-                this.checkAtr(testeRads[2]).checked = true;
-                this.checkAtr(testeRads[5]).checked = true;
-                atr1 = testeRads[2];
-                atr2 = testeRads[5];
-                break;
-            case 'Guerreiro':
-                this.checkAtr(testeRads[0]).checked = true;
-                this.checkAtr(testeRads[2]).checked = true;
-                atr1 = testeRads[0];
-                atr2 = testeRads[2];
-                break;
-            case 'Ladino':
-                this.checkAtr(testeRads[1]).checked = true;
-                this.checkAtr(testeRads[3]).checked = true;
-                atr1 = testeRads[1];
-                atr2 = testeRads[3];
-                break;
-            case 'Mago':
-                this.checkAtr(testeRads[3]).checked = true;
-                this.checkAtr(testeRads[4]).checked = true;
-                atr1 = testeRads[3];
-                atr2 = testeRads[4];
-                break;
-            case 'Monge':
-                this.checkAtr(testeRads[0]).checked = true;
-                this.checkAtr(testeRads[1]).checked = true;
-                atr1 = testeRads[0];
-                atr2 = testeRads[1];
-                break;
-            case 'Paladino':
-                this.checkAtr(testeRads[4]).checked = true;
-                this.checkAtr(testeRads[5]).checked = true;
-                atr1 = testeRads[4];
-                atr2 = testeRads[5];
-                break;
-            case 'Patrulheiro':
-                this.checkAtr(testeRads[0]).checked = true;
-                this.checkAtr(testeRads[1]).checked = true;
-                atr1 = testeRads[0];
-                atr2 = testeRads[1];
-                break;
+            for (let i = 0; i < 6; i++)
+                this.checkAtr(testeRads[i]).checked = false;
+
+            switch (c) {
+                case 'Bárbaro':
+                    this.checkAtr(testeRads[0]).checked = true;
+                    this.checkAtr(testeRads[2]).checked = true;
+                    atr1 = testeRads[0];
+                    atr2 = testeRads[2];
+                    break;
+                case 'Bardo':
+                    this.checkAtr(testeRads[1]).checked = true;
+                    this.checkAtr(testeRads[5]).checked = true;
+                    atr1 = testeRads[1];
+                    atr2 = testeRads[5];
+                    break;
+                case 'Bruxo':
+                    this.checkAtr(testeRads[4]).checked = true;
+                    this.checkAtr(testeRads[5]).checked = true;
+                    atr1 = testeRads[4];
+                    atr2 = testeRads[5];
+                    break;
+                case 'Clérigo':
+                    this.checkAtr(testeRads[4]).checked = true;
+                    this.checkAtr(testeRads[5]).checked = true;
+                    atr1 = testeRads[4];
+                    atr2 = testeRads[5];
+                    break;
+                case 'Druida':
+                    this.checkAtr(testeRads[3]).checked = true;
+                    this.checkAtr(testeRads[4]).checked = true;
+                    atr1 = testeRads[3];
+                    atr2 = testeRads[4];
+                    break;
+                case 'Feiticeiro':
+                    this.checkAtr(testeRads[2]).checked = true;
+                    this.checkAtr(testeRads[5]).checked = true;
+                    atr1 = testeRads[2];
+                    atr2 = testeRads[5];
+                    break;
+                case 'Guerreiro':
+                    this.checkAtr(testeRads[0]).checked = true;
+                    this.checkAtr(testeRads[2]).checked = true;
+                    atr1 = testeRads[0];
+                    atr2 = testeRads[2];
+                    break;
+                case 'Ladino':
+                    this.checkAtr(testeRads[1]).checked = true;
+                    this.checkAtr(testeRads[3]).checked = true;
+                    atr1 = testeRads[1];
+                    atr2 = testeRads[3];
+                    break;
+                case 'Mago':
+                    this.checkAtr(testeRads[3]).checked = true;
+                    this.checkAtr(testeRads[4]).checked = true;
+                    atr1 = testeRads[3];
+                    atr2 = testeRads[4];
+                    break;
+                case 'Monge':
+                    this.checkAtr(testeRads[0]).checked = true;
+                    this.checkAtr(testeRads[1]).checked = true;
+                    atr1 = testeRads[0];
+                    atr2 = testeRads[1];
+                    break;
+                case 'Paladino':
+                    this.checkAtr(testeRads[4]).checked = true;
+                    this.checkAtr(testeRads[5]).checked = true;
+                    atr1 = testeRads[4];
+                    atr2 = testeRads[5];
+                    break;
+                case 'Patrulheiro':
+                    this.checkAtr(testeRads[0]).checked = true;
+                    this.checkAtr(testeRads[1]).checked = true;
+                    atr1 = testeRads[0];
+                    atr2 = testeRads[1];
+                    break;
+            }
+
+            if (atr1 !== '')
+                this.setSaving(atr1, this.checkAtr(atr1).checked);
+            if (atr2 !== '')
+                this.setSaving(atr2, this.checkAtr(atr2).checked);
+
+            this.setSaving(this.atr1Atual, false);
+            this.setSaving(this.atr2Atual, false);
+            this.atr1Atual = atr1
+            this.atr2Atual = atr2
+
+            //this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };
+            this.ficha.Classes[0] = { Classe: c, Arquetipo: '', DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: new Array() };       
+
+        } else{
+           this.showModal('Classe já adicionada.');
+           this.ficha.Classes[0].Classe = '';
         }
 
-        if (atr1 !== '')
-            this.setSaving(atr1, this.checkAtr(atr1).checked);
-        if (atr2 !== '')
-            this.setSaving(atr2, this.checkAtr(atr2).checked);
-
-        this.setSaving(this.atr1Atual, false);
-        this.setSaving(this.atr2Atual, false);
-        this.atr1Atual = atr1
-        this.atr2Atual = atr2
-
-        //this.ficha.Classes[0] = { Classe: c, DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: this.criarMatriz() };
-        this.ficha.Classes[0] = { Classe: c, Arquetipo : '', DadoDeVida: this.adicionarDado(c), CDMagias: this.calcularCD(c), ModAM: this.calcularModAtaqueMagico(c), Magias: new Array() };
     }
 
     calcularCD(classe: string) {
@@ -501,7 +534,7 @@ export class FichaComponent implements OnInit {
             return 8 + this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
             return 8 + this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
-        if (classe === 'Mago')
+        if (classe === 'Mago' || classe === 'Cavaleiro Arcano' || classe === 'Trapaceiro Arcano')
             return 8 + this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
     }
 
@@ -510,7 +543,7 @@ export class FichaComponent implements OnInit {
             return this.ficha.CarMod + parseInt(this.ficha.Proficiencia)
         if (classe === 'Clérigo' || classe === 'Druida' || classe === 'Patrulheiro')
             return this.ficha.SabMod + parseInt(this.ficha.Proficiencia)
-        if (classe === 'Mago')
+        if (classe === 'Mago' || classe === 'Cavaleiro Arcano' || classe === 'Trapaceiro Arcano')
             return this.ficha.IntMod + parseInt(this.ficha.Proficiencia)
     }
 
@@ -522,13 +555,18 @@ export class FichaComponent implements OnInit {
                 else
                     c.checked = true
             }
-        
+
     }
 
     adicionarMulticlasse(classe: string) {
-        if (classe !== '')
-            //this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
-            this.ficha.Classes.push({ Classe: classe, Arquetipo : '', DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });        
+
+        if (this.checkIncludeClass(classe) === false) {
+            if (classe !== '')
+                //this.ficha.Classes.push({ Classe: classe, DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: this.criarMatriz() });
+                this.ficha.Classes.push({ Classe: classe, Arquetipo: '', DadoDeVida: this.adicionarDado(classe), CDMagias: this.calcularCD(classe), ModAM: this.calcularModAtaqueMagico(classe), Magias: new Array() });
+        } else{
+            this.showModal('Classe já adicionada.');
+        }
     }
 
     removerMulticlasse(i: number) {

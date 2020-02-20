@@ -1,16 +1,16 @@
 <div *ngIf="classe === 'Bárbaro'" class="mb-1">
     <select (change)="choiceArchetype(barbaro.value)" (change)="swapArch" id="barbaroID" class="custom-select" name="barbaro" #barbaro>
         <option value="">------</option>
-        <option value="Furioso">Caminho do Furioso</option>
-        <option value="GuerreiroTotemico">Caminho do Guerreiro Totêmico</option>
+        <option value="Caminho do Furioso">Caminho do Furioso</option>
+        <option value="Caminho do Guerreiro Totêmico">Caminho do Guerreiro Totêmico</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Bardo'" class="mb-1">
     <select (change)="choiceArchetype(bardo.value)" id="bardoID" class="custom-select" name="bardo" #bardo>
         <option value="">------</option>
-        <option value="Conhecimento">Colégio do Conhecimento</option>
-        <option value="Bravura">Colégio da Bravura</option>
+        <option value="Colégio do Conhecimento">Colégio do Conhecimento</option>
+        <option value="Colégio da Bravura">Colégio da Bravura</option>
     </select>
 </div>
 
@@ -18,37 +18,37 @@
     <select (change)="choiceArchetype(bruxo.value)" id="bruxoID" class="custom-select" name="bruxo" #bruxo>
         <option value="">------</option>
         <option value="Arquifada">Arquifada</option>
-        <option value="OCorruptor">O Corruptor</option>
-        <option value="OGrandeAntigo">O Grande Antigo</option>
+        <option value="O Corruptor">O Corruptor</option>
+        <option value="O Grande Antigo">O Grande Antigo</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Clérigo'" class="mb-1">
     <select (change)="choiceArchetype(clerigo.value)" id="clerigoID" class="custom-select" name="clerigo" #clerigo>
         <option value="">------</option>
-        <option value="Conhecimento">Domínio do Conhecimento</option>
-        <option value="Enganacao">Domínio da Enganação</option>
-        <option value="Guerra">Domínio da Guerra</option>
-        <option value="Luz">Domínio da Luz</option>
-        <option value="Natureza">Domínio da Natureza</option>
-        <option value="Tempestade">Domínio da Tempestade</option>
-        <option value="Vida">Domínio da Vida</option>
+        <option value="Domínio do Conhecimento">Domínio do Conhecimento</option>
+        <option value="Domínio da Enganacao">Domínio da Enganação</option>
+        <option value="Domínio da Guerra">Domínio da Guerra</option>
+        <option value="Domínio da Luz">Domínio da Luz</option>
+        <option value="Domínio da Natureza">Domínio da Natureza</option>
+        <option value="Domínio da Tempestade">Domínio da Tempestade</option>
+        <option value="Domínio da Vida">Domínio da Vida</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Druida'" class="mb-1">
     <select (change)="choiceArchetype(druida.value)" id="druidaID" class="custom-select" name="druida" #druida>
         <option value="">------</option>
-        <option value="Terra">Círculo da Terra</option>
-        <option value="Lua">Círculo da Lua</option>
+        <option value="Círculo da Terra">Círculo da Terra</option>
+        <option value="Círculo da Lua">Círculo da Lua</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Feiticeiro'" class="mb-1">
     <select (change)="choiceArchetype(feiticeiro.value)" id="feiticeiroID" class="custom-select" name="feiticeiro" #feiticeiro>
         <option value="">------</option>
-        <option value="LinhagemDraconica">Linhagem Dracônica</option>
-        <option value="MagiaSelvagem">Magia Selvagem</option>
+        <option value="Linhagem Dracônica">Linhagem Dracônica</option>
+        <option value="Magia Selvagem">Magia Selvagem</option>
     </select>
 </div>
 
@@ -56,8 +56,8 @@
     <select (change)="choiceArchetype(guerreiro.value)" id="guerreiroID" class="custom-select" name="guerreiro" #guerreiro>
         <option value="">------</option>
         <option value="Campeao">Campeão</option>
-        <option value="CavaleiroArcano">Cavaleiro Arcano</option>
-        <option value="MestreDeBatalha">Mestre de Batalha</option>
+        <option value="Cavaleiro Arcano">Cavaleiro Arcano</option>
+        <option value="Mestre de Batalha">Mestre de Batalha</option>
     </select>
 </div>
 
@@ -65,47 +65,47 @@
     <select (change)="choiceArchetype(ladino.value)" id="ladinoID" class="custom-select" name="ladino" #ladino>
         <option value="">------</option>
         <option value="Assassino">Assassino</option>
-        <option value="Ladrao">Ladrão</option>
-        <option value="TrapaceiroArcano">Trapaceiro Arcano</option>
+        <option value="Ladrão">Ladrão</option>
+        <option value="Trapaceiro Arcano">Trapaceiro Arcano</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Mago'" class="mb-1">
     <select (change)="choiceArchetype(mago.value)" id="magoID" class="custom-select" name="mago" #mago>
         <option value="">------</option>
-        <option value="Abjuracao">Escola de Abjuração</option>
-        <option value="Adivinhacao">Escola de Adivinhação</option>
-        <option value="Conjuracao">Escola de Conjuração</option>
-        <option value="Encantamento">Escola de Encantamento</option>
-        <option value="Evocacao">Escola de Evocação</option>        
-        <option value="Ilusao">Escola de Ilusão</option>
-        <option value="Necromancia">Escola de Necromancia</option>
-        <option value="Transmutacao">Escola de Necromancia</option>
+        <option value="Escola de Abjuração">Escola de Abjuração</option>
+        <option value="Escola de Adivinhação">Escola de Adivinhação</option>
+        <option value="Escola de Conjuração">Escola de Conjuração</option>
+        <option value="Escola de Encantamento">Escola de Encantamento</option>
+        <option value="Escola de Evocação">Escola de Evocação</option>        
+        <option value="Escola de Ilusão">Escola de Ilusão</option>
+        <option value="Escola de Necromancia">Escola de Necromancia</option>
+        <option value="Escola de Transmutação">Escola de Necromancia</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Monge'" class="mb-1">
     <select (change)="choiceArchetype(monge.value)" id="mongeID" class="custom-select" name="monge" #monge>
         <option value="">------</option>
-        <option value="MaoAberta">Caminho da Mão Aberta</option>
-        <option value="Sombra">Caminho da Sombra</option>
-        <option value="QuatroElementos">Caminho dos Quatro Elementos</option>
+        <option value="Caminho da Mão Aberta">Caminho da Mão Aberta</option>
+        <option value="Caminho da Sombra">Caminho da Sombra</option>
+        <option value="Caminho dos Quatro Elementos">Caminho dos Quatro Elementos</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Paladino'" class="mb-1">
     <select (change)="choiceArchetype(paladino.value)" id="paladinoID" class="custom-select" name="paladino" #paladino>
         <option value="">------</option>
-        <option value="Devocao">Juramento de Devoção</option>
-        <option value="Ancioes">Juramento dos Anciões</option>
-        <option value="Vinganca">Juramento de Vingança</option>
+        <option value="Juramento de Devoção">Juramento de Devoção</option>
+        <option value="Juramento dos Anciões">Juramento dos Anciões</option>
+        <option value="Juramento de Vingança">Juramento de Vingança</option>
     </select>
 </div>
 
 <div *ngIf="classe === 'Patrulheiro'" class="mb-1">
     <select (change)="choiceArchetype(patrulheiro.value)" id="patrulheiroID" class="custom-select" name="patrulheiro" #patrulheiro>
         <option value="">------</option>
-        <option value="Cacador">Caçador</option>
-        <option value="MestreDasBestas">Mestre das Bestas</option>
+        <option value="Caçador">Caçador</option>
+        <option value="Mestre das Bestas">Mestre das Bestas</option>
     </select>
 </div>
