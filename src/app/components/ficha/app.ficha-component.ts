@@ -23,6 +23,8 @@ export class FichaComponent implements OnInit {
     private atr1Atual: string = '';
     private atr2Atual: string = '';
     private profAtual: number = 2;
+    public racaAtual: string = '0';
+    public subRacaAtual: string = '0';
 
     constructor(private route: ActivatedRoute,
         private router: Router, ) { }
@@ -79,17 +81,10 @@ export class FichaComponent implements OnInit {
     }
 
     checkIncludeClass(c: string) {
-        //console.log(this.ficha.Classes.map((c) => c.Classe))
-        console.log(this.ficha.Classes.map((c) => c.Classe).includes(c))
-        return this.ficha.Classes.map((c) => c.Classe).includes(c)
-        /*if(this.ficha.Classes.map((c) =>  c.Classe).includes(classs))
-            console.log('Contém');
-        else
-            console.log('Não Contém');*/
+        return this.ficha.Classes.map((c) => c.Classe).includes(c)       
     }
 
-    setSKill(idCheck: string, idMod: number, idInput: string) {
-        //console.log(this.checkAtr(id).checked)
+    setSkill(idCheck: string, idMod: number, idInput: string) {
         if (this.checkAtr(idCheck).checked)
             this.ficha.setPericia(this.ficha.getPericia(idInput) + parseInt(this.ficha.proficiencia), idInput)
         else
@@ -148,73 +143,14 @@ export class FichaComponent implements OnInit {
         this.ficha.setTeste(n, teste);
     }
 
-    mudarAtributosRaca(r: string): void {
-        switch (r) {
-            case '1':
-                this.ficha.con += 2;
-                this.mudarMod(2, 'conTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '2':
-                this.ficha.for += 2;
-                this.mudarMod(0, 'forTesteID');
-                this.ficha.car += 2;
-                this.mudarMod(5, 'carTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '3':
-                this.ficha.des += 2;
-                this.mudarMod(1, 'desTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '4':
-                this.ficha.des += 2;
-                this.mudarMod(1, 'desTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '5':
-                this.ficha.for += 1;
-                this.mudarMod(0, 'forTesteID');
-                this.ficha.des += 1;
-                this.mudarMod(1, 'desTesteID');
-                this.ficha.con += 1;
-                this.mudarMod(2, 'conTesteID');
-                this.ficha.int += 1;
-                this.mudarMod(3, 'intTesteID');
-                this.ficha.sab += 1;
-                this.mudarMod(4, 'sabTesteID');
-                this.ficha.car += 1;
-                this.mudarMod(5, 'carTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '6':
-                this.ficha.int += 2;
-                this.mudarMod(3, 'intTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '7':
-                this.ficha.car += 2;
-                this.mudarMod(5, 'carTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '8':
-                this.ficha.for += 2;
-                this.mudarMod(0, 'forTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            case '9':
-                this.ficha.car += 2;
-                this.mudarMod(5, 'carTesteID');
-                this.ficha.int += 1;
-                this.mudarMod(3, 'intTesteID');
-                this.mudarAtributosSubRaca('0');
-                break;
-            default:
-                this.mudarAtributosSubRaca('0');
-                break;
-        }
+    mudarAtributosRaca(r: string): void {                              
+        this.subAtrRace()
+        this.addAtrRace(r)
+        this.racaAtual = r;
+    }
 
-        switch (this.ficha.racaAtual) {
+    subAtrRace(){
+        switch (this.racaAtual) {
             case '1':
                 this.ficha.con -= 2;
                 this.mudarMod(2, 'conTesteID');
@@ -222,7 +158,7 @@ export class FichaComponent implements OnInit {
             case '2':
                 this.ficha.for -= 2;
                 this.mudarMod(0, 'forTesteID');
-                this.ficha.car -= 2;
+                this.ficha.car -= 1;
                 this.mudarMod(5, 'carTesteID');
                 break;
             case '3':
@@ -258,6 +194,8 @@ export class FichaComponent implements OnInit {
             case '8':
                 this.ficha.for -= 2;
                 this.mudarMod(0, 'forTesteID');
+                this.ficha.con -= 1;
+                this.mudarMod(2, 'conTesteID');
                 break;
             case '9':
                 this.ficha.car -= 2;
@@ -268,12 +206,142 @@ export class FichaComponent implements OnInit {
             default:
                 break;
         }
-        this.ficha.racaAtual = r;
     }
 
-    mudarAtributosSubRaca(sR: string) {
-        //console.log("Raça escolhida: " + sR);
-        switch (this.ficha.racaAtual) {
+    addAtrRace(r: string){
+        switch (r) {
+            case '1':
+                this.ficha.con += 2;
+                this.mudarMod(2, 'conTesteID');
+                break;
+            case '2':
+                this.ficha.for += 2;
+                this.mudarMod(0, 'forTesteID');
+                this.ficha.car += 1;
+                this.mudarMod(5, 'carTesteID');
+                break;
+            case '3':
+                this.ficha.des += 2;
+                this.mudarMod(1, 'desTesteID');
+                break;
+            case '4':
+                this.ficha.des += 2;
+                this.mudarMod(1, 'desTesteID');
+                break;
+            case '5':
+                this.ficha.for += 1;
+                this.mudarMod(0, 'forTesteID');
+                this.ficha.des += 1;
+                this.mudarMod(1, 'desTesteID');
+                this.ficha.con += 1;
+                this.mudarMod(2, 'conTesteID');
+                this.ficha.int += 1;
+                this.mudarMod(3, 'intTesteID');
+                this.ficha.sab += 1;
+                this.mudarMod(4, 'sabTesteID');
+                this.ficha.car += 1;
+                this.mudarMod(5, 'carTesteID');
+                break;
+            case '6':
+                this.ficha.int += 2;
+                this.mudarMod(3, 'intTesteID');
+                break;
+            case '7':
+                this.ficha.car += 2;
+                this.mudarMod(5, 'carTesteID');
+                break;
+            case '8':
+                this.ficha.for += 2;
+                this.mudarMod(0, 'forTesteID');
+                this.ficha.con += 1;
+                this.mudarMod(2, 'conTesteID');
+                break;
+            case '9':
+                this.ficha.car += 2;
+                this.mudarMod(5, 'carTesteID');
+                this.ficha.int += 1;
+                this.mudarMod(3, 'intTesteID');
+                break;
+            default:
+                break;
+        }        
+    }
+
+    mudarAtributosSubRaca(sR: string) {            
+        this.subAtrSubRace()
+        this.addAtrSubRace(sR)
+        this.subRacaAtual = sR;
+    }
+
+    subAtrSubRace(){
+        switch (this.ficha.raca) {
+            case '1':
+                switch (this.subRacaAtual) {
+                    case '1':
+                        this.ficha.sab -= 1;
+                        this.mudarMod(4, 'sabTesteID');
+                        break;
+                    case '2':
+                        this.ficha.for -= 2;
+                        this.mudarMod(0, 'forTesteID');
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case '3':
+                switch (this.subRacaAtual) {
+                    case '1':
+                        this.ficha.int -= 1;
+                        this.mudarMod(3, 'intTesteID');
+                        break;
+                    case '2':
+                        this.ficha.sab -= 1;
+                        this.mudarMod(4, 'sabTesteID');
+                        break;
+                    case '3':
+                        this.ficha.car -= 1;
+                        this.mudarMod(5, 'carTesteID');
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case '4':
+                switch (this.subRacaAtual) {
+                    case '1':
+                        this.ficha.car -= 1;
+                        this.mudarMod(5, 'carTesteID');
+                        break;
+                    case '2':
+                        this.ficha.con -= 1;
+                        this.mudarMod(2, 'conTesteID')
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case '6':
+                switch (this.subRacaAtual) {
+                    case '1':
+                        this.ficha.des -= 1;
+                        this.mudarMod(1, 'desTesteID');
+                        break;
+                    case '2':
+                        this.ficha.con -= 1;
+                        this.mudarMod(2, 'conTesteID');
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    addAtrSubRace(sR : string){
+        switch (this.ficha.raca) {
             case '1':
                 switch (sR) {
                     case '1':
@@ -282,7 +350,7 @@ export class FichaComponent implements OnInit {
                         break;
                     case '2':
                         this.ficha.for += 2;
-                        this.mudarMod(1, 'desTesteID');
+                        this.mudarMod(0, 'forTesteID');
                         break;
                     default:
                         break;
@@ -337,75 +405,6 @@ export class FichaComponent implements OnInit {
             default:
                 break;
         }
-
-        switch (this.ficha.racaAtual) {
-            case '1':
-                switch (this.ficha.subRacaAtual) {
-                    case '1':
-                        this.ficha.sab -= 1;
-                        this.mudarMod(4, 'sabTesteID');
-                        break;
-                    case '2':
-                        this.ficha.for -= 2;
-                        this.mudarMod(1, 'desTesteID');
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case '3':
-                switch (this.ficha.subRacaAtual) {
-                    case '1':
-                        this.ficha.int -= 1;
-                        this.mudarMod(3, 'intTesteID');
-                        break;
-                    case '2':
-                        this.ficha.sab -= 1;
-                        this.mudarMod(4, 'sabTesteID');
-                        break;
-                    case '3':
-                        this.ficha.car -= 1;
-                        this.mudarMod(5, 'carTesteID');
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case '4':
-                switch (this.ficha.subRacaAtual) {
-                    case '1':
-                        this.ficha.car -= 1;
-                        this.mudarMod(5, 'carTesteID');
-                        break;
-                    case '2':
-                        this.ficha.con -= 1;
-                        this.mudarMod(2, 'conTesteID')
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case '6':
-                switch (this.ficha.subRacaAtual) {
-                    case '1':
-                        this.ficha.des -= 1;
-                        this.mudarMod(1, 'desTesteID');
-                        break;
-                    case '2':
-                        this.ficha.con -= 1;
-                        this.mudarMod(2, 'conTesteID');
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
-
-        //console.log("Sub raça escolhida: " + this.ficha.subRacaAtual);
-        this.ficha.subRacaAtual = sR;
-
     }
 
     setSaving(t: string, check: boolean) {

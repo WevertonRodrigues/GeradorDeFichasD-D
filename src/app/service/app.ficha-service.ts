@@ -59,8 +59,6 @@ export class FichaService {
         u.set('SabTeste', ficha.SabTeste.toString());
         u.set('CarTeste', ficha.CarTeste.toString());
         u.set('CampoIdiomas', ficha.CampoIdiomas.toString());
-        u.set('RacaAtual', ficha.RacaAtual.toString());
-        u.set('SubRacaAtual', ficha.SubRacaAtual.toString());
         u.set('IdPerfil', ficha.IdPerfil.toString());
 
         let url_ = this.url + '/' + ficha.Id;
@@ -106,8 +104,6 @@ export class FichaService {
             u.set('SabTeste', ficha.SabTeste.toString());
             u.set('CarTeste', ficha.CarTeste.toString());
             u.set('CampoIdiomas', ficha.CampoIdiomas.toString());
-            u.set('RacaAtual', ficha.RacaAtual.toString());
-            u.set('SubRacaAtual', ficha.SubRacaAtual.toString());
             u.set('IdPerfil', perfilId.toString());
         }
 

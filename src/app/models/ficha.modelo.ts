@@ -19,6 +19,7 @@ export class Ficha {
     public Ca: number = 0;
     public Deslo = 0;
     public DesloV = 0;
+    public DesloN = 0;
     public PvMax = 0;
     public PvAtu = 0;
     public PvTemp = 0;
@@ -123,8 +124,7 @@ export class Ficha {
     public Tesouros: string = '';
 
     //Atuais
-    public RacaAtual: string = '0';
-    public SubRacaAtual: string = '0';
+  
 
     //Perfil
     public IdPerfil: number;
@@ -372,23 +372,7 @@ export class Ficha {
         this.CampoIdiomas = c;
     }
 
-    //Atuais
-    public get racaAtual(): string {
-        return this.RacaAtual;
-    }
-    public set racaAtual(r: string) {
-        this.RacaAtual = r;
-    }
-
-    public get sunRacaAtual(): string {
-        return this.SubRacaAtual;
-    }
-    public set subRacaAtual(sR: string) {
-        this.SubRacaAtual = sR;
-    }
-
-
-    //Funções Próprias
+       //Funções Próprias
     public getAtr(atr: number): number {
 
         if (atr == 0)
